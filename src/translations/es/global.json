@@ -65,7 +65,10 @@
         "auctions" : "Subastas",
         "loans" : "Prestamos",
         "community" : "Comunidad",
-        "staking" : "Staking"
+        "staking" : "Staking",
+        "explore" : "Explorar",
+        "createB" : "Crear",
+        "tokens" : "tokens"
     },
     "Footer" : {
         "made" : "Hecho con:",

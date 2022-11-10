@@ -18,6 +18,13 @@ import closeImg from '../assets/img/x.png'
 import Swal from 'sweetalert2'
 import nativoLogo from '../assets/img/logo_nativo.png'
 import { useWalletSelector } from "../utils/walletSelector";
+import plus from '../assets/img/landing/firstSection/plus.png';
+import arrowRight from '../assets/img/landing/firstSection/ARROW.png';
+import finances from '../assets/img/navBar/Finances.png';
+import loans from '../assets/img/navBar/Prestamos.png';
+import stacking from '../assets/img/navBar/Stacking.png';
+import tokenIcon from '../assets/img/navBar/token.png';
+import filter from '../assets/img/navBar/filter_none.png';
 
 function LightHeaderB(props) {
   const { selector, modal, accounts, accountId } = useWalletSelector();
@@ -34,12 +41,13 @@ function LightHeaderB(props) {
   const [t, i18n] = useTranslation("global")
   const [stateLogin, setStateLogin] = useState(false);
   const [isShowing, setIsShowing] = useState(false)
+  const [isShowingE, setIsShowingE] = useState(false)
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
 
-  const handleSignIn = () =>{
+  const handleSignIn = () => {
     modal.show()
   }
 
@@ -63,7 +71,7 @@ function LightHeaderB(props) {
 
   useEffect(() => {
     (async () => {
-      setStateLogin(accountId !=null ? true : false);
+      setStateLogin(accountId != null ? true : false);
       let account = accountId;
 
       let userMedia = window.localStorage.getItem('userMedia');
@@ -92,9 +100,9 @@ function LightHeaderB(props) {
           .then((data) => {
             console.log('profile: ', data.data.profiles[0])
             userData = data.data.profiles[0];
-            if (userData){
-            //if (data.data.profiles[0].media) {
-             localStorage.setItem('userMedia', data.data.profiles[0].media);
+            if (userData) {
+              //if (data.data.profiles[0].media) {
+              localStorage.setItem('userMedia', data.data.profiles[0].media);
             }
 
           })
@@ -148,16 +156,25 @@ function LightHeaderB(props) {
     window.location.href = 'https://v1.nativonft.app/';
   }
 
-  async function logOut(){
+  async function handleCreatebutton() {
+    if (stateLogin) {
+      window.location.href = 'create';
+    } else {
+      handleSignIn()
+    }
+
+  }
+
+  async function logOut() {
     localStorage.removeItem('userMedia');
     const wallet = await selector.wallet();
     wallet.signOut().catch((err) => {
       console.log("Failed to sign out");
       console.error(err);
-    }).then((res)=>{
+    }).then((res) => {
       window.location.href = "/"
     })
-    
+
   }
 
   async function futureFeatureMsg(section) {
@@ -167,24 +184,29 @@ function LightHeaderB(props) {
       imageHeight: 200,
       imageAlt: 'Custom image',
       title: "¡Atención!",
-      text: "La sección de "+section+" estará disponible muy pronto",
+      text: "La sección de " + section + " estará disponible muy pronto",
       confirmButtonColor: '#E79211',
       confirmButtonText: 'Cerrar'
     });
   }
 
+  async function showSettings(event) {
+    event.preventDefault();
+  }
+
+
   return (
     <>
 
       <header className="text-gray-600 body-font shadow-sm sticky top-0 z-50 bg-[#ffffff]">
-        <div className=" flex  px-5 py-2  flex-row items-center movil-header dark:bg-[#1d1d1b]">
+        <div className=" flex  px-5  flex-row items-center movil-header dark:bg-[#000] h-[80px]">
           <div className="w-full flex flex-row justify-between md:w-auto">
             <a
               href="/"
               className="flex flex-row"
             >
-              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] md:w-[120px]" alt="logo" width="120px" />
-              <div className="w-[2px] h-[50px] ml-[25px] self-center bg-[#f6c930]"></div>
+              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[105px] lg:h-[60px]" alt="logo" width="105px" height="60px" />
+
 
             </a>
           </div>
@@ -193,25 +215,86 @@ function LightHeaderB(props) {
             Galeria
           </a> */}
 
-            <a href="/collections" className="mr-5 hover:text-[#ec8b01] hover:text-lg hover:font-bold hover:animate-pulse dark:text-white font-raleway font-normal">
-              {t("Navbar.collections")}
-            </a>
-
-            <a href="/market" className="hover:text-[#ec8b01] hover:text-lg hover:font-bold hover:animate-pulse dark:text-white font-raleway font-normal">
-              {t("Navbar.onSale")}
-            </a>
-
-            <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4"
-            onMouseEnter={() => setIsShowing(true)}
-            onMouseLeave={() => setIsShowing(false)}
+            <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
+              onMouseEnter={() => setIsShowingE(true)}
+              onMouseLeave={() => setIsShowingE(false)}
             >
               {({ open }) => (
                 <>
-                  <div className="flex flex-nowrap flex-row-reverse">
-                    <Menu.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
-                      <div className="w-full  flex relative ">
-                        <div className="mr-5 hover:text-[#ec8b01] hover:text-lg hover:font-bold dark:text-white font-raleway font-normal">
-                        {t("Navbar.finance")}
+                  <div className="flex flex-nowrap flex-row-reverse h-full">
+                    <Menu.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
+                      <div className="w-full flex relative h-full">
+                        <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
+                          {t("Navbar.explore")}
+                        </div>
+                      </div>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    show={isShowingE}
+                    onMouseEnter={() => setIsShowingE(true)}
+                    onMouseLeave={() => setIsShowingE(false)}
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#1d1d1b] outline-none border-t-4 border-b-4 border-[#032B30]">
+                      <div className="py-1">
+                      <Menu.Item onClick={async () => {  window.location.href="/collections" }}>
+                          {({ active }) => (
+                            <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                              <div className="flex justify-start cursor-pointer">
+                              <img
+                                    className="mr-2"
+                                    src={filter}
+                                    alt='banner'
+                                  width="20px"
+                                  height="20px"/>
+                                  <p className=" self-center"> {t("Navbar.collections")}</p>
+                              </div>
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item onClick={async () => { window.location.href="/market" }}>
+                          {({ active }) => (
+                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                              <div className="flex justify-start cursor-pointer">
+                                  <img
+                                    className="mr-2"
+                                    src={tokenIcon}
+                                    alt='banner'
+                                  width="20px"
+                                  height="20px"/>
+                                <p className=" self-center"> {t("Navbar.tokens")}</p>
+                              </div>
+                            </a>
+                          )}
+                        </Menu.Item>
+
+                        
+
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+
+            <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
+              onMouseEnter={() => setIsShowing(true)}
+              onMouseLeave={() => setIsShowing(false)}
+            >
+              {({ open }) => (
+                <>
+                  <div className="flex flex-nowrap flex-row-reverse h-full">
+                    <Menu.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
+                      <div className="w-full flex relative h-full">
+                        <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
+                          {t("Navbar.finance")}
                         </div>
                       </div>
                     </Menu.Button>
@@ -228,12 +311,18 @@ function LightHeaderB(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items static className="w-[180px]  md:w-full origin-top-right absolute right-0 mt-2 divide-y rounded-md shadow-lg dark:bg-[#1d1d1b] outline-none">
-                      <div className="py-1"> 
+                    <Menu.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#1d1d1b] outline-none border-t-4 border-b-4 border-[#032B30]">
+                      <div className="py-1">
                         <Menu.Item onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
                           {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-bold ml-4" : "dark:text-white ml-2 font-bold"," block px-2 py-2 text-sm text-center font-raleway")}>
+                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
+                                  <img
+                                    className="mr-2"
+                                    src={finances}
+                                    alt='banner'
+                                  width="20px"
+                                  height="20px"/>
                                 <p className=" self-center"> {t("Navbar.auctions")}</p>
                               </div>
                             </a>
@@ -242,9 +331,15 @@ function LightHeaderB(props) {
 
                         <Menu.Item onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
                           {({ active }) => (
-                            <a className={classNames(active ? "dark:text-white font-bold ml-4" : "dark:text-white ml-2 font-bold","block px-2 py-2 text-sm text-center font-raleway")}>
+                            <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
-                                <p className=" self-center"> {t("Navbar.loans")}</p>
+                              <img
+                                    className="mr-2"
+                                    src={loans}
+                                    alt='banner'
+                                  width="20px"
+                                  height="20px"/>
+                                  <p className=" self-center"> {t("Navbar.loans")}</p>
                               </div>
                             </a>
                           )}
@@ -252,8 +347,14 @@ function LightHeaderB(props) {
 
                         <Menu.Item onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
                           {({ active }) => (
-                            <a className={classNames(active ? "dark:text-white font-bold ml-4" : "dark:text-white ml-2 font-bold","block px-2 py-2 text-sm text-center font-raleway")}>
+                            <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
+                              <img
+                                    className="mr-2"
+                                    src={stacking}
+                                    alt='banner'
+                                  width="20px"
+                                  height="20px"/>
                                 <p className=" self-center"> {t("Navbar.staking")}</p>
                               </div>
                             </a>
@@ -266,9 +367,16 @@ function LightHeaderB(props) {
               )}
             </Menu>
 
-            <a href="/community" className="mr-5 hover:text-[#ec8b01] hover:text-lg hover:font-bold hover:animate-pulse dark:text-white font-raleway font-normal cursor-pointer">
+            <a href="/community" className="mr-5 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
               {t("Navbar.community")}
             </a>
+
+            <button className="flex inline-flex rounded-xlarge w-full h-[40px]  mt-0 ml-5  lg:w-[159px]" onClick={() => handleCreatebutton()}>
+              <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+
+                <span className="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">{t("Navbar.createB")} <img className="manImg w-[12px] h-[12px] self-center ml-[6px]" src={arrowRight}></img> </span>
+              </div>
+            </button>
           </nav>
 
 
@@ -289,7 +397,7 @@ function LightHeaderB(props) {
               }}
             />
             <button type="submit" className="p-2 lg:w-1/12 px-3 ml-2 bg-s">
-              <img src={lupa} alt="lupa"/>
+              <img src={lupa} alt="lupa" />
             </button>
           </form>
 
@@ -332,7 +440,7 @@ function LightHeaderB(props) {
                     >
                       <Menu.Items
                         static
-                        className="w-[180px] origin-top-right absolute right-0 mt-2 divide-y rounded-md shadow-lg bg-white outline-none"
+                        className="w-[180px] origin-top-right absolute right-0 mt-3 divide-y rounded-md shadow-lg bg-white outline-none"
                       >
                         <div className="py-1">
                           <Menu.Item
@@ -400,89 +508,89 @@ function LightHeaderB(props) {
                                 active
                                   ? "bg-yellow text-darkgray "
                                   : "text-darkgray ml-2 ",
-                                "block px-2 py-2 text-sm text-center font-raleway font-normal md:hidden "
+                                "block px-2 py-2 text-sm text-center font-open-sans font-extrabold  md:hidden "
                               )}>
                                 <div className="flex justify-start">
                                   <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="15" height="15"><path d="M19,17a5.994,5.994,0,0,1-3-.806A5.994,5.994,0,0,1,13,17H11a5.938,5.938,0,0,1-3-.818A5.936,5.936,0,0,1,5,17H4a5.949,5.949,0,0,1-3-.813V21a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V16.188A5.958,5.958,0,0,1,20,17Z" /><path d="M17,0V6H15V0H9V6H7V0H2.2L.024,9.783,0,11a4,4,0,0,0,4,4H5a3.975,3.975,0,0,0,3-1.382A3.975,3.975,0,0,0,11,15h2a3.99,3.99,0,0,0,3-1.357A3.99,3.99,0,0,0,19,15h1a4,4,0,0,0,4-4V10L21.8,0Z" /></svg>
                                   </span>
-                                  <p className=" self-center">{t("Navbar.onSale")}</p>
+                                  <p className=" self-center">{t("Navbar.explore")}</p>
                                 </div>
                               </a>
                             )}
                           </Menu.Item>
 
                           <Menu.Item>
-                              {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer md:hidden"
-                                )}
-                                  onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.auctions")}</p>
-                                  </div>
-                                </a>
+                            {({ active }) => (
+                              <a className={classNames(
+                                active
+                                  ? "bg-yellow text-darkgray "
+                                  : "text-darkgray ml-2 ",
+                                "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer md:hidden"
                               )}
+                                onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}
+                              >
+                                <div className="flex justify-start">
+                                  <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                  </span>
+                                  <p className=" self-center">{t("Navbar.auctions")}</p>
+                                </div>
+                              </a>
+                            )}
                           </Menu.Item>
 
                           <Menu.Item>
-                              {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer md:hidden"
-                                )}
-                                  onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.loans")}</p>
-                                  </div>
-                                </a>
+                            {({ active }) => (
+                              <a className={classNames(
+                                active
+                                  ? "bg-yellow text-darkgray "
+                                  : "text-darkgray ml-2 ",
+                                "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer md:hidden"
                               )}
+                                onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}
+                              >
+                                <div className="flex justify-start">
+                                  <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                  </span>
+                                  <p className=" self-center">{t("Navbar.loans")}</p>
+                                </div>
+                              </a>
+                            )}
                           </Menu.Item>
                           <Menu.Item>
-                              {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer"
-                                )}
-                                  onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.staking")}</p>
-                                  </div>
-                                </a>
+                            {({ active }) => (
+                              <a className={classNames(
+                                active
+                                  ? "bg-yellow text-darkgray "
+                                  : "text-darkgray ml-2 ",
+                                "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer"
                               )}
-                            </Menu.Item>
+                                onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}
+                              >
+                                <div className="flex justify-start">
+                                  <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                  </span>
+                                  <p className=" self-center">{t("Navbar.staking")}</p>
+                                </div>
+                              </a>
+                            )}
+                          </Menu.Item>
 
                           <Menu.Item>
-                              {({ active }) => (
-                                <a href="/community" className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal  cursor-pointer md:hidden"
-                                )}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.community")}</p>
-                                  </div>
-                                </a>
+                            {({ active }) => (
+                              <a href="/community" className={classNames(
+                                active
+                                  ? "bg-yellow text-darkgray "
+                                  : "text-darkgray  ",
+                                "block px-2 py-2 text-sm text-center font-open-sans font-extrabold cursor-pointer md:hidden"
                               )}
+                              >
+                                <div className="flex justify-start">
+                                  <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                  </span>
+                                  <p className=" self-center">{t("Navbar.community")}</p>
+                                </div>
+                              </a>
+                            )}
                           </Menu.Item>
 
                           <Menu.Item
@@ -551,7 +659,7 @@ function LightHeaderB(props) {
                             }}
                           >
                             {({ active }) => (
-                              <a  className={classNames(
+                              <a className={classNames(
                                 active
                                   ? "bg-yellow text-darkgray "
                                   : "text-darkgray ml-2 ",
@@ -576,7 +684,7 @@ function LightHeaderB(props) {
               :
               <>
                 <button
-                  className={`ml-auto mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] md:w-auto rounded-xlarge font-raleway font-medium hidden md:flex`}
+                  className={`ml-auto mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
                   style={{ justifyContent: "center" }}
                   // disabled={state?.tokens.onSale}
                   onClick={handleSignIn}>

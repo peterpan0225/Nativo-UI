@@ -61,11 +61,15 @@
         "profile" : "profile",
         "logout" : "Logout",
         "logoin" : "Login",
-        "finance" : "Finance",
+        "finance" : "Finances",
         "auctions" : "Auctions",
         "loans" : "Loans",
         "community" : "Community",
-        "staking" : "Staking"
+        "staking" : "Staking",
+        "explore" : "Explorar",
+        "createB" : "Create",
+        "tokens" : "tokens"
+
 
     },
     "Footer" : {
