@@ -68,7 +68,8 @@
         "staking" : "Staking",
         "explore" : "Explorar",
         "createB" : "Create",
-        "tokens" : "tokens"
+        "tokens" : "tokens",
+        "search" : "Search By: Account or Title.."
 
 
     },
@@ -134,7 +135,7 @@
         "hasTok" : "The collection currently has no NFTs",
         "seeMore" : "...See more",
         "seeLess" : "See Lees",
-        "search" : "Search By: Account or Title..",
+        "search" : "Search collections By: Account or Title..",
         "markTitle" : "Market",
         "markOwn" : "Owner:"
     },

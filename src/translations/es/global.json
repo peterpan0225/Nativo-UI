@@ -68,7 +68,8 @@
         "staking" : "Staking",
         "explore" : "Explorar",
         "createB" : "Crear",
-        "tokens" : "tokens"
+        "tokens" : "tokens",
+        "search" : "Busca por: Cuenta ó Título.."
     },
     "Footer" : {
         "made" : "Hecho con:",

@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
 import verifyImage from '../assets/img/Check.png';
 import { Fab } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 
 function LightEcommerceA() {
@@ -66,8 +67,8 @@ function LightEcommerceA() {
     hasMore: true
   });
   
-  const APIURL = process.env.REACT_APP_API_TG
-
+  const APIURL = process.env.REACT_APP_API_TG;
+  const location = useLocation();
   const handleChangePage = (e, value) => {
     // console.log(value)
     setpage(value)
@@ -201,91 +202,65 @@ function LightEcommerceA() {
         let contract = await getNearContract();
         let account = await getNearAccount();
 
+        const query = new URLSearchParams(location.search);
+        const searchWord = query.get('search');
+        console.log('location', searchWord);
+        setActiveSearch(true)
+        const queryData2 = `
+        query($first: String!) 
+           {
+             collectionSearch(text: $first, skip: 0, first: 3) {
+               id
+               title
+               description
+               owner_id
+               tokenCount
+               mediaBanner
+               mediaIcon
+               collectionID
+               timestamp
 
-        
+           }
+         }
+       `
 
+   //Declaramos el cliente
+   const client = new ApolloClient({
+     uri: APIURL,
+     cache: new InMemoryCache(),
+   })
 
-    const queryData = `
-          query($first: Int){
-              collections(first: $first,  orderBy: collectionID, orderDirection: desc, where:{visibility:true, tokenCount_gt:0}){
-                id
-                collectionID
-                owner_id
-                title
-                timestamp
-                mediaIcon
-                mediaBanner,
-                description,
-                tokenCount
-            }
-            profiles (where : {id : $account}){
-              id
-              media
-              biography
-              socialMedia
-            }
-          }
-        `
+   await client
+   .query({
+     query: gql(queryData2),
+     variables: {
+       first: searchWord,
+     },
+   })
+     .then((data) => {
+       console.log('data',data);
+       colData = data.data.collectionSearch;
+     })
+     .catch((err) => {
+       console.log('err',err);
+     })
 
-    //Declaramos el cliente
-    const client = new ApolloClient({
-      uri: APIURL,
-      cache: new InMemoryCache(),
-    })
+     let col = colData.map((collection) => {
+       return {
+         title: collection.title,
+         owner: collection.owner_id,
+         tokenCount: collection.tokenCount,
+         description: collection.description,
+         mediaIcon: collection.mediaIcon,
+         mediaBanner: collection.mediaBanner,
+         collectionID: collection.collectionID
+       };
+     });
 
-    await client
-      .query({
-        query: gql(queryData),
-        variables: {
-          first: Landing.tokensPerPage,
-        },
-      })
-      .then((data) => {
-        //console.log("tokens data: ", data.data.tokens)
-        colData = data.data.collections
-        console.log(data.data.collections)
-        if (data.data.collections.length <= 0) {
-          setLoadMsg(false)
-        }
-        setFirstID(parseInt(data.data.collections[0].collectionID))
-        setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
-        setpage(page + 1)
-        // colData = data.data.collections[0]
-      })
-      .catch((err) => {
-        //console.log('Error ferching data: ', err)
-        colData = 0
-      })
-
-      if(colData != 0){
-
-
-      let col = colData.map((collection) => {
-          return {
-            title: collection.title,
-            owner: collection.owner_id,
-            tokenCount: collection.tokenCount,
-            description: collection.description,
-            mediaIcon: collection.mediaIcon,
-            mediaBanner: collection.mediaBanner,
-            collectionID: collection.collectionID
-          };
-        });
-    
-        await setLanding({
-          ...Landing,
-          tokens: col,
-          nPages: 0,
-        });
-        setCollections({
-          ...collections,
-          items: collections.items.concat(col)
-        });
-    
-      } else {
-        setTotalCol(0);
-        setHasData(false);
-      }
+     setCollections({
+       ...collections,
+       items: col
+     });
   }
 
     })();
@@ -462,20 +437,7 @@ function LightEcommerceA() {
 return (
   <section className={"text-gray-600 body-font " + (ini && hasData ? "" : "py-64 dark:bg-darkgray")}>
     <div className={"pt-3 mx-auto dark:bg-darkgray "}>
-      <div className="lg:w-full  h-[30px] flex my-8 justify-center">
-        <h1 className="text-3xl lg:text-6xl font-black dark:text-white bg-darkgray m-0 px-6 font-raleway uppercase self-center">
-          {t("Collections.title")}
-        </h1>
-      </div>
-      <div className="flex justify-around px-5 md:px-8 mb-2 w-full">
-        <form onSubmit={_handleKeyUp} className="flex w-full justify-center">
-          <input type="text" value={search.searchWord} onChange={_handleChange} placeholder={t("tokCollection.search")} className={` placeholder:text-center font-open-sans  flex flex-col  h-full dark:bg-white dark:text-darkgray text-left rounded-20 mr-2 justify-center focus-visible:outline-none focus-visible:shadow-s focus-visible:shadow-s focus-visible:shadow-brown-s w-full xl:w-4/5 `} />
-          <button type="submit" value="Submit" className="rounded-xlarge  text-white  bg-yellow2 w-[50px] h-[45px] mx-1" >
-            <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M18.9,16.776A10.539,10.539,0,1,0,16.776,18.9l5.1,5.1L24,21.88ZM10.5,18A7.5,7.5,0,1,1,18,10.5,7.507,7.507,0,0,1,10.5,18Z" /></svg>
-          </button>
-        </form>
 
-      </div>
 
     
       {hasData ?

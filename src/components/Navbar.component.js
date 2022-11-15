@@ -29,7 +29,11 @@ import accountCircle from '../assets/img/navBar/profile/account_circle.png';
 import createCollection from '../assets/img/navBar/profile/crear_coleccion.png';
 import createToken from '../assets/img/navBar/profile/crear_token.png';
 import logout from '../assets/img/navBar/profile/Salir.png';
+import search from '../assets/img/navBar/search/search.png';
 import staking from '../assets/img/navBar/profile/Staking.png';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useHistory } from 'react-router-dom';
 
 function LightHeaderB(props) {
   const { selector, modal, accounts, accountId } = useWalletSelector();
@@ -40,13 +44,30 @@ function LightHeaderB(props) {
     dropdown:
       blockchains[parseInt(localStorage.getItem("blockchain"))] || "Blockchain",
   });
-  const [buscar, setbuscar] = useState("");
+  const [buscar, setBuscar] = useState("");
   const [menu, setmenu] = useState(true);
   const [Beta, setBeta] = useState(true);
   const [t, i18n] = useTranslation("global")
   const [stateLogin, setStateLogin] = useState(false);
   const [isShowing, setIsShowing] = useState(false)
-  const [isShowingE, setIsShowingE] = useState(false)
+  const [isShowingE, setIsShowingE] = useState(false);
+  const history = useHistory();
+  
+  const formik = useFormik({
+    initialValues: {
+      search: ""
+    },
+    //validaciones
+    validationSchema: Yup.object({
+      search: Yup.string()
+    }),
+    onSubmit: async (value) => {
+      history.push({
+        pathname: '/collections',
+        search: '?search='+buscar.buscar
+    });
+    }
+  });
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -199,6 +220,16 @@ function LightHeaderB(props) {
     event.preventDefault();
   }
 
+  let _handleChange = async(e)=>{
+    console.log('handleChanvge',e.target.value);
+    if(e.keyCode === 13){ 
+      formik.handleSubmit(e);
+    } else {
+      setBuscar({...buscar, buscar: e.target.value})
+    }
+    
+  }
+
 
   return (
     <>
@@ -211,14 +242,37 @@ function LightHeaderB(props) {
               className="flex flex-row"
             >
               <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[105px] lg:h-[60px]" alt="logo" width="105px" height="60px" />
-
-
             </a>
           </div>
           <nav className={" md:mr-auto md:ml-4 md:py-1 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center " + (menu ? "esconder-nav" : "")}>
-            {/* <a href="/galeria" className="mr-5 hover:text-gray-900">
-            Galeria
-          </a> */}
+            <form
+              onSubmit={formik.handleSubmit}
+              className="w-[275px] relative flex my-auto h-[40px] items-center"
+            >
+                <input
+                  type="search"
+                  id="search"
+                  name="search"
+                  placeholder={t("Navbar.search")}
+                  value={buscar} 
+                  onKeyUp={_handleChange}
+                  {...formik.getFieldProps("search")}
+                  className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center shadow-s border-solid border rounded-md border-white2  bg-black  focus-visible:outline-none focus-visible:shadow-s `}
+                />
+              <button
+                type="submit"
+                className={` dark:text-white absolute right-0 mr-2 `}
+              >
+                <img
+                  className=""
+                  src={search}
+                  alt={search}
+                  width="20px"
+                  height="20px" />
+            </button>
+            </form>
+         
+
 
             <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
               onMouseEnter={() => setIsShowingE(true)}
@@ -397,7 +451,7 @@ function LightHeaderB(props) {
                 const not = "abcdefghijklmnopqrstuvwxyzñ1234567890_-.";
                 const tex = e.target.value.toString().toLowerCase();
                 if (not.includes(tex[tex.length - 1]) || tex == "") {
-                  setbuscar(tex);
+                  setBuscar(tex);
                 }
               }}
             />
