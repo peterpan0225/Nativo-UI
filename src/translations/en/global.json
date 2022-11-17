@@ -69,7 +69,8 @@
         "explore" : "Explorar",
         "createB" : "Create",
         "tokens" : "tokens",
-        "search" : "Search By: Account or Title.."
+        "search" : "Account or Title..",
+        "search-all" : "See all"
 
 
     },

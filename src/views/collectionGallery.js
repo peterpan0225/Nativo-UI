@@ -204,10 +204,107 @@ function LightEcommerceA() {
 
         const query = new URLSearchParams(location.search);
         const searchWord = query.get('search');
-        console.log('location', searchWord);
-        setActiveSearch(true)
-        const queryData2 = `
-        query($first: String!) 
+        const searchWordTG  = decodeURIComponent(searchWord)
+
+        if (searchWord === 'all') {
+          const queryData = `
+          query($first: Int){
+          collections(first: $first,  orderBy: collectionID, orderDirection: desc, where:{visibility:true, tokenCount_gt:0}){
+          id
+          collectionID
+          owner_id
+          title
+          timestamp
+          mediaIcon
+          mediaBanner,
+          description,
+          tokenCount
+      }
+      profiles (where : {id : $account}){
+        id
+        media
+        biography
+        socialMedia
+      }
+    }
+  `
+
+          //Declaramos el cliente
+          const client = new ApolloClient({
+            uri: APIURL,
+            cache: new InMemoryCache(),
+          })
+
+          await client
+            .query({
+              query: gql(queryData),
+              variables: {
+                first: Landing.tokensPerPage,
+              },
+            })
+            .then((data) => {
+              //console.log("tokens data: ", data.data.tokens)
+              colData = data.data.collections
+              console.log(data.data.collections)
+              if (data.data.collections.length <= 0) {
+                setLoadMsg(false)
+              }
+              setFirstID(parseInt(data.data.collections[0].collectionID))
+              setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
+              setpage(page + 1)
+              // colData = data.data.collections[0]
+            })
+            .catch((err) => {
+              //console.log('Error ferching data: ', err)
+              colData = 0
+            })
+
+          if (colData != 0) {
+
+
+            let col = colData.map((collection) => {
+              return {
+                title: collection.title,
+                owner: collection.owner_id,
+                tokenCount: collection.tokenCount,
+                description: collection.description,
+                mediaIcon: collection.mediaIcon,
+                mediaBanner: collection.mediaBanner,
+                collectionID: collection.collectionID
+              };
+            });
+
+            await setLanding({
+              ...Landing,
+              tokens: col,
+              nPages: 0,
+            });
+            setCollections({
+              ...collections,
+              items: collections.items.concat(col)
+            });
+
+          } else {
+            setTotalCol(0);
+            setHasData(true);
+          }
+
+        } else {
+          let originalSearchWord = searchWordTG;
+          let replacedString = originalSearchWord.replace(/['"]+/g, '');
+          let searchWordMap = replacedString.split(' ');
+          let filterWords = searchWordMap.filter((word) => word !== "");
+          let searchWordJoin = filterWords.map((word, i, arr) => {
+
+            if (i + 1 === arr.length) {
+              return word;
+            } else {
+              return word + " & ";
+            }
+          })
+          let searchWordParsed = searchWordJoin.join(' ');
+          const queryData2 = `  
+          query($first: String!) 
            {
              collectionSearch(text: $first, skip: 0, first: 3) {
                id
@@ -224,44 +321,58 @@ function LightEcommerceA() {
          }
        `
 
-   //Declaramos el cliente
-   const client = new ApolloClient({
-     uri: APIURL,
-     cache: new InMemoryCache(),
-   })
+          //Declaramos el cliente
+          const client = new ApolloClient({
+            uri: APIURL,
+            cache: new InMemoryCache(),
+          })
 
-   await client
-   .query({
-     query: gql(queryData2),
-     variables: {
-       first: searchWord,
-     },
-   })
-     .then((data) => {
-       console.log('data',data);
-       colData = data.data.collectionSearch;
-     })
-     .catch((err) => {
-       console.log('err',err);
-     })
+          await client
+            .query({
+              query: gql(queryData2),
+              variables: {
+                first: searchWordParsed,
+              },
+            })
+            .then((data) => {
+              console.log('data', data);
+              colData = data.data.collectionSearch;
+            })
+            .catch((err) => {
+              console.log('err', err);
+            })
 
-     let col = colData.map((collection) => {
-       return {
-         title: collection.title,
-         owner: collection.owner_id,
-         tokenCount: collection.tokenCount,
-         description: collection.description,
-         mediaIcon: collection.mediaIcon,
-         mediaBanner: collection.mediaBanner,
-         collectionID: collection.collectionID
-       };
-     });
+          if (colData != 0) {
+            let col = colData.map((collection) => {
+              return {
+                title: collection.title,
+                owner: collection.owner_id,
+                tokenCount: collection.tokenCount,
+                description: collection.description,
+                mediaIcon: collection.mediaIcon,
+                mediaBanner: collection.mediaBanner,
+                collectionID: collection.collectionID
+              };
+            });
 
-     setCollections({
-       ...collections,
-       items: col
-     });
-  }
+            await setLanding({
+              ...Landing,
+              tokens: col,
+              nPages: 0,
+            });
+            setCollections({
+              ...collections,
+              items: collections.items.concat(col)
+            });
+
+            setSearch({skipSearch : 3, hasMore: col.length == 3 ? true : false});
+
+          } else {
+            setTotalCol(0);
+            setHasData(false);
+          }
+        }
+      }
 
     })();
   }, [trigger]);
@@ -352,7 +463,6 @@ function LightEcommerceA() {
   let fetchMoreSearch = async() => {
     await delay(.75)
     let colData;
-    console.log('fetchMoreSearch');
     
       const queryData2 = `
          query($first: String!) 
@@ -435,9 +545,13 @@ function LightEcommerceA() {
     setSearch({...search, searchWord: e.target.value})
   }
 return (
-  <section className={"text-gray-600 body-font " + (ini && hasData ? "" : "py-64 dark:bg-darkgray")}>
+  <section className={"text-gray-600 body-font " + (ini && hasData ? "" : "dark:bg-darkgray")}>
     <div className={"pt-3 mx-auto dark:bg-darkgray "}>
-
+      <div className="lg:w-full  h-[30px] flex my-8 justify-center">
+        <h1 className="text-3xl lg:text-6xl font-black dark:text-white bg-darkgray m-0 px-6 font-raleway uppercase self-center">
+          {t("Collections.title")}
+        </h1>
+      </div>
 
     
       {hasData ?
@@ -495,9 +609,15 @@ return (
           </InfiniteScroll>
         </div>
         :
-        <div className="container mx-auto flex  my- md:flex-row flex-col text-yellow2 justify-center h-96 items-center text-4xl font-bold">
+        <div className=" mx-auto flex   md:flex-row flex-col text-yellow2 justify-center h-96 items-center text-4xl font-bold">
           <div className="flex flex-col justify-center">
             <h1 className="text-center">{t("Collections.load-2")}</h1>
+            <button
+                  className={`w-fit mx-auto mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none  rounded-md font-open-sans font-extrabold text-lg md:flex`}
+                  onClick={() =>{window.location = "collections?search=all"}}>
+
+                  {t("Navbar.search-all")}
+                </button>
           </div>
         </div>
       }

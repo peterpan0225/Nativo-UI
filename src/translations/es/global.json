@@ -69,7 +69,8 @@
         "explore" : "Explorar",
         "createB" : "Crear",
         "tokens" : "tokens",
-        "search" : "Busca por: Cuenta ó Título.."
+        "search" : "Cuenta ó Título..",
+        "search-all" : "Ver todas"
     },
     "Footer" : {
         "made" : "Hecho con:",

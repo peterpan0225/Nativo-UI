@@ -44,7 +44,7 @@ function LightHeaderB(props) {
     dropdown:
       blockchains[parseInt(localStorage.getItem("blockchain"))] || "Blockchain",
   });
-  const [buscar, setBuscar] = useState("");
+  const [buscar, setBuscar] = useState({buscar: ""});
   const [menu, setmenu] = useState(true);
   const [Beta, setBeta] = useState(true);
   const [t, i18n] = useTranslation("global")
@@ -62,10 +62,19 @@ function LightHeaderB(props) {
       search: Yup.string()
     }),
     onSubmit: async (value) => {
-      history.push({
-        pathname: '/collections',
-        search: '?search='+buscar.buscar
-    });
+      console.log('12345678',buscar.buscar);
+      console.log('value',value);
+      console.log('value.search.trim().length ',value.search.trim().length);
+     
+       if(value.search.trim().length == 0) {
+        window.location = '/collections?search=all';
+       } else {
+        const test = encodeURIComponent(value.search.trim());
+        console.log('test', test);
+        const URI = '/collections?search='+ test;
+        console.log('URI',URI);
+        window.location = URI;
+       }
     }
   });
 
@@ -223,11 +232,14 @@ function LightHeaderB(props) {
   let _handleChange = async(e)=>{
     console.log('handleChanvge',e.target.value);
     if(e.keyCode === 13){ 
-      formik.handleSubmit(e);
+      formik.handleSubmit(e.target.value);
     } else {
       setBuscar({...buscar, buscar: e.target.value})
     }
-    
+  }
+
+  let handleAllCollections = async(e) => {
+    window.location.href = '/collections?search=all'
   }
 
 
@@ -255,7 +267,6 @@ function LightHeaderB(props) {
                   name="search"
                   placeholder={t("Navbar.search")}
                   value={buscar} 
-                  onKeyUp={_handleChange}
                   {...formik.getFieldProps("search")}
                   className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center shadow-s border-solid border rounded-md border-white2  bg-black  focus-visible:outline-none focus-visible:shadow-s `}
                 />
@@ -303,7 +314,7 @@ function LightHeaderB(props) {
                   >
                     <Menu.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
                       <div className="py-1">
-                      <Menu.Item onClick={async () => {  window.location.href="/collections" }}>
+                      <Menu.Item onClick={handleAllCollections}>
                           {({ active }) => (
                             <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
