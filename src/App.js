@@ -62,9 +62,9 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router>
+        <Router >
           <Navbar theme={this.state.theme} />
-          <Switch>
+          <Switch id="page-wrap">
             <Route exact path="/" component={Landing} />
             <BlockchainProtectedRoute path="/create" component={Mint} />
             <BlockchainProtectedRoute path="/profileData/:state" component={ProfileData} />
