@@ -34,6 +34,10 @@ import staking from '../assets/img/navBar/profile/Staking.png';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useHistory } from 'react-router-dom';
+import { slide as HamburguerMenu } from 'react-burger-menu';
+import menuArrowRight from '../assets/img/navBar/menu/chevron-left.png';
+import createNft from '../assets/img/navBar/menu/plus-nft.png';
+import createCol from '../assets/img/navBar/menu/plus-col.png';
 
 function LightHeaderB(props) {
   const { selector, modal, accounts, accountId } = useWalletSelector();
@@ -247,7 +251,7 @@ function LightHeaderB(props) {
     <>
 
       <header className="text-gray-600 body-font shadow-sm sticky top-0 z-50 bg-[#ffffff]">
-        <div className=" flex  px-5  flex-row items-center movil-header dark:bg-[#000] h-[80px]">
+        <div className=" flex  px-5  flex-row items-center movil-header dark:bg-[#0A0A0A] h-[80px]">
           <div className="w-full flex flex-row justify-between md:w-auto">
             <a
               href="/"
@@ -473,191 +477,23 @@ function LightHeaderB(props) {
 
           {
             stateLogin ?
-              <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4">
-                {({ open }) => (
-                  <>
-                    <div className="flex flex-nowrap flex-row-reverse">
-                      <Menu.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
-                        <div className="w-full  flex relative ">
-                          {state.userMedia ?
-                            <div className="w-[35px] h-[35px]  bg-circle rounded-full  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
-                            </div> :
-                            <div className="w-[35px] h-[35px]  bg-circle rounded-full bg-pink-2 relative">
-                            </div>
-                          }
-
-                        </div>
-                      </Menu.Button>
-                    </div>
-                    <Transition
-                      show={open}
-                      as={Fragment}
-                      enter="transition ease-out duration-100"
-                      enterFrom="transform opacity-0 scale-95"
-                      enterTo="transform opacity-100 scale-100"
-                      leave="transition ease-in duration-75"
-                      leaveFrom="transform opacity-100 scale-100"
-                      leaveTo="transform opacity-0 scale-95"
-                    >
-                      <Menu.Items
-                        static
-                        className="w-[219px]  md:w-[219px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
-                      >
-                        <div className="py-1">
-                          <Menu.Item
-                          >
-                            {({ active }) => (
-                              <a href={"/profile/" + state.owner.split('.')[0]}  className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                <div className="flex justify-start">
-                                <span className=" m-2">
-                                    <img
-                                      className="mr-2"
-                                      src={accountCircle}
-                                      alt='banner'
-                                      width="20px"
-                                      height="20px" />                                  
-                                  </span>
-                                  <p className=" items-start flex flex-col md:flex-row md:items-center"> {t("Navbar.profile")}
-                                    <span className="text-[9px] -mt-[7px] md:hidden">{state.owner}</span>
-                                  </p>
-                                </div>
-                              </a>
-                            )}
-                          </Menu.Item>
- 
-
-
-
-
-
-
-
-                          <Menu.Item
-                          >
-                            {({ active }) => (
-                              <a href="/mynfts"  className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                <div className="flex justify-start">
-                                <span className=" m-2">
-                                    <img
-                                      className="mr-2"
-                                      src={tokenIcon}
-                                      alt='banner'
-                                      width="20px"
-                                      height="20px" />                                  
-                                  </span>
-                                  <p className=" self-center"> {t("Navbar.myNFTs")}</p>
-                                </div>
-
-                              </a>
-                            )}
-                          </Menu.Item>
-
-                          <Menu.Item
-                          >
-                            {({ active }) => (
-                              <a href="/collectionData/create"  className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                <div className="flex justify-start">
-                                <span className=" m-2">
-                                    <img
-                                      className="mr-2"
-                                      src={createCollection}
-                                      alt='banner'
-                                      width="20px"
-                                      height="20px" />                                  
-                                  </span>
-                                  <p className=" self-center"> {t("Navbar.createCollection")}</p>
-                                </div>
-
-                              </a>
-                            )}
-                          </Menu.Item>
-
-
-                          <Menu.Item
-                          >
-                            {({ active }) => (
-                              <a href="/create"  className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                <div className="flex justify-start">
-                                <span className=" m-2">
-                                    <img
-                                      className="mr-2"
-                                      src={createToken}
-                                      alt='banner'
-                                      width="20px"
-                                      height="20px" />                                  
-                                  </span>
-                                  <p className=" self-center"> {t("Navbar.create")}</p>
-                                </div>
-
-                              </a>
-                            )}
-                          </Menu.Item>
- 
-                 
-
-                          <Menu.Item
-                            onClick={async () => {
-                              logOut();
-                            }}
-                          >
-                            {({ active }) => (
-                              <a  className={classNames(active ? " font-extrabold  bg-[#2A747E]" : "dark:text-yellow4 ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                <div className="flex justify-start">
-                                  <span className=" m-2">
-                                    <img
-                                      className="mr-2"
-                                      src={logout}
-                                      alt='banner'
-                                      width="20px"
-                                      height="20px" />                                  
-                                  </span>
-                                  <p className=" self-center"> {t("Navbar.logout")}</p>
-                                </div>
-
-                              </a>
-                            )}
-                          </Menu.Item>
-                        </div>
-                      </Menu.Items>
-                    </Transition>
-                  </>
-                )}
-              </Menu>
-              :
               <>
-                <button
-                  className={`ml-auto mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
-                  style={{ justifyContent: "center" }}
-                  // disabled={state?.tokens.onSale}
-                  onClick={handleSignIn}>
-
-                  {t("Navbar.login")}
-                </button>
-                <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 md:hidden">
-
+                <Menu as="div" className="relative  text-left w-full md:w-auto md:ml-4 hidden lg:inline-block">
                   {({ open }) => (
                     <>
-
                       <div className="flex flex-nowrap flex-row-reverse">
-
                         <Menu.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
-
                           <div className="w-full  flex relative ">
-                            <img
-                              alt="ecommerce"
-                              className=" object-contain md:object-scale-down rounded-xlarge  lg:h-auto w-[35px] h-[35px] m-auto"
-                              src={defaultUser}
-                            />
-                          </div>
+                            {state.userMedia ?
+                              <div className="w-[35px] h-[35px]  bg-circle rounded-full  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
+                              </div> :
+                              <div className="w-[35px] h-[35px]  bg-circle rounded-full bg-pink-2 relative">
+                              </div>
+                            }
 
-                          <ChevronDownIcon
-                            className="-mr-1 ml-2  w-5"
-                            aria-hidden="true"
-                          />
+                          </div>
                         </Menu.Button>
                       </div>
-
-
                       <Transition
                         show={open}
                         as={Fragment}
@@ -668,133 +504,119 @@ function LightHeaderB(props) {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-
-
                         <Menu.Items
                           static
-                          className="w-[180px] origin-top-right absolute right-0 mt-2 divide-y rounded-md shadow-lg bg-white outline-none"
+                          className="w-[219px]  md:w-[219px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
                         >
                           <div className="py-1">
-                            <Menu.Item>
+                            <Menu.Item
+                            >
                               {({ active }) => (
-                                <a href="/collections" className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal "
-                                )}>
+                                <a href={"/profile/" + state.owner.split('.')[0]} className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
                                   <div className="flex justify-start">
                                     <span className=" m-2">
-                                      <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="15" height="15"><path d="M18.5,0h-5A5.5,5.5,0,0,0,8.015,5.21a5.5,5.5,0,0,0-4,5A5.506,5.506,0,0,0,0,15.5v3A5.507,5.507,0,0,0,5.5,24h5A5.507,5.507,0,0,0,16,18.5v-.213a5.512,5.512,0,0,0,3.919-4.38A5.162,5.162,0,0,0,24,8.5v-3A5.507,5.507,0,0,0,18.5,0ZM3,15.5A2.5,2.5,0,0,1,5.5,13h5A2.5,2.5,0,0,1,13,15.5v.2l-2.115,2.115a1,1,0,0,1-1.415,0L9,17.335a1,1,0,0,0-1.347-.061l-3.7,3.176A2.488,2.488,0,0,1,3,18.5ZM17,13a2.492,2.492,0,0,1-1.025,2.008A5.506,5.506,0,0,0,10.5,10H7.051A2.5,2.5,0,0,1,9.5,8h5A2.5,2.5,0,0,1,17,10.5Zm4-4.5a2.719,2.719,0,0,1-1,2.226V10.5A5.507,5.507,0,0,0,14.5,5H11.051A2.5,2.5,0,0,1,13.5,3h5A2.5,2.5,0,0,1,21,5.5Zm-17,7A1.5,1.5,0,1,1,5.5,17,1.5,1.5,0,0,1,4,15.5Z" /></svg>
+                                      <img
+                                        className="mr-2"
+                                        src={accountCircle}
+                                        alt='banner'
+                                        width="20px"
+                                        height="20px" />
                                     </span>
-                                    <p className=" self-center"> {t("Navbar.collections")}</p>
+                                    <p className=" items-start flex flex-col md:flex-row md:items-center"> {t("Navbar.profile")}
+                                      <span className="text-[9px] -mt-[7px] md:hidden">{state.owner}</span>
+                                    </p>
+                                  </div>
+                                </a>
+                              )}
+                            </Menu.Item>
+
+
+
+
+
+
+
+
+                            <Menu.Item
+                            >
+                              {({ active }) => (
+                                <a href="/mynfts" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
+                                  <div className="flex justify-start">
+                                    <span className=" m-2">
+                                      <img
+                                        className="mr-2"
+                                        src={tokenIcon}
+                                        alt='banner'
+                                        width="20px"
+                                        height="20px" />
+                                    </span>
+                                    <p className=" self-center"> {t("Navbar.myNFTs")}</p>
                                   </div>
 
                                 </a>
                               )}
                             </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a href="/market" className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal  "
-                                )}>
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="15" height="15"><path d="M19,17a5.994,5.994,0,0,1-3-.806A5.994,5.994,0,0,1,13,17H11a5.938,5.938,0,0,1-3-.818A5.936,5.936,0,0,1,5,17H4a5.949,5.949,0,0,1-3-.813V21a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V16.188A5.958,5.958,0,0,1,20,17Z" /><path d="M17,0V6H15V0H9V6H7V0H2.2L.024,9.783,0,11a4,4,0,0,0,4,4H5a3.975,3.975,0,0,0,3-1.382A3.975,3.975,0,0,0,11,15h2a3.99,3.99,0,0,0,3-1.357A3.99,3.99,0,0,0,19,15h1a4,4,0,0,0,4-4V10L21.8,0Z" /></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.onSale")}</p>
-                                  </div>
-                                </a>
-                              )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer"
-                                )}
-                                  onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.auctions")}</p>
-                                  </div>
-                                </a>
-                              )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer"
-                                )}
-                                  onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.loans")}</p>
-                                  </div>
-                                </a>
-                              )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal cursor-pointer"
-                                )}
-                                  onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.staking")}</p>
-                                  </div>
-                                </a>
-                              )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a href="/community" className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal  cursor-pointer"
-                                )}
-                                >
-                                  <div className="flex justify-start">
-                                    <span className=" m-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                    </span>
-                                    <p className=" self-center">{t("Navbar.community")}</p>
-                                  </div>
-                                </a>
-                              )}
-                            </Menu.Item>
+
                             <Menu.Item
-                              onClick={handleSignIn}
                             >
                               {({ active }) => (
-                                <a className={classNames(
-                                  active
-                                    ? "bg-yellow text-darkgray "
-                                    : "text-darkgray ml-2 ",
-                                  "block px-2 py-2 text-sm text-center font-raleway font-normal  cursor-pointer"
-                                )}>
+                                <a href="/collectionData/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
                                   <div className="flex justify-start">
                                     <span className=" m-2">
-                                      <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="15" height="15"><path d="M3,3H8V0H3A3,3,0,0,0,0,3V21a3,3,0,0,0,3,3H8V21H3Z" /><path d="M22.948,9.525,18.362,4.939,16.241,7.061l3.413,3.412L5,10.5,5,13.5l14.7-.027-3.466,3.466,2.121,2.122,4.587-4.586A3.506,3.506,0,0,0,22.948,9.525Z" /></svg>
+                                      <img
+                                        className="mr-2"
+                                        src={createCollection}
+                                        alt='banner'
+                                        width="20px"
+                                        height="20px" />
                                     </span>
-                                    <p className=" self-center"> {t("Navbar.login")}</p>
+                                    <p className=" self-center"> {t("Navbar.createCollection")}</p>
+                                  </div>
+
+                                </a>
+                              )}
+                            </Menu.Item>
+
+
+                            <Menu.Item
+                            >
+                              {({ active }) => (
+                                <a href="/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
+                                  <div className="flex justify-start">
+                                    <span className=" m-2">
+                                      <img
+                                        className="mr-2"
+                                        src={createToken}
+                                        alt='banner'
+                                        width="20px"
+                                        height="20px" />
+                                    </span>
+                                    <p className=" self-center"> {t("Navbar.create")}</p>
+                                  </div>
+
+                                </a>
+                              )}
+                            </Menu.Item>
+
+
+
+                            <Menu.Item
+                              onClick={async () => {
+                                logOut();
+                              }}
+                            >
+                              {({ active }) => (
+                                <a className={classNames(active ? " font-extrabold  bg-[#2A747E]" : "dark:text-yellow4 ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
+                                  <div className="flex justify-start">
+                                    <span className=" m-2">
+                                      <img
+                                        className="mr-2"
+                                        src={logout}
+                                        alt='banner'
+                                        width="20px"
+                                        height="20px" />
+                                    </span>
+                                    <p className=" self-center"> {t("Navbar.logout")}</p>
                                   </div>
 
                                 </a>
@@ -806,6 +628,115 @@ function LightHeaderB(props) {
                     </>
                   )}
                 </Menu>
+                <div className="md:hidden">
+                  <HamburguerMenu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} isOpen={false} >
+                    <button
+                      className={` mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
+                      style={{ justifyContent: "center" }}
+                      // disabled={state?.tokens.onSale}
+                      onClick={handleSignIn}>
+
+                      {t("Navbar.login")}
+                    </button>
+                    <div className="menu-item" >
+                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase">
+                        <p>{t("Navbar.explore")}</p>
+                        <img
+                          className=""
+                          src={menuArrowRight}
+                          alt='banner'
+                          width="20px"
+                          height="20px" />
+                      </div>
+                    </div>
+                    <div className="menu-item" >
+                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase">
+                        <p>{t("Navbar.finance")}</p>
+                        <img
+                          className=""
+                          src={menuArrowRight}
+                          alt='banner'
+                          width="20px"
+                          height="20px" />
+                      </div>
+                    </div>
+                    <div className="menu-item" >
+                      <a className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase" href="/community">
+                        <p>{t("Navbar.community")}</p>
+                      </a>
+                    </div>
+                    <button className="flex  rounded-xlarge w-full h-[40px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
+                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR NFT <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                      </div>
+                    </button>
+                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={handleSignIn}>
+                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR COLECCIÓN <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                      </div>
+                    </button>
+                  </HamburguerMenu>
+                </div>
+              </>
+              :
+              <>
+                <button
+                  className={`ml-auto mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
+                  style={{ justifyContent: "center" }}
+                  // disabled={state?.tokens.onSale}
+                  onClick={handleSignIn}>
+
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.62451 0.609359L7.11711 4.33336C7.0765 4.3871 7.05769 4.45426 7.06455 4.52129C7.07138 4.58836 7.10332 4.65033 7.15397 4.69475C7.20463 4.7392 7.27018 4.76277 7.33751 4.7608C7.4048 4.75879 7.46888 4.73135 7.51681 4.68401L9.98423 2.55069C9.99844 2.53763 10.0162 2.52904 10.0352 2.52598C10.0543 2.52292 10.0738 2.52553 10.0914 2.53348C10.109 2.54143 10.1239 2.55438 10.1342 2.57071C10.1445 2.58704 10.1498 2.60604 10.1494 2.62535V9.33066C10.1492 9.35102 10.1428 9.37084 10.1311 9.38745C10.1193 9.40407 10.1028 9.4167 10.0837 9.42366C10.0646 9.43062 10.0437 9.43157 10.0241 9.42639C10.0044 9.4212 9.98679 9.41014 9.97356 9.39468L2.51271 0.461356C2.3936 0.31794 2.24459 0.202334 2.07612 0.122641C1.90765 0.0429479 1.72381 0.0010978 1.53747 2.50247e-05H1.27767C0.938812 2.50247e-05 0.613831 0.134741 0.37422 0.374536C0.134611 0.614332 0 0.939566 0 1.27869V10.7213C0 11.0605 0.134611 11.3857 0.37422 11.6255C0.613831 11.8653 0.938812 12 1.27767 12C1.49601 12 1.7107 11.944 1.90125 11.8373C2.0918 11.7306 2.25186 11.5768 2.36616 11.3907L4.87354 7.66668C4.91418 7.61291 4.93295 7.54578 4.92613 7.47871C4.91927 7.41168 4.88732 7.34971 4.83667 7.30526C4.78605 7.26084 4.72047 7.23724 4.65317 7.23924C4.58584 7.24125 4.52177 7.26866 4.47384 7.31602L2.00644 9.44933C1.99221 9.4624 1.97447 9.471 1.95541 9.47405C1.93635 9.47711 1.91681 9.47448 1.89923 9.46653C1.88163 9.45859 1.86676 9.44566 1.85645 9.42931C1.84614 9.41299 1.84085 9.39399 1.84123 9.37469V2.67602C1.84143 2.65566 1.84784 2.63585 1.85959 2.61923C1.87134 2.60261 1.88788 2.58998 1.907 2.58303C1.92612 2.57607 1.9469 2.57512 1.96658 2.5803C1.98625 2.58548 2.00387 2.59654 2.01709 2.61202L9.47794 11.5453C9.59795 11.6875 9.74751 11.8017 9.91621 11.88C10.0849 11.9582 10.2686 11.9988 10.4545 11.9987H10.721C10.8888 11.9987 11.0549 11.9656 11.2099 11.9013C11.3649 11.8371 11.5058 11.7429 11.6244 11.6242C11.7431 11.5054 11.8372 11.3645 11.9014 11.2093C11.9656 11.0542 11.9986 10.8879 11.9986 10.72V1.27869C11.9987 1.1101 11.9653 0.94317 11.9006 0.787509C11.8359 0.631851 11.7411 0.490536 11.6216 0.371697C11.5021 0.252857 11.3603 0.158839 11.2044 0.0950521C11.0484 0.0312655 10.8814 -0.0010297 10.713 2.50247e-05C10.4946 5.12861e-05 10.28 0.056073 10.0894 0.162744C9.89884 0.269415 9.73878 0.423179 9.62451 0.609359Z" fill="#00c6a2"></path></svg> {t("Navbar.login")}
+                </button>
+                <div className="md:hidden">
+                  <HamburguerMenu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} isOpen={false} >
+                    <button
+                      className={` mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
+                      style={{ justifyContent: "center" }}
+                      // disabled={state?.tokens.onSale}
+                      onClick={handleSignIn}>
+
+                      {t("Navbar.login")}
+                    </button>
+                    <div className="menu-item" >
+                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase">
+                        <p>{t("Navbar.explore")}</p>
+                        <img
+                          className=""
+                          src={menuArrowRight}
+                          alt='banner'
+                          width="20px"
+                          height="20px" />
+                      </div>
+                    </div>
+                    <div className="menu-item" >
+                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase">
+                        <p>{t("Navbar.finance")}</p>
+                        <img
+                          className=""
+                          src={menuArrowRight}
+                          alt='banner'
+                          width="20px"
+                          height="20px" />
+                      </div>
+                    </div>
+                    <div className="menu-item" >
+                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase">
+                        <p>{t("Navbar.community")}</p>
+                      </div>
+                    </div>
+                    <button className="flex inline-flex rounded-xlarge w-full h-[40px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
+                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR NFT <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                      </div>
+                    </button>
+                    <button className="flex inline-flex rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={handleSignIn}>
+                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR COLECCIÓN <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                      </div>
+                    </button>
+                  </HamburguerMenu>
+                </div>
 
               </>
           }
