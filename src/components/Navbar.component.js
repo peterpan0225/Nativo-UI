@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Menu, Transition } from "@headlessui/react";
+import { Menu as MenuB, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { config, signOut, getNearAccount } from "../utils/near_interaction";
 import * as nearAPI from "near-api-js";
@@ -34,7 +34,7 @@ import staking from '../assets/img/navBar/profile/Staking.png';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useHistory } from 'react-router-dom';
-import { slide as HamburguerMenu } from 'react-burger-menu';
+import { slide as Menu } from 'react-burger-menu';
 import menuArrowRight from '../assets/img/navBar/menu/chevron-left.png';
 import createNft from '../assets/img/navBar/menu/plus-nft.png';
 import createCol from '../assets/img/navBar/menu/plus-col.png';
@@ -289,20 +289,20 @@ function LightHeaderB(props) {
          
 
 
-            <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
+            <MenuB as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
               onMouseEnter={() => setIsShowingE(true)}
               onMouseLeave={() => setIsShowingE(false)}
             >
               {({ open }) => (
                 <>
                   <div className="flex flex-nowrap flex-row-reverse h-full">
-                    <Menu.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
+                    <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
                       <div className="w-full flex relative h-full">
                         <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
                           {t("Navbar.explore")}
                         </div>
                       </div>
-                    </Menu.Button>
+                    </MenuB.Button>
                   </div>
                   <Transition
                     show={isShowingE}
@@ -316,9 +316,9 @@ function LightHeaderB(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
+                    <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
                       <div className="py-1">
-                      <Menu.Item onClick={handleAllCollections}>
+                      <MenuB.Item onClick={handleAllCollections}>
                           {({ active }) => (
                             <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -332,8 +332,8 @@ function LightHeaderB(props) {
                               </div>
                             </a>
                           )}
-                        </Menu.Item>
-                        <Menu.Item onClick={async () => { window.location.href="/market" }}>
+                        </MenuB.Item>
+                        <MenuB.Item onClick={async () => { window.location.href="/market" }}>
                           {({ active }) => (
                             <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -347,31 +347,31 @@ function LightHeaderB(props) {
                               </div>
                             </a>
                           )}
-                        </Menu.Item>
+                        </MenuB.Item>
 
                         
 
                       </div>
-                    </Menu.Items>
+                    </MenuB.Items>
                   </Transition>
                 </>
               )}
-            </Menu>
+            </MenuB>
 
-            <Menu as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
+            <MenuB as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
               onMouseEnter={() => setIsShowing(true)}
               onMouseLeave={() => setIsShowing(false)}
             >
               {({ open }) => (
                 <>
                   <div className="flex flex-nowrap flex-row-reverse h-full">
-                    <Menu.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
+                    <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
                       <div className="w-full flex relative h-full">
                         <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
                           {t("Navbar.finance")}
                         </div>
                       </div>
-                    </Menu.Button>
+                    </MenuB.Button>
                   </div>
                   <Transition
                     show={isShowing}
@@ -385,9 +385,9 @@ function LightHeaderB(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
+                    <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
                       <div className="py-1">
-                        <Menu.Item onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
+                        <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
                           {({ active }) => (
                             <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -401,9 +401,9 @@ function LightHeaderB(props) {
                               </div>
                             </a>
                           )}
-                        </Menu.Item>
+                        </MenuB.Item>
 
-                        <Menu.Item onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                        <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
                           {({ active }) => (
                             <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -417,9 +417,9 @@ function LightHeaderB(props) {
                               </div>
                             </a>
                           )}
-                        </Menu.Item>
+                        </MenuB.Item>
 
-                        <Menu.Item onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
+                        <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
                           {({ active }) => (
                             <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -433,13 +433,13 @@ function LightHeaderB(props) {
                               </div>
                             </a>
                           )}
-                        </Menu.Item>
+                        </MenuB.Item>
                       </div>
-                    </Menu.Items>
+                    </MenuB.Items>
                   </Transition>
                 </>
               )}
-            </Menu>
+            </MenuB>
 
             <a href="/community" className="mr-5 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
               {t("Navbar.community")}
@@ -478,11 +478,11 @@ function LightHeaderB(props) {
           {
             stateLogin ?
               <>
-                <Menu as="div" className="relative  text-left w-full md:w-auto md:ml-4 hidden lg:inline-block">
+                <MenuB as="div" className="relative  text-left w-full md:w-auto md:ml-4 hidden lg:inline-block">
                   {({ open }) => (
                     <>
                       <div className="flex flex-nowrap flex-row-reverse">
-                        <Menu.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
+                        <MenuB.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
                           <div className="w-full  flex relative ">
                             {state.userMedia ?
                               <div className="w-[35px] h-[35px]  bg-circle rounded-full  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
@@ -492,7 +492,7 @@ function LightHeaderB(props) {
                             }
 
                           </div>
-                        </Menu.Button>
+                        </MenuB.Button>
                       </div>
                       <Transition
                         show={open}
@@ -504,12 +504,12 @@ function LightHeaderB(props) {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items
+                        <MenuB.Items
                           static
                           className="w-[219px]  md:w-[219px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
                         >
                           <div className="py-1">
-                            <Menu.Item
+                            <MenuB.Item
                             >
                               {({ active }) => (
                                 <a href={"/profile/" + state.owner.split('.')[0]} className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
@@ -528,7 +528,7 @@ function LightHeaderB(props) {
                                   </div>
                                 </a>
                               )}
-                            </Menu.Item>
+                            </MenuB.Item>
 
 
 
@@ -537,7 +537,7 @@ function LightHeaderB(props) {
 
 
 
-                            <Menu.Item
+                            <MenuB.Item
                             >
                               {({ active }) => (
                                 <a href="/mynfts" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
@@ -555,9 +555,9 @@ function LightHeaderB(props) {
 
                                 </a>
                               )}
-                            </Menu.Item>
+                            </MenuB.Item>
 
-                            <Menu.Item
+                            <MenuB.Item
                             >
                               {({ active }) => (
                                 <a href="/collectionData/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
@@ -575,10 +575,10 @@ function LightHeaderB(props) {
 
                                 </a>
                               )}
-                            </Menu.Item>
+                            </MenuB.Item>
 
 
-                            <Menu.Item
+                            <MenuB.Item
                             >
                               {({ active }) => (
                                 <a href="/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
@@ -596,11 +596,11 @@ function LightHeaderB(props) {
 
                                 </a>
                               )}
-                            </Menu.Item>
+                            </MenuB.Item>
 
 
 
-                            <Menu.Item
+                            <MenuB.Item
                               onClick={async () => {
                                 logOut();
                               }}
@@ -621,15 +621,15 @@ function LightHeaderB(props) {
 
                                 </a>
                               )}
-                            </Menu.Item>
+                            </MenuB.Item>
                           </div>
-                        </Menu.Items>
+                        </MenuB.Items>
                       </Transition>
                     </>
                   )}
-                </Menu>
+                </MenuB>
                 <div className="md:hidden">
-                  <HamburguerMenu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} isOpen={false} >
+                  <Menu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} isOpen={false} >
                     <button
                       className={` mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
                       style={{ justifyContent: "center" }}
@@ -675,7 +675,7 @@ function LightHeaderB(props) {
                         <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR COLECCIÓN <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
                       </div>
                     </button>
-                  </HamburguerMenu>
+                  </Menu>
                 </div>
               </>
               :
@@ -689,7 +689,7 @@ function LightHeaderB(props) {
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.62451 0.609359L7.11711 4.33336C7.0765 4.3871 7.05769 4.45426 7.06455 4.52129C7.07138 4.58836 7.10332 4.65033 7.15397 4.69475C7.20463 4.7392 7.27018 4.76277 7.33751 4.7608C7.4048 4.75879 7.46888 4.73135 7.51681 4.68401L9.98423 2.55069C9.99844 2.53763 10.0162 2.52904 10.0352 2.52598C10.0543 2.52292 10.0738 2.52553 10.0914 2.53348C10.109 2.54143 10.1239 2.55438 10.1342 2.57071C10.1445 2.58704 10.1498 2.60604 10.1494 2.62535V9.33066C10.1492 9.35102 10.1428 9.37084 10.1311 9.38745C10.1193 9.40407 10.1028 9.4167 10.0837 9.42366C10.0646 9.43062 10.0437 9.43157 10.0241 9.42639C10.0044 9.4212 9.98679 9.41014 9.97356 9.39468L2.51271 0.461356C2.3936 0.31794 2.24459 0.202334 2.07612 0.122641C1.90765 0.0429479 1.72381 0.0010978 1.53747 2.50247e-05H1.27767C0.938812 2.50247e-05 0.613831 0.134741 0.37422 0.374536C0.134611 0.614332 0 0.939566 0 1.27869V10.7213C0 11.0605 0.134611 11.3857 0.37422 11.6255C0.613831 11.8653 0.938812 12 1.27767 12C1.49601 12 1.7107 11.944 1.90125 11.8373C2.0918 11.7306 2.25186 11.5768 2.36616 11.3907L4.87354 7.66668C4.91418 7.61291 4.93295 7.54578 4.92613 7.47871C4.91927 7.41168 4.88732 7.34971 4.83667 7.30526C4.78605 7.26084 4.72047 7.23724 4.65317 7.23924C4.58584 7.24125 4.52177 7.26866 4.47384 7.31602L2.00644 9.44933C1.99221 9.4624 1.97447 9.471 1.95541 9.47405C1.93635 9.47711 1.91681 9.47448 1.89923 9.46653C1.88163 9.45859 1.86676 9.44566 1.85645 9.42931C1.84614 9.41299 1.84085 9.39399 1.84123 9.37469V2.67602C1.84143 2.65566 1.84784 2.63585 1.85959 2.61923C1.87134 2.60261 1.88788 2.58998 1.907 2.58303C1.92612 2.57607 1.9469 2.57512 1.96658 2.5803C1.98625 2.58548 2.00387 2.59654 2.01709 2.61202L9.47794 11.5453C9.59795 11.6875 9.74751 11.8017 9.91621 11.88C10.0849 11.9582 10.2686 11.9988 10.4545 11.9987H10.721C10.8888 11.9987 11.0549 11.9656 11.2099 11.9013C11.3649 11.8371 11.5058 11.7429 11.6244 11.6242C11.7431 11.5054 11.8372 11.3645 11.9014 11.2093C11.9656 11.0542 11.9986 10.8879 11.9986 10.72V1.27869C11.9987 1.1101 11.9653 0.94317 11.9006 0.787509C11.8359 0.631851 11.7411 0.490536 11.6216 0.371697C11.5021 0.252857 11.3603 0.158839 11.2044 0.0950521C11.0484 0.0312655 10.8814 -0.0010297 10.713 2.50247e-05C10.4946 5.12861e-05 10.28 0.056073 10.0894 0.162744C9.89884 0.269415 9.73878 0.423179 9.62451 0.609359Z" fill="#00c6a2"></path></svg> {t("Navbar.login")}
                 </button>
                 <div className="md:hidden">
-                  <HamburguerMenu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} isOpen={false} >
+                  <Menu isOpen pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
                     <button
                       className={` mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
                       style={{ justifyContent: "center" }}
@@ -721,7 +721,7 @@ function LightHeaderB(props) {
                       </div>
                     </div>
                     <div className="menu-item" >
-                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase">
+                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase" onClick={()=>{window.location="/community"}}>
                         <p>{t("Navbar.community")}</p>
                       </div>
                     </div>
@@ -735,7 +735,7 @@ function LightHeaderB(props) {
                         <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR COLECCIÓN <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
                       </div>
                     </button>
-                  </HamburguerMenu>
+                  </Menu>
                 </div>
 
               </>
