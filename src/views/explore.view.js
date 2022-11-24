@@ -3,6 +3,7 @@ import { providers, utils } from "near-api-js";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useWalletSelector } from "../utils/walletSelector";
 import { fromYoctoToNear } from "../utils/near_interaction";
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { useTranslation } from "react-i18next";
 import nearImage from '../assets/img/landing/trendingSection/Vector.png';
 import filterLogo from "../assets/img/explore/filter.png"
@@ -19,9 +20,38 @@ function Explore() {
         items: [],
         hasMore: true
     })
+    let [collections, setCollections] = React.useState({
+        items: [],
+        hasMore: true
+    });
+    let [artists, setArtists] = React.useState({
+        items: [],
+        hasMore: true
+    });
     const [index, setIndex] = React.useState(0)
     const [hasData, setHasData] = React.useState(false)
     const [tokSort, setTokSort] = React.useState(true)
+    const [lastID, setLastID] = React.useState(-1);
+    const [lastName, setLastName] = React.useState('')
+    const [hasDataCol, setHasDataCol] = React.useState(false)
+    const [colSortOrd, setColSortOrd] = React.useState('desc')
+    const [colSort, setColSort] = React.useState('collectionID')
+    const [triggerCol, setTriggerCol] = React.useState(true)
+    const [lastUsername, setLastUsername] = React.useState("");
+    const [lastTimestamp, setLastTimestamp] = React.useState();
+    const [hasDataArt, setHasDataArt] = React.useState(false)
+    const [artSortOrd, setArtSortOrd] = React.useState('desc')
+    const [artSort, setArtSort] = React.useState('timestamp')
+    const [trigger, setTrigger] = React.useState(true)
+    const [tokData, setTokData] = React.useState(true)
+    const [colData, setColData] = React.useState(false)
+    const [artData, setArtData] = React.useState(false)
+    const [init, setInit] = React.useState(true)
+
+    const APIURL = process.env.REACT_APP_API_TG
+
+    const data = window.location.search;
+    const urlParams = new URLSearchParams(data);
 
     function delay(n) {
         return new Promise(function (resolve) {
@@ -132,6 +162,264 @@ function Explore() {
         }
     };
 
+    let fetchMoreColData = async () => {
+        await delay(.75)
+        var sort
+        var last
+        if (colSortOrd == 'asc') {
+            sort = 'gt'
+        }
+        else if (colSortOrd == 'desc') {
+            sort = 'lt'
+        }
+        if (colSort == 'collectionID') {
+            last = lastID
+        }
+        else if (colSort == 'title') {
+            last = lastName
+        }
+        let colData;
+        const queryData = `
+              query($first: Int, $lastTokenID: String){
+                  collections(first: $first,  orderBy: ${colSort}, orderDirection: ${colSortOrd}, where: { ${colSort}_${sort}: $lastTokenID, visibility:true, tokenCount_gt:0}){
+                    id
+                    collectionID
+                    owner_id
+                    title
+                    timestamp
+                    mediaIcon
+                    mediaBanner,
+                    description,
+                    tokenCount
+                }
+              }
+            `
+
+        //Declaramos el cliente
+        const client = new ApolloClient({
+            uri: APIURL,
+            cache: new InMemoryCache(),
+        })
+
+        await client
+            .query({
+                query: gql(queryData),
+                variables: {
+                    first: Landing.tokensPerPageNear,
+                    lastTokenID: last
+                },
+            })
+            .then((data) => {
+                console.log(data.data.collections)
+                setCollections({
+                    ...collections,
+                    items: collections.items.concat(data.data.collections)
+                });
+                setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
+                setLastName(data.data.collections[data.data.collections.length - 1].title)
+                if (data.data.collections.length < Landing.tokensPerPageNear) {
+                    setCollections({ ...collections, hasMore: false, items: collections.items.concat(data.data.collections) });
+                    setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
+                    setLastName(data.data.collections[data.data.collections.length - 1].title)
+                    return;
+                }
+            })
+            .catch((err) => {
+                colData = 0
+            })
+    }
+
+    let fetchMoreDataArtists = async () => {
+        console.log(lastUsername)
+        await delay(.75)
+        var sort
+        var last
+        if (artSortOrd == 'asc') {
+            sort = 'gt'
+        }
+        else if (artSortOrd == 'desc') {
+            sort = 'lt'
+        }
+        if (artSort == 'timestamp') {
+            last = lastTimestamp
+        }
+        else if (artSort == 'username') {
+            last = lastUsername
+        }
+        let colData;
+        const queryData = `
+              query($first: Int, $lastUsername: String){
+                  profiles(first: $first,  orderBy: ${artSort}, orderDirection: ${artSortOrd}, where: { ${artSort}_${sort}: $lastUsername }){
+                    username
+                    media
+                    biography
+                    tokBought
+                    tokCreated
+                    socialMedia
+                    timestamp
+                }
+              }
+            `
+
+        //Declaramos el cliente
+        const client = new ApolloClient({
+            uri: APIURL,
+            cache: new InMemoryCache(),
+        })
+
+        await client
+            .query({
+                query: gql(queryData),
+                variables: {
+                    first: Landing.tokensPerPageNear,
+                    lastUsername: last
+                },
+            })
+            .then((data) => {
+                setArtists({
+                    ...artists,
+                    items: artists.items.concat(data.data.profiles)
+                });
+                console.log(data.data.profiles)
+                setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
+                setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
+                if (data.data.profiles.length < Landing.tokensPerPageNear) {
+                    setArtists({ ...artists, hasMore: false, items: artists.items.concat(data.data.profiles) });
+                    setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
+                    setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
+                    return;
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                colData = 0
+            })
+    }
+
+    let handleSortCollections = (data) => {
+        if ('TimeDesc' == data.target.value) {
+            if (colSortOrd == 'desc' && colSort == 'collectionID') {
+                return;
+            }
+            console.log('entro time desc')
+            setColSortOrd('desc')
+            setColSort('collectionID')
+            setCollections({
+                ...collections,
+                items: []
+            });
+        }
+        else if ('TimeAsc' == data.target.value) {
+            if (colSortOrd == 'asc' && colSort == 'collectionID') {
+                return;
+            }
+            console.log('entro time asc')
+            setColSortOrd('asc')
+            setColSort('collectionID')
+            setCollections({
+                ...collections,
+                items: []
+            });
+        }
+        else if ('TitleAsc' == data.target.value) {
+            if (colSortOrd == 'asc' && colSort == 'title') {
+                return;
+            }
+            console.log('entro title asc')
+            setColSortOrd('asc')
+            setColSort('title')
+            setCollections({
+                ...collections,
+                items: []
+            });
+        }
+        else if ('TitleDesc' == data.target.value) {
+            if (colSortOrd == 'desc' && colSort == 'title') {
+                return;
+            }
+            console.log('entro title desc')
+            setColSortOrd('asc')
+            setColSort('title')
+            setCollections({
+                ...collections,
+                items: []
+            });
+        }
+        setTriggerCol(!triggerCol)
+    }
+
+    let handleSortArtists = (data) => {
+        if ('TimeDesc' == data.target.value) {
+            if (artSortOrd == 'desc' && artSort == 'timestamp') {
+                return;
+            }
+            setArtSort('timestamp')
+            setArtSortOrd('desc')
+            setArtists({
+                ...artists,
+                items: []
+            });
+        }
+        else if ('TimeAsc' == data.target.value) {
+            if (artSortOrd == 'asc' && artSort == 'timestamp') {
+                return;
+            }
+            setArtSort('timestamp')
+            setArtSortOrd('asc')
+            setArtists({
+                ...artists,
+                items: []
+            });
+        }
+        else if ('UseAsc' == data.target.value) {
+            if (artSortOrd == 'asc' && artSort == 'username') {
+                return;
+            }
+            setArtSort('username')
+            setArtSortOrd('asc')
+            setArtists({
+                ...artists,
+                items: []
+            });
+        }
+        else if ('UseDesc' == data.target.value) {
+            if (artSortOrd == 'desc' && artSort == 'username') {
+                return;
+            }
+            setArtSort('username')
+            setArtSortOrd('desc')
+            setArtists({
+                ...artists,
+                items: []
+            });
+        }
+        setTrigger(!trigger)
+    }
+
+    function initLoad() {
+        if ((urlParams.get('data') == 'tok' || urlParams.get('data') == 'col' || urlParams.get('data') == 'art') && init) {
+            if (urlParams.get('data') == 'tok') {
+                console.log('carga tok')
+                setTokData(true)
+                setColData(false)
+                setArtData(false)
+            }
+            else if (urlParams.get('data') == 'col') {
+                console.log('carga col')
+                setTokData(false)
+                setColData(true)
+                setArtData(false)
+            }
+            else if (urlParams.get('data') == 'art') {
+                console.log('carga art')
+                setTokData(false)
+                setColData(false)
+                setArtData(true)
+            }
+        }
+        setInit(!init)
+    }
+
     React.useEffect(() => {
         async function getData() {
             let supplyPayload = {
@@ -228,8 +516,113 @@ function Explore() {
                 }
             }
         }
+        if(init){
+            initLoad()
+        }
         getData()
+        console.log()
     }, [tokSort])
+
+    React.useEffect(() => {
+        async function getColData() {
+            const queryData = `
+            query($first: Int){
+                collections(first: $first,  orderBy: ${colSort}, orderDirection: ${colSortOrd}, where:{visibility:true, tokenCount_gt:0}){
+                    id
+                    collectionID
+                    owner_id
+                    title
+                    timestamp
+                    mediaIcon
+                    mediaBanner,
+                    description,
+                    tokenCount
+                }
+            }
+            `
+
+            //Declaramos el cliente
+            const client = new ApolloClient({
+                uri: APIURL,
+                cache: new InMemoryCache(),
+            })
+
+            await client
+                .query({
+                    query: gql(queryData),
+                    variables: {
+                        first: Landing.tokensPerPageNear,
+                    },
+                })
+                .then((data) => {
+                    console.log(data.data.collections)
+                    setCollections({
+                        ...collections,
+                        items: collections.items.concat(data.data.collections)
+                    });
+                    if (data.data.collections.length <= 0) {
+                        setHasDataCol(false)
+                    }
+                    setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
+                    setLastName(data.data.collections[data.data.collections.length - 1].title)
+                    setHasDataCol(true)
+                })
+                .catch((err) => {
+                    console.log('Error ferching data: ', err)
+                    setHasDataCol(false)
+                })
+        }
+        getColData()
+    }, [triggerCol])
+
+    React.useEffect(() => {
+        async function getArtData() {
+            const queryData = `
+            query($first: Int){
+                profiles(first: $first, orderBy: ${artSort}, orderDirection: ${artSortOrd}){
+                    username
+                    media
+                    biography
+                    tokBought
+                    tokCreated
+                    socialMedia
+                    timestamp
+                }
+            }
+            `
+
+            //Declaramos el cliente
+            const client = new ApolloClient({
+                uri: APIURL,
+                cache: new InMemoryCache(),
+            })
+
+            await client
+                .query({
+                    query: gql(queryData),
+                    variables: {
+                        first: Landing.tokensPerPageNear,
+                    },
+                })
+                .then((data) => {
+                    setArtists({
+                        ...artists,
+                        items: artists.items.concat(data.data.profiles)
+                    });
+                    if (data.data.profiles.length <= 0) {
+                        setHasDataArt(false)
+                    }
+                    setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
+                    setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
+                    setHasDataArt(true)
+                })
+                .catch((err) => {
+                    console.log('Error ferching data: ', err)
+                    setHasDataArt(false)
+                })
+        }
+        getArtData()
+    }, [trigger])
     return (
         <>
             <button className="pt-6 font-open-sans dark:text-grey3 text-xl px-6 lg:px-12 flex flex-row py-3"><img src={arrow} alt="flecha" width={24} height={24} /> <p className="pl-2.5">Atras</p></button>

@@ -92,7 +92,7 @@ function Explore() {
         getColData()
     }, [trigger])
 
-    let fetchMoreData = async () => {
+    let fetchMoreColData = async () => {
         await delay(.75)
         var sort
         var last
@@ -228,7 +228,7 @@ function Explore() {
                 <div>
                     <InfiniteScroll
                         dataLength={collections.items.length}
-                        next={fetchMoreData}
+                        next={fetchMoreColData}
                         hasMore={collections.hasMore}
                         loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
                         endMessage={
