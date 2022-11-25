@@ -232,7 +232,34 @@ function LightHeaderB(props) {
 
   async function handleCreatebutton() {
     if (stateLogin) {
-      window.location.href = 'create';
+      
+      Swal.fire({
+        background: '#0a0a0a',
+        width: 600,
+        html:
+          '<div class=" flex flex-col overflow-hidden">' +
+          '<div class="font-open-sans  text-base font-extrabold text-white my-4 text-left w-full">' + '¿QUÉ DESEAS CREAR?' + '</div>' +
+          '<div class="flex flex-col lg:flex-row justify-center">' +
+          `<button class="flex  w-full h-[40px]  mt-0 ml-5  lg:w-[200px]" onclick='window.location.href="/collectionData/create"'>` +
+          '<div class="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">' +
+          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 justify-center hover:text-textOutlineHover active:text-textOutlinePressed  "> CREAR NFT <img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
+          '</div>' +
+          '</buttton>' +
+          `<button class="flex  w-full h-[40px]  mt-0 ml-5  lg:w-[200px]" onclick='window.location.href="/create"'>` +
+          '<div class="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">' +
+          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed  "> CREAR COLECCION <img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
+          '</div>' +
+          '</buttton>' +
+          '</div>' +
+          '</div>',
+        confirmButtonText: 'Cerrar',
+        confirmButtonColor: "#f79336",
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'font-open-sans font-normal text-base text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-2',
+        },
+        position: window.innerWidth < 1024 ? 'bottom' : 'center'
+      });
     } else {
       handleSignIn()
     }
@@ -253,14 +280,18 @@ function LightHeaderB(props) {
 
   async function futureFeatureMsg(section) {
     Swal.fire({
-      imageUrl: nativoLogo,
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: 'Custom image',
-      title: "¡Atención!",
-      text: "La sección de " + section + " estará disponible muy pronto",
-      confirmButtonColor: '#E79211',
-      confirmButtonText: 'Cerrar'
+      background: '#0a0a0a',
+      html:
+        '<div class="">' +
+        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left">' + 'LO SENTIMOS' + '</div>' +
+        '<div class="font-open-sans  text-sm text-white text-left">' + 'Por el momento esta sección no está disponible, pero estamos trabajando para que pronto puedas usarla y aprovecharla al máximo.' + '</div>' +
+        '</div>',
+      confirmButtonText: 'Cerrar',
+      customClass: {
+        confirmButton: 'font-open-sans uppercase text-base font-extrabold'
+    },
+      confirmButtonColor: '#f79336',
+      position: window.innerWidth < 1024 ? 'bottom' : 'center'
     });
   }
 
@@ -333,7 +364,7 @@ function LightHeaderB(props) {
                   <div className="flex flex-nowrap flex-row-reverse h-full">
                     <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
                       <div className="w-full flex relative h-full">
-                        <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
+                        <div className="  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
                           {t("Navbar.explore")}
                         </div>
                       </div>
@@ -513,7 +544,7 @@ function LightHeaderB(props) {
           {
             stateLogin ?
               <>
-              <button className="w-[25px] h-[25px] mr-[5px] hidden lg:inline-block">
+              <button className="w-[25px] h-[25px] mr-[5px] hidden lg:inline-block" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
                       <img
                         className="w-[25px] h-[25px]"
                         src={bell}
@@ -716,7 +747,7 @@ function LightHeaderB(props) {
                         </button>
                       </form>
                     </div>
-                    <button className="w-[25px] h-[25px] mr-[5px]">
+                    <button className="w-[25px] h-[25px] mr-[5px]" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
                       <img
                         className="w-[25px] h-[25px]"
                         src={bell}
