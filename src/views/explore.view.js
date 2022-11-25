@@ -14,7 +14,7 @@ function Explore() {
     const { selector, modal, accounts, accountId } = useWalletSelector();
     const [t, i18n] = useTranslation("global")
     const [Landing, setLanding] = React.useState({
-        tokensPerPageNear: 20,
+        tokensPerPageNear: 24,
     });
     let [tokens, setTokens] = React.useState({
         items: [],
@@ -46,7 +46,6 @@ function Explore() {
     const [tokData, setTokData] = React.useState(true)
     const [colData, setColData] = React.useState(false)
     const [artData, setArtData] = React.useState(false)
-    const [init, setInit] = React.useState(true)
 
     const APIURL = process.env.REACT_APP_API_TG
 
@@ -396,8 +395,32 @@ function Explore() {
         setTrigger(!trigger)
     }
 
-    function initLoad() {
-        if ((urlParams.get('data') == 'tok' || urlParams.get('data') == 'col' || urlParams.get('data') == 'art') && init) {
+    let handleData = (data) => {
+        data = data.target.value
+        if ((data == 'tok' || data == 'col' || data == 'art')) {
+            if (data == 'tok') {
+                console.log('carga tok')
+                setTokData(true)
+                setColData(false)
+                setArtData(false)
+            }
+            else if (data == 'col') {
+                console.log('carga col')
+                setTokData(false)
+                setColData(true)
+                setArtData(false)
+            }
+            else if (data == 'art') {
+                console.log('carga art')
+                setTokData(false)
+                setColData(false)
+                setArtData(true)
+            }
+        }
+    }
+
+    React.useEffect(() => {
+        if ((urlParams.get('data') == 'tok' || urlParams.get('data') == 'col' || urlParams.get('data') == 'art')) {
             if (urlParams.get('data') == 'tok') {
                 console.log('carga tok')
                 setTokData(true)
@@ -417,8 +440,7 @@ function Explore() {
                 setArtData(true)
             }
         }
-        setInit(!init)
-    }
+    }, [])
 
     React.useEffect(() => {
         async function getData() {
@@ -516,11 +538,7 @@ function Explore() {
                 }
             }
         }
-        if(init){
-            initLoad()
-        }
         getData()
-        console.log()
     }, [tokSort])
 
     React.useEffect(() => {
@@ -625,79 +643,229 @@ function Explore() {
     }, [trigger])
     return (
         <>
-            <button className="pt-6 font-open-sans dark:text-grey3 text-xl px-6 lg:px-12 flex flex-row py-3"><img src={arrow} alt="flecha" width={24} height={24} /> <p className="pl-2.5">Atras</p></button>
-            <h1 className="dark:text-black text-left px-6 lg:px-12 pt-[5px] pb-8 w-full text-3xl font-clash-grotesk font-semibold leading-9">Explora todos los Tokens</h1>
-            <div className="px-6 lg:px-12 w-full pb-6 flex flex-row-reverse">
-                <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px] " onChange={handleSortTokens}>
-                    <option value="" disabled selected hidden>Sort by</option>
-                    <option value="oldRecent">Time  (old to recent)</option>
-                    <option value="recentOld">Time  (recent to old)</option>
-                </select>
+            {/* <button className="pt-6 font-open-sans dark:text-grey3 text-xl px-6 lg:px-12 flex flex-row py-3"><img src={arrow} alt="flecha" width={24} height={24} /> <p className="pl-2.5">Atras</p></button> */}
+            <div className="flex flex-col lg:flex-row pt-[51px] lg:pt-12 px-6 lg:px-12 pb-8 mb-0 mb-[38px] bg-inherit lg:bg-grayColor">
+                {/* Titulos de la Pagina */}
+                {tokData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Tokens</p> : ""}
+                {colData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todas las Colecciones</p> : ""}
+                {artData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Artistas</p> : ""}
+                <div className="font-open-sans text-base lg:text-[27px] text-grey3 flex flex-row pt-[30px] lg:pt-0">
+                    <button value="tok" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black hover:border-b-2 hover:border-yellow4 ${tokData? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Tokens</button>
+                    <button value="col" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black hover:border-b-2 hover:border-yellow4 ${colData? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Colecciones</button>
+                    <button value="art" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black hover:border-b-2 hover:border-yellow4 ${artData? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Artistas</button>
+                </div>
             </div>
-            {hasData ?
-                <div>
-                    <InfiniteScroll
-                        dataLength={tokens.items.length}
-                        next={fetchMoreData}
-                        hasMore={tokens.hasMore}
-                        loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
-                        endMessage={
-                            <p className="text-center w-full py-10 text-xl text-yellow2">
-                                <b>{t("tokCollection.end")}</b>
-                            </p>
-                        }
-                        className={"flex flex-wrap px-6 lg:px-12 place-content-center gap-4 md:justify-between"}
-                    >
-                        {tokens.items.map((item, key) => {
-                            return (
-                                <div className="w-full xs:w-[163px] h-[284px] sm:w-1/3 md:w-[225px] lg:w-[340px] lg:h-[490px] " key={key}>
-                                    <a
-                                        href={"/detail/" + item.token_id}
-                                    >
-                                        <div className="flex flex-row mb-10 md:mb-0 w-full justify-center" key={key}>
-                                            <div className="trending-token w-full rounded-20 drop-shadow-md hover:scale-105 ">
-                                                <div className=" bg-white rounded-xl">
-                                                    <div className="pb-3">
-                                                        <img
-                                                            className="object-cover object-center rounded-t-xl h-[163px] lg:h-[340px] w-full "
-                                                            src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`}
+            
+            {/* Galerias */}
+            {tokData ?
+                <>
+                    <div className="px-6 lg:px-12 w-full pb-6 flex flex-row-reverse">
+                        <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortTokens}>
+                            <option value="" disabled selected hidden>Sort by</option>
+                            <option value="oldRecent">Time  (old to recent)</option>
+                            <option value="recentOld">Time  (recent to old)</option>
+                        </select>
+                    </div>
+                    {hasData ?
+                        <div>
+                            <InfiniteScroll
+                                dataLength={tokens.items.length}
+                                next={fetchMoreData}
+                                hasMore={tokens.hasMore}
+                                loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
+                                endMessage={
+                                    <p className="text-center w-full py-10 text-xl text-yellow2">
+                                        <b>{t("tokCollection.end")}</b>
+                                    </p>
+                                }
+                                className={"flex flex-wrap px-6 lg:px-12 place-content-center gap-4 md:justify-between"}
+                            >
+                                {tokens.items.map((item, key) => {
+                                    return (
+                                        <div className="w-full xs:w-[163px] h-[284px] sm:w-1/3 md:w-[225px] lg:w-[340px] lg:h-[490px] " key={key}>
+                                            <a
+                                                href={"/detail/" + item.token_id}
+                                            >
+                                                <div className="flex flex-row mb-10 md:mb-0 w-full justify-center" key={key}>
+                                                    <div className="trending-token w-full rounded-20 drop-shadow-md hover:scale-105 ">
+                                                        <div className=" bg-white rounded-xl">
+                                                            <div className="pb-3">
+                                                                <img
+                                                                    className="object-cover object-center rounded-t-xl h-[163px] lg:h-[340px] w-full "
+                                                                    src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`}
 
-                                                            alt={item.description}
-                                                        />
-                                                    </div>
-                                                    <div className="px-3 lg:px-[18px] py-1 lg:py-0">
-                                                        <div className=" text-black text-base leading-6 text-ellipsis overflow-hidden whitespace-nowrap lg:whitespace-normal font-open-sans font-extrabold uppercase lg:pt-0.5 lg:h-[60px]">{item.title}</div>
-                                                        <div className="flex justify-start">
-                                                            <div className=" text-base font-open-sans font-semibold py-2 lg:py-0 lg:pt-2 text-yellow4 flex">  <img
-                                                                className="w-[16px] h-[16px] my-auto mr-2"
-                                                                src={nearImage}
-                                                                alt={item.description}
-                                                                width={15}
-                                                                height={15}
-                                                            /> {fromYoctoToNear(item.price)} NEAR</div>
+                                                                    alt={item.description}
+                                                                />
+                                                            </div>
+                                                            <div className="px-3 lg:px-[18px] py-1 lg:py-0">
+                                                                <p className=" text-black text-base leading-6 text-ellipsis overflow-hidden whitespace-nowrap lg:whitespace-normal font-open-sans font-extrabold uppercase lg:pt-0.5 lg:h-[60px]">{item.title}</p>
+                                                                <div className="flex justify-start">
+                                                                    <div className=" text-base font-open-sans font-semibold py-2 lg:py-0 lg:pt-2 text-yellow4 flex">  <img
+                                                                        className="w-[16px] h-[16px] my-auto mr-2"
+                                                                        src={nearImage}
+                                                                        alt={item.description}
+                                                                        width={15}
+                                                                        height={15}
+                                                                    /> {fromYoctoToNear(item.price)} NEAR</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="text-black px-3 lg:px-[18px] font-open-sans text-xs font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3">
+                                                                <p className=" text-ellipsis overflow-hidden">{item.creator_id}</p></div>
                                                         </div>
                                                     </div>
-                                                    <div className="text-black px-3 lg:px-[18px] font-open-sans text-xs font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3">
-                                                        <a href={`profile/${item.creator_id.split('.')[0]}`} className=" text-ellipsis overflow-hidden">{item.creator_id}</a></div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            )
-                        })}
-                    </InfiniteScroll>
-                </div>
+                                    )
+                                })}
+                            </InfiniteScroll>
+                        </div>
+                        :
+                        <div className="w-full flex flex-row px-6 py-40 items-center">
+                            <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
+                            <div className="flex flex-col pl-4">
+                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
+                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
+                            </div>
+                        </div>
+                    }
+                </>
                 :
-                <div className="w-full flex flex-row px-6 py-40 items-center">
-                    <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
-                    <div className="flex flex-col pl-4">
-                        <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
-                        <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
-                    </div>
-                </div>
+                ""
             }
 
+            {colData ?
+                <>
+                    <div className="px-6 lg:px-[46px] w-full pb-6 flex flex-row-reverse">
+                        <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortCollections}>
+                            <option value="" disabled selected hidden>Sort by</option>
+                            <option value="TimeAsc">Time  (old to recent)</option>
+                            <option value="TimeDesc">Time  (recent to old)</option>
+                            <option value="TitleAsc">Title  (A-Z)</option>
+                            <option value="TitleDesc">Title  (Z-A)</option>
+                        </select>
+                    </div>
+                    {hasDataCol ?
+                        <div>
+                            <InfiniteScroll
+                                dataLength={collections.items.length}
+                                next={fetchMoreColData}
+                                hasMore={collections.hasMore}
+                                loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
+                                endMessage={
+                                    <p className="text-center w-full py-10 text-xl text-yellow2">
+                                        <b>{t("tokCollection.end")}</b>
+                                    </p>
+                                }
+                                className={"flex flex-wrap px-6 lg:px-[46px] gap-4 lg:gap-[19px] md:justify-center"}
+                            >
+                                {collections.items.map((item, key) => {
+                                    return (
+                                        <div className="w-full md:w-[360px] lg:w-[460px]" key={key}>
+                                            <a href={"/collection/" + item.collectionID}
+                                            >
+                                                <div className="flex flex-row drop-shadow-md justify-items-center w-full " key={key}>
+
+                                                    <div className="rounded-md drop-shadow-md   w-full  bg-white hover:scale-105 ">
+                                                        <div className=" best-seller font-open-sans  font-bold text-xlg ">{t("Landing.popular_col-best-seller")}</div>
+                                                        <div className="  overflow-hidden rounded-t-md w-full md:w-full  lg:w-full  bg-white   ">
+
+                                                            <img className="  h-[288px] lg:h-[306px] mx-auto  object-cover object-center scale-150	w-full " alt={item.description} src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaBanner}`} />
+
+                                                        </div>
+                                                        <div className="flex flex-row  mb-4   " name="card_detail">
+                                                            <div className=" z-10 -mt-8 ml-4        ">
+                                                                <img className="  object-cover  rounded-md bg-white  border-2 border-white min-w-[90px] max-w-[90px] min-h-[90px] max-h-[90px]  " src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaIcon}`} alt={item.description} />
+                                                            </div>
+
+                                                            <div class="flex flex-col  mx-2 mt-2  ">
+                                                                <div className="   w-full uppercase tracking-tighter text-black text-base font-open-sans max-h-[24px] text-ellipsis overflow-hidden font-extrabold collection-description justify-center items-center">{item.title}</div>
+                                                                <div className="   w-full uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black  text-ellipsis overflow-hidden whitespace-pre">{t("Landing.popular_col-by") + " " + item.owner_id}</div>
+                                                                <div className="   w-full   text-xs  text-black text-left justify-center font-normal font-open-sans  text-ellipsis overflow-hidden whitespace-nowrap"><p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center ">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "}  {t("Landing.popular_col-tokens_on")}</p></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    )
+                                })}
+                            </InfiniteScroll>
+                        </div>
+                        :
+                        <div className="w-full flex flex-row px-6 py-40 items-center">
+                            <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
+                            <div className="flex flex-col pl-4">
+                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
+                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
+                            </div>
+                        </div>
+                    }
+                </>
+                :
+                ""}
+
+            {artData ?
+                <>
+                    <div className="px-6 lg:px-12 w-full pb-6 flex flex-row-reverse">
+                        <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortArtists}>
+                            <option value="" disabled selected hidden>Sort by</option>
+                            <option value="TimeAsc">Time  (old to recent)</option>
+                            <option value="TimeDesc">Time  (recent to old)</option>
+                            <option value="UseAsc">Username  (A-Z)</option>
+                            <option value="UseDesc">Username  (Z-A)</option>
+                        </select>
+                    </div>
+                    {hasData ?
+                        <div>
+                            <InfiniteScroll
+                                dataLength={artists.items.length}
+                                next={fetchMoreDataArtists}
+                                hasMore={artists.hasMore}
+                                loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
+                                endMessage={
+                                    <p className="text-center w-full py-10 text-xl text-yellow2">
+                                        <b>{t("tokCollection.end")}</b>
+                                    </p>
+                                }
+                                className={"flex flex-wrap px-6 lg:px-12 gap-4 lg:justify-between"}
+                            >
+                                {artists.items.map((item, key) => {
+                                    return (
+                                        <div className="w-full lg:w-[450px]" key={key}>
+                                            <a href={`profile/${item.username.split('.')[0]}`}>
+                                                <div className="flex flex-wrap flex-row justify-between items-center">
+                                                    <p className="w-auto font-clash-grotesk font-semibold text-3xl text-outlinePressed">{key + 1}</p>
+                                                    <div className="bg-white rounded-xl drop-shadow-md py-2 w-[300px] lg:w-[400px] h-[100px]">
+                                                        <div className="px-[7px] flex flex-wrap flex-row">
+                                                            <div className="h-[84px] w-[84px]">
+                                                                <img src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`} alt="userImg" className="rounded-md object-cover object-center w-[84px] h-[84px]" />
+                                                            </div>
+                                                            <div className="flex flex-col-reverse pl-4">
+                                                                <p className="w-[159px] font-open-sans text-xs font-normal overflow-hidden uppercase">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
+                                                                <h1 className="font-open-sans text-base font-extrabold w-[159px]">{item.username}</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    )
+                                })}
+                            </InfiniteScroll>
+                        </div>
+                        :
+                        <div className="w-full flex flex-row px-6 py-40 items-center">
+                            <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
+                            <div className="flex flex-col pl-4">
+                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
+                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
+                            </div>
+                        </div>
+                    }
+                </>
+                :
+                ""}
         </>
     );
 }
