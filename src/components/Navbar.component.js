@@ -238,25 +238,25 @@ function LightHeaderB(props) {
         width: 600,
         html:
           '<div class=" flex flex-col overflow-hidden">' +
-          '<div class="font-open-sans  text-base font-extrabold text-white my-4 text-left w-full">' + '¿QUÉ DESEAS CREAR?' + '</div>' +
+          '<div class="font-open-sans  text-base font-extrabold text-white my-4 text-left w-full">' +  t("Navbar.createMsg") + '</div>' +
           '<div class="flex flex-col lg:flex-row justify-center">' +
           `<button class="flex  w-full h-[40px]  mt-0 ml-5  lg:w-[200px]" onclick='window.location.href="/collectionData/create"'>` +
           '<div class="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">' +
-          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 justify-center hover:text-textOutlineHover active:text-textOutlinePressed  "> CREAR NFT <img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
+          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">'+  t("Navbar.create")+'<img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
           '</div>' +
           '</buttton>' +
           `<button class="flex  w-full h-[40px]  mt-0 ml-5  lg:w-[200px]" onclick='window.location.href="/create"'>` +
           '<div class="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">' +
-          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed  "> CREAR COLECCION <img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
+          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">'+  t("Navbar.createCollection")+'<img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
           '</div>' +
           '</buttton>' +
           '</div>' +
           '</div>',
-        confirmButtonText: 'Cerrar',
+        confirmButtonText:  t("Navbar.close"),
         confirmButtonColor: "#f79336",
         buttonsStyling: false,
         customClass: {
-          confirmButton: 'font-open-sans font-normal text-base text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-2',
+          confirmButton: 'font-open-sans uppercase font-normal text-base text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-2',
         },
         position: window.innerWidth < 1024 ? 'bottom' : 'center'
       });
@@ -267,14 +267,36 @@ function LightHeaderB(props) {
   }
 
   async function logOut() {
-    localStorage.removeItem('userMedia');
     const wallet = await selector.wallet();
-    wallet.signOut().catch((err) => {
-      console.log("Failed to sign out");
-      console.error(err);
-    }).then((res) => {
-      window.location.href = "/"
-    })
+    Swal.fire({
+      background: '#0a0a0a',
+      html:
+        '<div class="">' +
+        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left">' +  t("Navbar.logoutMsg") + '</div>' +
+        '<div class="font-open-sans  text-sm text-white text-left">' + t("Navbar.logoutMsgSub") + '</div>' +
+        '</div>',
+      confirmButtonText: t("Navbar.logout"),
+      cancelButtonText: t("Navbar.close"),
+      showCancelButton: true,
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'font-open-sans uppercase font-normal text-base text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        cancelButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center  justify-center px-3 py-2  mx-2 border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed'
+      },
+      confirmButtonColor: '#f79336',
+      position: window.innerWidth < 1024 ? 'bottom' : 'center'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('userMedia');
+        wallet.signOut().catch((err) => {
+          console.log("Failed to sign out");
+          console.error(err);
+        }).then((res) => {
+          window.location.href = "/"
+        })
+      }
+    });
+
 
   }
 
@@ -283,10 +305,10 @@ function LightHeaderB(props) {
       background: '#0a0a0a',
       html:
         '<div class="">' +
-        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left">' + 'LO SENTIMOS' + '</div>' +
-        '<div class="font-open-sans  text-sm text-white text-left">' + 'Por el momento esta sección no está disponible, pero estamos trabajando para que pronto puedas usarla y aprovecharla al máximo.' + '</div>' +
+        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left">' + t("Navbar.comming") + '</div>' +
+        '<div class="font-open-sans  text-sm text-white text-left">' + t("Navbar.commingSubtitle") + '</div>' +
         '</div>',
-      confirmButtonText: 'Cerrar',
+      confirmButtonText: t("Navbar.close"),
       customClass: {
         confirmButton: 'font-open-sans uppercase text-base font-extrabold'
     },
@@ -382,7 +404,7 @@ function LightHeaderB(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
+                    <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[125px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
                       <div className="py-1">
                         <MenuB.Item onClick={handleAllCollections}>
                           {({ active }) => (
@@ -559,9 +581,9 @@ function LightHeaderB(props) {
                         <MenuB.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
                           <div className="w-full  flex relative ">
                             {state.userMedia ?
-                              <div className="w-[35px] h-[35px]  bg-circle rounded-full  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
+                              <div className="w-[45px] h-[45px] -m-[10px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
                               </div> :
-                              <div className="w-[35px] h-[35px]  bg-circle rounded-full bg-pink-2 relative">
+                              <div className="w-[45px] h-[45px] -m-[10px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(${empty})` }}>
                               </div>
                             }
 
@@ -580,7 +602,7 @@ function LightHeaderB(props) {
                       >
                         <MenuB.Items
                           static
-                          className="w-[219px]  md:w-[219px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
+                          className="w-[245px]  md:w-[245px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
                         >
                           <div className="py-1">
                             <MenuB.Item
@@ -634,7 +656,7 @@ function LightHeaderB(props) {
                             <MenuB.Item
                             >
                               {({ active }) => (
-                                <a href="/collectionData/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
+                                <a href="/collectionData/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
                                   <div className="flex justify-start">
                                     <span className=" m-2">
                                       <img
@@ -783,7 +805,7 @@ function LightHeaderB(props) {
                           <p className="ml-4">{state.owner}</p>
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async () => { window.location = `/profile/${state.owner.split('.')[0]}` }}>
-                          <p className="font-open-sans font-semibold text-base">MI PERFIL</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.profile")}</p>
                           <img
                             className="mr-4"
                             src={accountCircle}
@@ -792,7 +814,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          <p className="font-open-sans font-semibold text-base">CREAR COLECCION</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.createCollection")}</p>
                           <img
                             className="mr-4"
                             src={createCollection}
@@ -801,7 +823,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
-                          <p className="font-open-sans font-semibold text-base">CREAR NFT</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.create")}</p>
                           <img
                             className="mr-4"
                             src={createToken}
@@ -832,10 +854,10 @@ function LightHeaderB(props) {
                               alt='banner'
                               width="20px"
                               height="20px" />
-                            <p className="ml-4">EXPLORAR</p>
+                            <p className="ml-4">{t("Navbar.explore")}</p>
                           </button>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/collections">
-                            <p className="font-open-sans font-semibold text-base">COLECCIONES</p>
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/collections?search=all">
+                            <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
                             <img
                               className="mr-4"
                               src={filter}
@@ -844,7 +866,7 @@ function LightHeaderB(props) {
                               height="20px" />
                           </a>
                           <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/market">
-                            <p className="font-open-sans font-semibold text-base">TOKENS</p>
+                            <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
                             <img
                               className="mr-4"
                               src={tokenIcon}
@@ -876,7 +898,7 @@ function LightHeaderB(props) {
                           <p className="ml-4">{t("Navbar.finance")}</p>
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
-                          <p className="font-open-sans font-semibold text-base">SUBASTAS</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.auctions")}</p>
                           <img
                             className="mr-4"
                             src={finances}
@@ -885,7 +907,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          <p className="font-open-sans font-semibold text-base">PRESTAMOS</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.loans")}</p>
                           <img
                             className="mr-4"
                             src={loans}
@@ -894,7 +916,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
-                          <p className="font-open-sans font-semibold text-base">STAKING</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.staking")}</p>
                           <img
                             className="mr-4"
                             src={stacking}
@@ -911,17 +933,17 @@ function LightHeaderB(props) {
                     </div>
                     <button className="flex  rounded-xlarge w-full h-[40px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
                       <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center ">CREAR NFT <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center ">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
                       </div>
                     </button>
                     <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collectionData/create" }}>
                       <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center ">CREAR COLECCIÓN <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center ">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
                       </div>
                     </button>
                     <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { logOut() }}>
                       <div className="flex flex-col font-extrabold h-full text-yellow2  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-yellow2">
-                        <span className="title-font  text-yellow2 font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center ">SALIR<img className="manImg self-center ml-[6px]" width="20px" height="20px" src={salir}></img> </span>
+                        <span className="title-font  text-yellow2 font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center ">{t("Navbar.logout")}<img className="manImg self-center ml-[6px]" width="20px" height="20px" src={salir}></img> </span>
                       </div>
                     </button>
                   </Menu>
@@ -930,12 +952,11 @@ function LightHeaderB(props) {
               :
               <>
                 <button
-                  className={`ml-auto  text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] lg:w-auto rounded-md font-open-sans font-extrabold uppercase hidden lg:flex`}
+                  className={`ml-auto  text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] lg:w-auto rounded-md font-open-sans font-extrabold uppercase hidden lg:flex items-center`}
                   style={{ justifyContent: "center" }}
                   // disabled={state?.tokens.onSale}
                   onClick={handleSignIn}>
-
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.62451 0.609359L7.11711 4.33336C7.0765 4.3871 7.05769 4.45426 7.06455 4.52129C7.07138 4.58836 7.10332 4.65033 7.15397 4.69475C7.20463 4.7392 7.27018 4.76277 7.33751 4.7608C7.4048 4.75879 7.46888 4.73135 7.51681 4.68401L9.98423 2.55069C9.99844 2.53763 10.0162 2.52904 10.0352 2.52598C10.0543 2.52292 10.0738 2.52553 10.0914 2.53348C10.109 2.54143 10.1239 2.55438 10.1342 2.57071C10.1445 2.58704 10.1498 2.60604 10.1494 2.62535V9.33066C10.1492 9.35102 10.1428 9.37084 10.1311 9.38745C10.1193 9.40407 10.1028 9.4167 10.0837 9.42366C10.0646 9.43062 10.0437 9.43157 10.0241 9.42639C10.0044 9.4212 9.98679 9.41014 9.97356 9.39468L2.51271 0.461356C2.3936 0.31794 2.24459 0.202334 2.07612 0.122641C1.90765 0.0429479 1.72381 0.0010978 1.53747 2.50247e-05H1.27767C0.938812 2.50247e-05 0.613831 0.134741 0.37422 0.374536C0.134611 0.614332 0 0.939566 0 1.27869V10.7213C0 11.0605 0.134611 11.3857 0.37422 11.6255C0.613831 11.8653 0.938812 12 1.27767 12C1.49601 12 1.7107 11.944 1.90125 11.8373C2.0918 11.7306 2.25186 11.5768 2.36616 11.3907L4.87354 7.66668C4.91418 7.61291 4.93295 7.54578 4.92613 7.47871C4.91927 7.41168 4.88732 7.34971 4.83667 7.30526C4.78605 7.26084 4.72047 7.23724 4.65317 7.23924C4.58584 7.24125 4.52177 7.26866 4.47384 7.31602L2.00644 9.44933C1.99221 9.4624 1.97447 9.471 1.95541 9.47405C1.93635 9.47711 1.91681 9.47448 1.89923 9.46653C1.88163 9.45859 1.86676 9.44566 1.85645 9.42931C1.84614 9.41299 1.84085 9.39399 1.84123 9.37469V2.67602C1.84143 2.65566 1.84784 2.63585 1.85959 2.61923C1.87134 2.60261 1.88788 2.58998 1.907 2.58303C1.92612 2.57607 1.9469 2.57512 1.96658 2.5803C1.98625 2.58548 2.00387 2.59654 2.01709 2.61202L9.47794 11.5453C9.59795 11.6875 9.74751 11.8017 9.91621 11.88C10.0849 11.9582 10.2686 11.9988 10.4545 11.9987H10.721C10.8888 11.9987 11.0549 11.9656 11.2099 11.9013C11.3649 11.8371 11.5058 11.7429 11.6244 11.6242C11.7431 11.5054 11.8372 11.3645 11.9014 11.2093C11.9656 11.0542 11.9986 10.8879 11.9986 10.72V1.27869C11.9987 1.1101 11.9653 0.94317 11.9006 0.787509C11.8359 0.631851 11.7411 0.490536 11.6216 0.371697C11.5021 0.252857 11.3603 0.158839 11.2044 0.0950521C11.0484 0.0312655 10.8814 -0.0010297 10.713 2.50247e-05C10.4946 5.12861e-05 10.28 0.056073 10.0894 0.162744C9.89884 0.269415 9.73878 0.423179 9.62451 0.609359Z" fill="#00c6a2"></path></svg> {t("Navbar.login")}
+                  <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>{t("Navbar.login")}
                 </button>
                 <div className="lg:hidden">
                   <div className="flex mr-[35px]">
@@ -985,12 +1006,17 @@ function LightHeaderB(props) {
                   </div>
                   <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
                     <button
-                      className={` mt-5 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase hidden md:flex`}
+                      className={` mt-5 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px]  rounded-md font-open-sans font-extrabold uppercase flex items-center`}
                       style={{ justifyContent: "center" }}
                       // disabled={state?.tokens.onSale}
                       onClick={handleSignIn}>
-
-                      {t("Navbar.login")}
+                      <div className="flex items-center">
+                        <div className="w-1/4 h-[25px] flex items-center">
+                          <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>
+                          
+                        </div>
+                        <p className="w-3/4">{t("Navbar.login")}</p>
+                      </div>
                     </button>
                     <div className="menu-item" >
                       <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase" >
@@ -1011,10 +1037,10 @@ function LightHeaderB(props) {
                               alt='banner'
                               width="20px"
                               height="20px" />
-                            <p className="ml-4">EXPLORAR</p>
+                            <p className="ml-4">{t("Navbar.explore")}</p>
                           </button>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/collections">
-                            <p className="font-open-sans font-semibold text-base">COLECCIONES</p>
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/collections?search=all">
+                            <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
                             <img
                               className="mr-4"
                               src={filter}
@@ -1023,7 +1049,7 @@ function LightHeaderB(props) {
                               height="20px" />
                           </a>
                           <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/market">
-                            <p className="font-open-sans font-semibold text-base">TOKENS</p>
+                            <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
                             <img
                               className="mr-4"
                               src={tokenIcon}
@@ -1055,7 +1081,7 @@ function LightHeaderB(props) {
                           <p className="ml-4">{t("Navbar.finance")}</p>
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
-                          <p className="font-open-sans font-semibold text-base">SUBASTAS</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.auctions")}</p>
                           <img
                             className="mr-4"
                             src={finances}
@@ -1064,7 +1090,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          <p className="font-open-sans font-semibold text-base">PRESTAMOS</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.loans")}</p>
                           <img
                             className="mr-4"
                             src={loans}
@@ -1073,7 +1099,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
-                          <p className="font-open-sans font-semibold text-base">STAKING</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.staking")}</p>
                           <img
                             className="mr-4"
                             src={stacking}
@@ -1090,12 +1116,12 @@ function LightHeaderB(props) {
                     </div>
                     <button className="flex inline-flex rounded-xlarge w-full h-[40px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
                       <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR NFT <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
                       </div>
                     </button>
                     <button className="flex inline-flex rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={handleSignIn}>
                       <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">CREAR COLECCIÓN <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
                       </div>
                     </button>
                   </Menu>

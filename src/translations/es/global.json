@@ -70,7 +70,11 @@
         "createB" : "Crear",
         "tokens" : "tokens",
         "search" : "Cuenta ó Título..",
-        "search-all" : "Ver todas"
+        "comming" : "Comming soon!",
+        "commingSubtitle" : "Por el momento esta sección no está disponible, pero estamos trabajando para que pronto puedas usarla y aprovecharla al máximo.",
+        "logoutMsg" : "¿QUIERES SALIR?",
+        "logoutMsgSub" : "Recuerda que para navegar el sitio de manera correcta es necesario que esté conectada tu wallet, de igual forma puedes conectarla en cualquier momento",
+        "createMsg" : "¿Qué deseas crear?"
     },
     "Footer" : {
         "made" : "Hecho con:",

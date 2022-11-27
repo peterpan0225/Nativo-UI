@@ -58,7 +58,7 @@
         "gallery" : "Gallery",
         "onSale" : "Market",
         "login" : "Connect",
-        "profile" : " my profile",
+        "profile" : "my profile",
         "logout" : "Logout",
         "logoin" : "Login",
         "finance" : "Finances",
@@ -66,13 +66,17 @@
         "loans" : "Loans",
         "community" : "Community",
         "staking" : "Staking",
-        "explore" : "Explorar",
+        "explore" : "Explore",
         "createB" : "Create",
         "tokens" : "tokens",
         "search" : "Account or Title..",
-        "search-all" : "See all"
-
-
+        "search-all" : "See all",
+        "comming" : "Comming soon!",
+        "close" : "close",
+        "commingSubtitle" : "At this moment this sections isn't available, but we're working and soon you can use it and make the most of it",
+        "logoutMsg" : "¿Want to Logout?",
+        "logoutMsgSub" : "Remember that to navigate on site correctly, your wallet must be connected, in the same way you can connect it at any time",
+        "createMsg" : "¿what do you want to create?"
     },
     "Footer" : {
         "made" : "Made with:",
