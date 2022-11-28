@@ -235,31 +235,33 @@ function LightHeaderB(props) {
       
       Swal.fire({
         background: '#0a0a0a',
-        width: 600,
+        width: '800',
+        heightAuto: false,
         html:
           '<div class=" flex flex-col overflow-hidden">' +
-          '<div class="font-open-sans  text-base font-extrabold text-white my-4 text-left w-full">' +  t("Navbar.createMsg") + '</div>' +
-          '<div class="flex flex-col lg:flex-row justify-center">' +
-          `<button class="flex  w-full h-[40px]  mt-0 ml-5  lg:w-[200px]" onclick='window.location.href="/collectionData/create"'>` +
-          '<div class="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">' +
-          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">'+  t("Navbar.create")+'<img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
-          '</div>' +
-          '</buttton>' +
-          `<button class="flex  w-full h-[40px]  mt-0 ml-5  lg:w-[200px]" onclick='window.location.href="/create"'>` +
-          '<div class="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">' +
-          '<span class="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">'+  t("Navbar.createCollection")+'<img className="manImg w-[12px] h-[12px] self-center ml-[6px]"></img></span>' +
-          '</div>' +
-          '</buttton>' +
-          '</div>' +
+          '<div class="font-open-sans  text-base font-extrabold text-white my-4 text-left w-full uppercase">' +  t("Navbar.createMsg") + '</div>' +
+
           '</div>',
-        confirmButtonText:  t("Navbar.close"),
-        confirmButtonColor: "#f79336",
+        showCloseButton: true,
+        confirmButtonText:  t("Navbar.create"),
+        cancelButtonText:  t("Navbar.createCollection"),
+        showCancelButton: true,
+        showConfirmButton: true,
         buttonsStyling: false,
         customClass: {
-          confirmButton: 'font-open-sans uppercase font-normal text-base text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-2',
+          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
+          cancelButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
         },
         position: window.innerWidth < 1024 ? 'bottom' : 'center'
-      });
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "/create"
+          } 
+          if(result.dismiss == 'cancel') {
+              window.location.href = "/collectionData/create" 
+          }
+        });
+      
     } else {
       handleSignIn()
     }
@@ -270,9 +272,10 @@ function LightHeaderB(props) {
     const wallet = await selector.wallet();
     Swal.fire({
       background: '#0a0a0a',
+      width: '800',
       html:
         '<div class="">' +
-        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left">' +  t("Navbar.logoutMsg") + '</div>' +
+        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Navbar.logoutMsg") + '</div>' +
         '<div class="font-open-sans  text-sm text-white text-left">' + t("Navbar.logoutMsgSub") + '</div>' +
         '</div>',
       confirmButtonText: t("Navbar.logout"),
@@ -280,7 +283,7 @@ function LightHeaderB(props) {
       showCancelButton: true,
       buttonsStyling: false,
       customClass: {
-        confirmButton: 'font-open-sans uppercase font-normal text-base text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
         cancelButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center  justify-center px-3 py-2  mx-2 border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed'
       },
       confirmButtonColor: '#f79336',
@@ -303,16 +306,16 @@ function LightHeaderB(props) {
   async function futureFeatureMsg(section) {
     Swal.fire({
       background: '#0a0a0a',
+      width: '800',
       html:
         '<div class="">' +
-        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left">' + t("Navbar.comming") + '</div>' +
+        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' + t("Navbar.comming") + '</div>' +
         '<div class="font-open-sans  text-sm text-white text-left">' + t("Navbar.commingSubtitle") + '</div>' +
         '</div>',
-      confirmButtonText: t("Navbar.close"),
-      customClass: {
-        confirmButton: 'font-open-sans uppercase text-base font-extrabold'
-    },
-      confirmButtonColor: '#f79336',
+      showCloseButton: true,
+      showCancelButton: false,
+      showConfirmButton: false,
+
       position: window.innerWidth < 1024 ? 'bottom' : 'center'
     });
   }
