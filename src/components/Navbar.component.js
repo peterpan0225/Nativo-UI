@@ -581,9 +581,9 @@ function LightHeaderB(props) {
                         <MenuB.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
                           <div className="w-full  flex relative ">
                             {state.userMedia ?
-                              <div className="w-[45px] h-[45px] -m-[10px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
+                              <div className="w-[45px] h-[45px] -m-[12px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
                               </div> :
-                              <div className="w-[45px] h-[45px] -m-[10px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(${empty})` }}>
+                              <div className="w-[45px] h-[45px] -m-[12px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(${empty})` }}>
                               </div>
                             }
 
