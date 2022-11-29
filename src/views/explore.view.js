@@ -644,22 +644,22 @@ function Explore() {
     return (
         <>
             {/* <button className="pt-6 font-open-sans dark:text-grey3 text-xl px-6 lg:px-12 flex flex-row py-3"><img src={arrow} alt="flecha" width={24} height={24} /> <p className="pl-2.5">Atras</p></button> */}
-            <div className="flex flex-col lg:flex-row pt-[51px] lg:pt-12 px-6 lg:px-12 pb-8 mb-0 mb-[38px] bg-inherit lg:bg-grayColor">
+            <div className="flex flex-col lg:flex-row px-6 lg:px-12 bg-inherit lg:bg-grayColor pb-[30px] pt-[51px] lg:py-12">
                 {/* Titulos de la Pagina */}
                 {tokData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Tokens</p> : ""}
                 {colData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todas las Colecciones</p> : ""}
                 {artData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Artistas</p> : ""}
                 <div className="font-open-sans text-base lg:text-[27px] text-grey3 flex flex-row pt-[30px] lg:pt-0">
-                    <button value="tok" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black hover:border-b-2 hover:border-yellow4 ${tokData? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Tokens</button>
-                    <button value="col" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black hover:border-b-2 hover:border-yellow4 ${colData? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Colecciones</button>
-                    <button value="art" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black hover:border-b-2 hover:border-yellow4 ${artData? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Artistas</button>
+                    <button value="tok" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${tokData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Tokens</button>
+                    <button value="col" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${colData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Colecciones</button>
+                    <button value="art" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Artistas</button>
                 </div>
             </div>
-            
+
             {/* Galerias */}
             {tokData ?
                 <>
-                    <div className="px-6 lg:px-12 w-full pb-6 flex flex-row-reverse">
+                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortTokens}>
                             <option value="" disabled selected hidden>Sort by</option>
                             <option value="oldRecent">Time  (old to recent)</option>
@@ -681,26 +681,26 @@ function Explore() {
                                 className={"flex flex-wrap px-6 lg:px-12 place-content-center gap-4 md:justify-between"}
                             >
                                 {tokens.items.map((item, key) => {
+                                    console.log(item)
                                     return (
                                         <div className="w-full xs:w-[163px] h-[284px] sm:w-1/3 md:w-[225px] lg:w-[340px] lg:h-[490px] " key={key}>
                                             <a
                                                 href={"/detail/" + item.token_id}
                                             >
-                                                <div className="flex flex-row mb-10 md:mb-0 w-full justify-center" key={key}>
-                                                    <div className="trending-token w-full rounded-20 drop-shadow-md hover:scale-105 ">
+                                                <div className="flex flex-row  mb-10 md:mb-0  justify-center " key={key}>
+                                                    <div className="trending-token w-64 md:w-[300px] rounded-20 shadow-lg   hover:scale-105 ">
                                                         <div className=" bg-white rounded-xl">
                                                             <div className="pb-3">
                                                                 <img
-                                                                    className="object-cover object-center rounded-t-xl h-[163px] lg:h-[340px] w-full "
+                                                                    className="object-cover object-center rounded-t-xl h-48 md:h-56 w-full "
                                                                     src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`}
-
                                                                     alt={item.description}
                                                                 />
                                                             </div>
-                                                            <div className="px-3 lg:px-[18px] py-1 lg:py-0">
-                                                                <p className=" text-black text-base leading-6 text-ellipsis overflow-hidden whitespace-nowrap lg:whitespace-normal font-open-sans font-extrabold uppercase lg:pt-0.5 lg:h-[60px]">{item.title}</p>
+                                                            <div className="px-3 py-1">
+                                                                <div className=" text-black text-base leading-6 text-ellipsis overflow-hidden whitespace-nowrap  font-open-sans font-extrabold uppercase">{item.title}</div>
                                                                 <div className="flex justify-start">
-                                                                    <div className=" text-base font-open-sans font-semibold py-2 lg:py-0 lg:pt-2 text-yellow4 flex">  <img
+                                                                    <div className=" text-base font-open-sans font-semibold py-2 text-yellow4 flex">  <img
                                                                         className="w-[16px] h-[16px] my-auto mr-2"
                                                                         src={nearImage}
                                                                         alt={item.description}
@@ -709,8 +709,8 @@ function Explore() {
                                                                     /> {fromYoctoToNear(item.price)} NEAR</div>
                                                                 </div>
                                                             </div>
-                                                            <div className="text-black px-3 lg:px-[18px] font-open-sans text-xs font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3">
-                                                                <p className=" text-ellipsis overflow-hidden">{item.creator_id}</p></div>
+                                                            <div className="text-black px-3 font-open-sans text-xs font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3">
+                                                                {t("tokCollection.createdBy") + ":"} <a href={`profile/${item.creator_id.split('.')[0]}`} className=" text-ellipsis overflow-hidden">{item.creator_id}</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -736,7 +736,7 @@ function Explore() {
 
             {colData ?
                 <>
-                    <div className="px-6 lg:px-[46px] w-full pb-6 flex flex-row-reverse">
+                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortCollections}>
                             <option value="" disabled selected hidden>Sort by</option>
                             <option value="TimeAsc">Time  (old to recent)</option>
@@ -766,7 +766,7 @@ function Explore() {
                                             >
                                                 <div className="flex flex-row drop-shadow-md justify-items-center w-full " key={key}>
 
-                                                    <div className="rounded-md drop-shadow-md   w-full  bg-white hover:scale-105 ">
+                                                    <div className="rounded-xl drop-shadow-md w-full bg-white hover:scale-105 ">
                                                         <div className=" best-seller font-open-sans  font-bold text-xlg ">{t("Landing.popular_col-best-seller")}</div>
                                                         <div className="  overflow-hidden rounded-t-md w-full md:w-full  lg:w-full  bg-white   ">
 
@@ -807,7 +807,7 @@ function Explore() {
 
             {artData ?
                 <>
-                    <div className="px-6 lg:px-12 w-full pb-6 flex flex-row-reverse">
+                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortArtists}>
                             <option value="" disabled selected hidden>Sort by</option>
                             <option value="TimeAsc">Time  (old to recent)</option>
@@ -843,7 +843,7 @@ function Explore() {
                                                             </div>
                                                             <div className="flex flex-col-reverse pl-4">
                                                                 <p className="w-[159px] font-open-sans text-xs font-normal overflow-hidden uppercase">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
-                                                                <h1 className="font-open-sans text-base font-extrabold w-[159px]">{item.username}</h1>
+                                                                <p className="font-open-sans text-base font-extrabold w-[159px] uppercase">{item.username}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -858,7 +858,7 @@ function Explore() {
                         <div className="w-full flex flex-row px-6 py-40 items-center">
                             <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
                             <div className="flex flex-col pl-4">
-                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
+                                <p className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</p>
                                 <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
                             </div>
                         </div>
