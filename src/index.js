@@ -28,7 +28,7 @@ i18next.init({
 ReactDOM.render(
     <I18nextProvider i18n={i18next}>      
         <WalletSelectorContextProvider>
-            <App />
+            <App id="outer-container" />
         </WalletSelectorContextProvider>  
     </I18nextProvider>, 
     document.getElementById("root")
