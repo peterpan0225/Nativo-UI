@@ -55,6 +55,7 @@ module.exports = {
         'crear-background': "url('./assets/img/Back_Crear.png')",
         'steps-background': "url('./assets/img/landing/thirdSection/Gradient.png')",
         "Hero_2": "url('./assets/img/landing/firstSection/Hero_2.png')",
+        "Hero_poa": "url('./assets/img/landing/firstSection/heropoa_2.jpg')",
         "Hero_mobile_2": "url('./assets/img/landing/firstSection/Hero_mobile_2.png')",
         "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Crea_y_vende_tus_NFTs_2.png')"
       },
