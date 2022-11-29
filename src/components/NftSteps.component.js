@@ -83,7 +83,6 @@ function NftSteps(props) {
             <NftStepsCard card={card} key={i}/>
             )
           })}
-
         </div>
       </div>
     </section>
