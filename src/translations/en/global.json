@@ -46,7 +46,11 @@
         "collections" : "Collections",
         "supporting-title" : "Supported by great people",
         "gobernance" : "Be part of the governance with $NTV token",
-        "gobernance-button" : "Participate on nativo dao"
+        "gobernance-button" : "Participate on nativo dao",
+        "near": "NEAR foundation",
+        "nearSub": "Given a grant for development of nativo",
+        "cloudMex" : "CloudMex Analytics",
+        "cloudMexSub" : "Web 3.0 Hub of Software Development. Based in Latam"
     },
     "Navbar" : {
         "collections" : "Collections",
