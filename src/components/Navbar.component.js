@@ -31,7 +31,6 @@ import createToken from '../assets/img/navBar/profile/crear_token.png';
 import salir from '../assets/img/navBar/profile/Salir.png';
 import empty from '../assets/img/navBar/profile/empty.png';
 import logout from '../assets/img/navBar/profile/Salir.png';
-import search from '../assets/img/navBar/search/search.png';
 import staking from '../assets/img/navBar/profile/Staking.png';
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -41,7 +40,7 @@ import menuArrowRight from '../assets/img/navBar/menu/chevron-left.png';
 import menuArrowLeft from '../assets/img/navBar/menu/chevron-right.png';
 import createNft from '../assets/img/navBar/menu/plus-nft.png';
 import createCol from '../assets/img/navBar/menu/plus-col.png';
-import bell from '../assets/img/navBar/menu/Bell.png';
+
 
 function LightHeaderB(props) {
   const { selector, modal, accounts, accountId } = useWalletSelector();
