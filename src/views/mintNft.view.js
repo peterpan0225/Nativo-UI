@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useParams } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -305,6 +305,7 @@ function LightHeroE(props) {
     setactualDate(fs)
   }
 
+ 
   return (
     <section className="text-gray-600 body-font bg-crear-background bg-cover bg-no-repeat">
       {loading ?
