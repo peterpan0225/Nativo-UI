@@ -13,13 +13,13 @@ function Sponsors() {
   return (
     <section className="open-sans  h-[290px] lg:h-[350px] overflow-hidden bg-grayColor " >
       <div className="w-full md:pt-4 dark:flex flex-row flex-wrap justify-center" >
-        <div className="w-full  pt-6 pb-8 mx-auto ">
+        <div className="w-full  pt-6 pb-12 mx-auto ">
           <h2 className="text-dark-blue pt-5 px-4  w-[250px]  mx-auto text-center lg:w-1/2  text-3xl  md:px-6
                         lg:px-8 mb-4  font-clash-grotesk  font-semibold leading-9  lg:text-4xl">{t("Landing.supporting-title")}</h2>
 
         </div>
         <div className=" w-full flex justify-around  ">
-          <div className="h-[65px] lg:h-20 w-[150px] lg:w-[280px] bg-center ">
+          <div className="h-[65px] lg:h-20 w-[150px] lg:w-[280px] bg-center mt-4">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342 90" >
         <path d="M171.21,18.75v52.5a.76.76,0,0,1-.75.75H165a7.49,7.49,0,0,1-6.3-3.43l-24.78-38.3.85,19.13V71.25A.76.76,0,0,1,134,72h-7.22a.76.76,0,0,1-.75-.75V18.75a.76.76,0,0,1,.75-.75h5.43a7.52,7.52,0,0,1,6.3,3.42l24.78,38.24-.77-19.06V18.75a.75.75,0,0,1,.75-.75h7.22A.76.76,0,0,1,171.21,18.75Z"></path>
         <path d="M245,72h-7.64a.75.75,0,0,1-.7-1L256.9,18.72A1.14,1.14,0,0,1,258,18h9.57a1.14,1.14,0,0,1,1.05.72L288.8,71a.75.75,0,0,1-.7,1h-7.64a.76.76,0,0,1-.71-.48l-16.31-43a.75.75,0,0,0-1.41,0l-16.31,43A.76.76,0,0,1,245,72Z"></path>
@@ -29,7 +29,7 @@ function Sponsors() {
       </svg>
       </div>
           <img
-            className="h-[65px] lg:h-20 w-[150px] lg:w-[280px] bg-center"
+            className="h-[65px] lg:h-28 w-[150px] lg:w-[280px] bg-center"
             src={CloudMex}
             fill="#000"
             alt={CloudMex} 

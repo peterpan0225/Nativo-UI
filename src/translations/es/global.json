@@ -1,7 +1,7 @@
 {
     "Landing": {
         "title" : "Crea, compra y gana",
-        "title-2" : "con tus NFT's",
+        "title-2" : "con tus coleccionables digitales",
         "subtitle" : "Nativo es un marketplace de NFT que busca recuperar la cultura nativa de países hispánicos a través del",
         "subtitle2" : "ecosistema de Blockchain.",
         "connect" : "Conectar mi near wallet",
@@ -56,8 +56,8 @@
         "language" : "Español",
         "gallery" : "Galeria",
         "onSale" : "Mercado",
-        "login" : "Iniciar sesión",
-        "profile" : "Perfil",
+        "login" : "Conectar",
+        "profile" : "mi Perfil",
         "logout" : "Salir",
         "createCollection" : "Crear Colección",
         "logoin" : "Iniciar",
@@ -65,7 +65,17 @@
         "auctions" : "Subastas",
         "loans" : "Prestamos",
         "community" : "Comunidad",
-        "staking" : "Staking"
+        "staking" : "Staking",
+        "explore" : "Explorar",
+        "createB" : "Crear",
+        "tokens" : "tokens",
+        "search" : "Cuenta ó Título..",
+        "comming" : "¡Muy pronto!",
+        "close" : "cerrar",
+        "commingSubtitle" : "Por el momento esta sección no está disponible, pero estamos trabajando para que pronto puedas usarla y aprovecharla al máximo.",
+        "logoutMsg" : "¿QUIERES SALIR?",
+        "logoutMsgSub" : "Recuerda que para navegar el sitio de manera correcta es necesario que esté conectada tu wallet, de igual forma puedes conectarla en cualquier momento",
+        "createMsg" : "¿Qué deseas crear?"
     },
     "Footer" : {
         "made" : "Hecho con:",

@@ -12,10 +12,6 @@ import Gallery from "./views/gallery";
 import Detail from "./views/Detail.view";
 import Mint from "./views/mintNft.view";
 import MisNfts from "./views/MisTokens.view";
-import AuctionGaleria from "./views/AuctionGaleria.view";
-import Auction from "./views/auction.view";
-import SendAuction from "./views/SendAuction.view";
-import Perfil from "./views/Perfil.view";
 import creCol from "./views/createColl"
 import Collections from "./views/collectionGallery"
 import Community from "./views/community"
@@ -28,6 +24,7 @@ import ExploreCol from "./views/exploreCollections"
 import ExploreArt from  "./views/exploreArtists"
 
 import notFound from "./views/notFound.view";
+
 
 //este hoc nos regresa el componente que le mandamos si tiene instalado metamask
 //import MetamaskProtectedRoute from "./HOCS/MetamaskProtectedRoute.hoc";
@@ -56,7 +53,7 @@ Object.entries(iconList).forEach(([type, icons]) => {
   "blue",
   "green",
 ]; */
-
+//test
 class App extends Component {
   constructor(props) {
     super(props);
@@ -69,9 +66,9 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router>
+        <Router >
           <Navbar theme={this.state.theme} />
-          <Switch>
+          <Switch id="page-wrap">
             <Route exact path="/" component={Landing} />
             <BlockchainProtectedRoute path="/create" component={Mint} />
             <BlockchainProtectedRoute path="/profileData/:state" component={ProfileData} />
@@ -85,10 +82,6 @@ class App extends Component {
             <Route path="/collections" component={Collections} />
             <Route path="/community" component={Community} />
             <Route path="/collection/:data" component={TokensCollection} />
-            <Route path="/perfil/:tokenid" component={Perfil} />
-            <Route path="/auctions" component={AuctionGaleria} />
-            <Route path="/auction/:tokenid" component={Auction} />
-            <BlockchainProtectedRoute path="/sendauction/:tokenid" component={SendAuction} />
             <Route path="/detail/:data" component={Detail}/>
             <BlockchainProtectedRoute path="/mynfts" component={MisNfts} />
             <Route component={notFound} />
