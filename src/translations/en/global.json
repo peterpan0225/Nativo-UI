@@ -78,9 +78,9 @@
         "comming" : "Comming soon!",
         "close" : "close",
         "commingSubtitle" : "At this moment this sections isn't available, but we're working and soon you can use it and make the most of it",
-        "logoutMsg" : "¿Want to Logout?",
+        "logoutMsg" : "Want to Logout?",
         "logoutMsgSub" : "Remember that to navigate on site correctly, your wallet must be connected, in the same way you can connect it at any time",
-        "createMsg" : "¿what do you want to create?"
+        "createMsg" : "what do you want to create?"
     },
     "Footer" : {
         "made" : "Made with:",
