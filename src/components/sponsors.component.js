@@ -31,7 +31,7 @@ function Sponsors() {
             </div>
             </div>
             <p className="text-[#C5752B] font-open-sans font-bold text-2xl lg:text-4xl capitalize w-full  my-2 mx-auto text-center">{t("Landing.near")}</p>
-            <p className="text-[#000] font-open-sans font-normal text-base capitalize   w-3/4  my-2 mx-auto">{t("Landing.nearSub")}</p>
+            <p className="text-[#000] font-open-sans font-normal text-base normal-case   w-3/4  my-2 mx-auto">{t("Landing.nearSub")}</p>
           </div>
           <div className="w-full lg:w-1/3  mt-5 lg:my-2">
             <img
@@ -41,7 +41,7 @@ function Sponsors() {
               alt={CloudMexColor}
             />
             <p className="text-[#C5752B] font-open-sans font-bold text-2xl lg:text-4xl capitalize w-full  my-2 mx-auto text-center">{t("Landing.cloudMex")}</p>
-            <p className="text-[#000] font-open-sans font-normal text-base capitalize w-3/4  my-2 mx-auto">{t("Landing.cloudMexSub")}</p>
+            <p className="text-[#000] font-open-sans font-normal text-base normal-case w-3/4  my-2 mx-auto">{t("Landing.cloudMexSub")}</p>
           </div>
 
         </div>
