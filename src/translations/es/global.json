@@ -138,7 +138,7 @@
         "loading" : "Cargando...",
         "end" : "Ya no hay mas NFTs",
         "noData" : "No hay NFTs Actualmente",
-        "createdBy" : "por",
+        "createdBy" : "Creado por",
         "seeDetails" : "Ver Detalle",
         "hasTok" : "La coleccion no tiene NFTs actualmente",
         "seeMore" : "...Ver más",
@@ -264,6 +264,7 @@
     },
     "MintNFT" : {
         "maxTitle" : "Menos de 60 caracteres",
+        "maxTitle2":"Máx. 36 caracteres",
         "minTitle" : "El titulo debe longitud mayor a 5",
         "maxDesc" : "Menos de 1000 caracteres",
         "minDesc" : "La descripción minimo es de 5 caracteres",
@@ -276,7 +277,12 @@
         "loadMsg" : "Espere un momento por favor",
         "changeImg" : "Cambiar",
         "upImg" : "Subir Imagen",
+        "upImage" : "Sube tu pieza de arte",
+        "drag&drop":"Arrastra o selecciona tu archivo",
+        "file_type":"PNG, FIG, WEBP, Máx. 10Mb",
         "title" : "Nuevo NFT",
+        "coleccion":"Colecciones",
+        "write_title":"Escribe el título aquí",
         "addColBtn" : "Añadir Colección",
         "colName" : "Nombre de la colección",
         "userCol" : "Tus colecciones",
@@ -289,6 +295,7 @@
         "errCol-2" : "Para poder minar un token en necesario crear una colección antes",
         "errCol-3" : "Crear colección",
         "createNFT" : "Crear NFT",
+        "prevNFT":"Previsualización de mi NFT",
         "sweetTitle" : "Selecciona una colección",
         "sweetTxt" : "Para crear un NFT es necesario seleccionar una colección, selecciona una e intentalo de nuevo",
         "noColTit" : "No tienes colecciones",
@@ -302,11 +309,28 @@
         "swPerTxt" : "No se puede definir un porcentaje de regalias mayor al 50%, revisa tus porcentajes",
         "swVer" : "Verifica la informacion de las regalias",
         "lblRoyalties" : "Regalias",
-        "placeAccount" : "Cuenta",
+        "placeAccount" : "Cuenta beneficiada",
         "placePercent" : "Porcentaje",
+        "PendingPrice" : "Precio pendiente",
+        "SetPrice" : "Poner Precio",
+        "AccetTerms":"Acepta los terminos y condicicones primero ",
+        "Skip" : "Saltar",
+        "Savecongrats":"Guardar",
+        "Continuecongrats":"Continuar",
+
+        "alertoptions":"Selecciona alguna opción",
+
+        "alertCol":"Selecciona una colección",
+        "alertPrice":"Selecciona un precio mayor a 0",
         "btnRemove" : "Quitar",
-        "btnRoyalties" : "Agregar regalias",
-        "new" : "Nuevo NFT"
+        "btnRoyalties" : "Añadir regalias",
+        "new" : "Nuevo NFT",
+        "congrats" : "¡Felicidades!",
+        "congratsYourNft" : "  Tu NFT ha sido mintado",
+      
+
+        "cancel":"Cancelar"
+       
     },
     "Modal" : {
         "accept" : "Acepto los terminos y condiciones del servicio",
@@ -319,7 +343,9 @@
         "transAlert3Txt-2" : " Revisa muy bien la cuenta si es erronea o no existe no hay manera de recuperar tu NFT",
         "transAlert3Btn" : "Transferir",
         "account" : "Cuenta",
-        "price" : "Precio",
+        "price" : "1- Precio",
+        "setHighestprice" : "Error en el precio",
+        "setHighestpriceTxt" : "El Precio debe ser mayor que 0",
         "changePrice" : "Cambiar precio",
         "putSale" : "Poner en venta",
         "offerAlert1Txt" : "Para poder ofertar en NFT es necesario que aceptes los terminos y condiciones",
@@ -328,7 +354,12 @@
         "offerAlert2Txt-2" : "Para poder ofertar por un NFT es necesario que la oferta sea menor al precio de venta",
         "priceAlert" : "Precio no valido",
         "priceAlertTxt" : "El precio que deseas cambiar debe ser menor o mayor al actual",
-        "transfer": "Transferir"
+        "transfer": "Transferir",
+        "skip_tittle": "Saltar por ahora",
+        "skip_description": "No te preocupues,podrás agregarlo a una colleción o asignarle un precio en los detalles de tus NFT's",
+        "skip_accept": "Seguro!"
+
+
     },
     "Profile" : {
         "title" : "Crear perfil",
@@ -353,10 +384,11 @@
         "alert1-msg" : "Tienes que seleccionar la coleccion a la que deseas agregar el NFT",
         "alert2-title" : "Advertencia",
         "alert2-msg" : "Solo podras agregar una sola vez tu NFT a una coleccion, verifica que hayas seleccionado la correcta",
-        "comboOpc" : "Seleccione la coleccion",
+        "comboOpc" : "Seleccione la colección",
         "btnAdd" : "Agregar NFT",
         "btnCol" : "Crear colección",
-        "msgNoCol" : "Aun no has creado una coleccion, primero crea una coleccion para agregar tu NFT"
+        "msgNoCol" : "Aun no has creado una coleccion, primero crea una coleccion para agregar tu NFT",
+        "addtocol":"2- Añadir a colección"
     },
     "searchNftById" : {
         "contract" : "Contrato",

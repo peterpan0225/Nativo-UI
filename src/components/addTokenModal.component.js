@@ -22,6 +22,8 @@ export default function AddTokenModal(props) {
   const [collectionData, setCollectionData] = useState([])
   const [colID, setColID] = useState(-1)
 
+
+ 
   useEffect(() => {
     (async () => {
       if (props.show) {
