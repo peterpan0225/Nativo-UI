@@ -31,7 +31,6 @@ import createToken from '../assets/img/navBar/profile/crear_token.png';
 import salir from '../assets/img/navBar/profile/Salir.png';
 import empty from '../assets/img/navBar/profile/empty.png';
 import logout from '../assets/img/navBar/profile/Salir.png';
-import search from '../assets/img/navBar/search/search.png';
 import staking from '../assets/img/navBar/profile/Staking.png';
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -41,7 +40,7 @@ import menuArrowRight from '../assets/img/navBar/menu/chevron-left.png';
 import menuArrowLeft from '../assets/img/navBar/menu/chevron-right.png';
 import createNft from '../assets/img/navBar/menu/plus-nft.png';
 import createCol from '../assets/img/navBar/menu/plus-col.png';
-import bell from '../assets/img/navBar/menu/Bell.png';
+
 
 function LightHeaderB(props) {
   const { selector, modal, accounts, accountId } = useWalletSelector();
@@ -369,12 +368,10 @@ function LightHeaderB(props) {
                 type="submit"
                 className={` dark:text-white absolute right-0 mr-2 `}
               >
-                <img
-                  className=""
-                  src={search}
-                  alt={search}
-                  width="20px"
-                  height="20px" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </button>
             </form>
 
@@ -569,13 +566,11 @@ function LightHeaderB(props) {
           {
             stateLogin ?
               <>
-              <button className="w-[25px] h-[25px] mr-[5px] hidden lg:inline-block" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                      <img
-                        className="w-[25px] h-[25px]"
-                        src={bell}
-                        alt={bell}
-                        width={25}
-                        height={25} />
+                <button className="w-[30px] h-[30px] mr-[5px] hidden lg:inline-block" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
+                    <path d="M28 14.669C28 12.5473 27.1571 10.5125 25.6569 9.01217C24.1566 7.51188 22.1217 6.66903 20 6.66903C17.8783 6.66903 15.8434 7.51188 14.3431 9.01217C12.8429 10.5125 12 12.5473 12 14.669C12 24.0024 8 26.669 8 26.669H32C32 26.669 28 24.0024 28 14.669Z" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M22.3067 32.0024C22.0723 32.4065 21.7358 32.7419 21.331 32.9751C20.9262 33.2083 20.4672 33.331 20 33.331C19.5329 33.331 19.0739 33.2083 18.6691 32.9751C18.2642 32.7419 17.9278 32.4065 17.6934 32.0024" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
                 </button>
                 <MenuB as="div" className="relative  text-left w-full md:w-auto md:ml-4 hidden lg:inline-block">
                   {({ open }) => (
@@ -729,13 +724,11 @@ function LightHeaderB(props) {
                 </MenuB>
                 <div className="lg:hidden">
                   <div className="flex mr-[35px]">
-                  <button className="w-[25px] h-[25px]  mr-[10px]" onClick={()=>{formik.resetForm(); handleSearchSubMenu()}}>
-                      <img
-                        className="w-[25px] h-[25px]"
-                        src={search}
-                        alt={search}
-                        width={25}
-                        height={25} />
+                    <button className="w-[30px] h-[30px]  mr-[10px]" onClick={() => { formik.resetForm(); handleSearchSubMenu() }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
                     </button>
                     <div className={classNames(showSearchSubMenu ? "transform -translate-x-full duration-600" : "transform translate-x-full duration-600", "fixed w-full top-0 left-full h-[80px] flex items-center dark:bg-[#0A0A0A] z-[1200]")}>
                       <button onClick={handleSearchSubMenu}>
@@ -763,22 +756,18 @@ function LightHeaderB(props) {
                           type="submit"
                           className={` dark:text-white absolute right-0 mr-2 `}
                         >
-                          <img
-                            className=""
-                            src={search}
-                            alt={search}
-                            width="20px"
-                            height="20px" />
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
                         </button>
                       </form>
                     </div>
-                    <button className="w-[25px] h-[25px] mr-[5px]" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                      <img
-                        className="w-[25px] h-[25px]"
-                        src={bell}
-                        alt={bell}
-                        width={25}
-                        height={25} />
+                    <button className="w-[30px] h-[30px] mr-[5px]" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
+                        <path d="M28 14.669C28 12.5473 27.1571 10.5125 25.6569 9.01217C24.1566 7.51188 22.1217 6.66903 20 6.66903C17.8783 6.66903 15.8434 7.51188 14.3431 9.01217C12.8429 10.5125 12 12.5473 12 14.669C12 24.0024 8 26.669 8 26.669H32C32 26.669 28 24.0024 28 14.669Z" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22.3067 32.0024C22.0723 32.4065 21.7358 32.7419 21.331 32.9751C20.9262 33.2083 20.4672 33.331 20 33.331C19.5329 33.331 19.0739 33.2083 18.6691 32.9751C18.2642 32.7419 17.9278 32.4065 17.6934 32.0024" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
                     </button>
                   </div>
                   <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
@@ -963,13 +952,11 @@ function LightHeaderB(props) {
                 </button>
                 <div className="lg:hidden">
                   <div className="flex mr-[35px]">
-                    <button className="w-[25px] h-[25px]  mr-[10px]" onClick={()=>{formik.resetForm(); handleSearchSubMenu()}}>
-                      <img
-                        className="w-[25px] h-[25px]"
-                        src={search}
-                        alt={search}
-                        width={25}
-                        height={25} />
+                    <button className="w-[30px] h-[30px]  mr-[10px]" onClick={() => { formik.resetForm(); handleSearchSubMenu() }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
                     </button>
                     <div className={classNames(showSearchSubMenu ? "transform -translate-x-full duration-600" : "transform translate-x-full duration-600", "fixed w-full top-0 left-full h-[80px] flex items-center dark:bg-[#0A0A0A] z-[1200]")}>
                       <button onClick={handleSearchSubMenu}>
@@ -997,12 +984,10 @@ function LightHeaderB(props) {
                           type="submit"
                           className={` dark:text-white absolute right-0 mr-2 `}
                         >
-                          <img
-                            className=""
-                            src={search}
-                            alt={search}
-                            width="20px"
-                            height="20px" />
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
                         </button>
                       </form>
                     </div>
