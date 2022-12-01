@@ -667,7 +667,7 @@ function Explore() {
                         </select>
                     </div>
                     {hasData ?
-                        <div className="pb-8">
+                        <div className="mb-8">
                             <InfiniteScroll
                                 dataLength={tokens.items.length}
                                 next={fetchMoreData}
@@ -746,7 +746,7 @@ function Explore() {
                         </select>
                     </div>
                     {hasDataCol ?
-                        <div className="pb-8">
+                        <div className="mb-8">
                             <InfiniteScroll
                                 dataLength={collections.items.length}
                                 next={fetchMoreColData}
@@ -816,7 +816,7 @@ function Explore() {
                         </select>
                     </div>
                     {hasData ?
-                        <div className="pb-8">
+                        <div className="mb-8">
                             <InfiniteScroll
                                 dataLength={artists.items.length}
                                 next={fetchMoreDataArtists}
@@ -833,7 +833,7 @@ function Explore() {
                                     return (
                                         <div className="w-full lg:w-[450px]" key={key}>
                                             <a href={`profile/${item.username.split('.')[0]}`}>
-                                                <div className="flex flex-wrap flex-row justify-between items-center">
+                                                <div className="flex flex-wrap flex-row justify-between items-center hover:scale-105">
                                                     <p className="w-auto font-clash-grotesk font-semibold text-3xl text-outlinePressed">{key + 1}</p>
                                                     <div className="bg-white rounded-xl py-2 shadow-lg w-[300px] lg:w-[400px] h-[100px]">
                                                         <div className="px-[7px] flex flex-wrap flex-row">
@@ -841,7 +841,7 @@ function Explore() {
                                                                 <img src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`} alt="userImg" className="rounded-md object-cover object-center w-[84px] h-[84px]" />
                                                             </div>
                                                             <div className="flex flex-col-reverse pl-4">
-                                                                <p className="w-[159px] font-open-sans text-xs font-normal overflow-hidden uppercase">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
+                                                                <p className="w-[159px] font-open-sans text-xs font-normal leading-[15px] tracking-[1px] overflow-hidden uppercase">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
                                                                 <p className="font-open-sans text-base font-extrabold w-[159px] uppercase">{item.username}</p>
                                                             </div>
                                                         </div>
