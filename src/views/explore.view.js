@@ -667,7 +667,7 @@ function Explore() {
                         </select>
                     </div>
                     {hasData ?
-                        <div>
+                        <div className="pb-8">
                             <InfiniteScroll
                                 dataLength={tokens.items.length}
                                 next={fetchMoreData}
@@ -746,7 +746,7 @@ function Explore() {
                         </select>
                     </div>
                     {hasDataCol ?
-                        <div>
+                        <div className="pb-8">
                             <InfiniteScroll
                                 dataLength={collections.items.length}
                                 next={fetchMoreColData}
@@ -764,23 +764,23 @@ function Explore() {
                                         <div className="w-full md:w-[360px] lg:w-[460px]" key={key}>
                                             <a href={"/collection/" + item.collectionID}
                                             >
-                                                <div className="flex flex-row justify-items-center px-4 mb-4 md:px-6 lg:px-8 w-full" key={key}>
+                                                <div className="flex flex-row justify-items-center w-full" key={key}>
 
-                                                    <div className="rounded-md shadow-lg  w-full  bg-white hover:scale-105 ">
-                                                        <div className="  overflow-hidden rounded-t-md w-full md:w-full  lg:w-full  bg-white   ">
+                                                    <div className="rounded-xl shadow-lg bg-white hover:scale-105 ">
+                                                        <div className="  overflow-hidden rounded-t-md  bg-white   ">
 
-                                                            <img className="  h-[190px] mx-auto  object-cover object-center scale-150 lg:w-[460px] lg:h-[306px] " alt={item.description} src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaBanner}`} />
+                                                            <img className="  h-[190px] object-cover object-center scale-150 w-[460px] lg:h-[306px] " alt={item.description} src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaBanner}`} />
 
                                                         </div>
                                                         <div className="flex flex-row  mb-4" name="card_detail">
                                                             <div className=" z-10 -mt-8 ml-4        ">
-                                                                <img className="  object-cover  rounded-md bg-white  border-2 border-white min-w-[90px] max-w-[90px] min-h-[90px] max-h-[90px]  " src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaIcon}`} alt={item.description} />
+                                                                <img className="  object-cover  rounded-md bg-white  border-2 border-white w-[120px] h-[120px] " src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaIcon}`} alt={item.description} />
                                                             </div>
 
                                                             <div class="flex flex-col  mx-2 mt-2  ">
                                                                 <div className="   w-full uppercase tracking-tighter text-black text-base	   font-open-sans  font-extrabold    collection-description h-[50px] justify-center items-center">{item.title}</div>
-                                                                <div className="   w-full uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black  text-ellipsis overflow-hidden whitespace-pre">{t("Landing.popular_col-by") + " " + item.owner}</div>
-                                                                <div className="   w-full   text-xs  text-black text-left justify-center font-normal font-open-sans  text-ellipsis overflow-hidden whitespace-nowrap">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "} <a className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center "> {t("Landing.popular_col-tokens_on")}</a></div>
+                                                                <div className="   w-full uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black  text-ellipsis overflow-hidden whitespace-pre">{t("Landing.popular_col-by") + " " + item.owner_id}</div>
+                                                                <div className="   w-full   text-xs  text-black text-left justify-center font-normal font-open-sans  text-ellipsis overflow-hidden whitespace-nowrap"> <p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center ">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "} {t("Landing.popular_col-tokens_on")}</p></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -816,7 +816,7 @@ function Explore() {
                         </select>
                     </div>
                     {hasData ?
-                        <div>
+                        <div className="pb-8">
                             <InfiniteScroll
                                 dataLength={artists.items.length}
                                 next={fetchMoreDataArtists}
@@ -835,7 +835,7 @@ function Explore() {
                                             <a href={`profile/${item.username.split('.')[0]}`}>
                                                 <div className="flex flex-wrap flex-row justify-between items-center">
                                                     <p className="w-auto font-clash-grotesk font-semibold text-3xl text-outlinePressed">{key + 1}</p>
-                                                    <div className="bg-white rounded-xl drop-shadow-md py-2 w-[300px] lg:w-[400px] h-[100px]">
+                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[300px] lg:w-[400px] h-[100px]">
                                                         <div className="px-[7px] flex flex-wrap flex-row">
                                                             <div className="h-[84px] w-[84px]">
                                                                 <img src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`} alt="userImg" className="rounded-md object-cover object-center w-[84px] h-[84px]" />
