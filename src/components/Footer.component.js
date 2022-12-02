@@ -70,8 +70,17 @@ function LightFooterB(props) {
     }
   };
 
-   
+  useEffect(() => {
+     
 
+    if (window.localStorage.getItem("LanguageState") == "en") {
+     
+      setIsMex(false);
+    } else {
+     
+      setIsMex(true);
+    }
+  },[]);
 
 
    
@@ -99,7 +108,7 @@ function LightFooterB(props) {
               {t("Footer.btn-NTV")}
             </label>
             <button
-              className="bg-yellow2 w-1/2 hidden md:block   text-white py-1 px-2 text-sm rounded-md"
+              className="bg-yellow2  hover:scale-125 w-1/2 hidden md:block   text-white py-1 px-2 text-sm rounded-md"
               onClick={async () => {
                 addNTVToken();
               }}
@@ -122,7 +131,7 @@ function LightFooterB(props) {
                   {t("Footer.btn-NTV")}
                 </label>
                 <button
-                  className="bg-yellow2 w-1/2 md:hidden block   text-white py-1 px-2 text-sm rounded-md"
+                  className="bg-yellow2 hover:scale-125 w-1/2 md:hidden block   text-white py-1 px-2 text-sm rounded-md"
                   onClick={async () => {
                     addNTVToken();
                   }}
@@ -243,7 +252,7 @@ function LightFooterB(props) {
                   name="social"
                   className="w-full flex  md:flex-wrap  lg:flex-nowrap lg:flex-row  "
                 >
-                  <div className="w-1/5 md:w-1/2 lg:w-1/5 h-5 my-2 hover:scale-105">
+                  <div className="w-1/5   md:w-1/2 lg:w-1/5 h-5 my-2 hover:scale-125">
                     <a
                       href="https://github.com/cloudmex/Nativo-NFT-UI"
                       target="_blank"
@@ -254,7 +263,7 @@ function LightFooterB(props) {
                     </a>
                   </div>
 
-                  <div className="w-1/5 md:w-1/2 lg:w-1/5 justify-center">
+                  <div className="w-1/5 md:w-1/2 lg:w-1/5 justify-center hover:scale-125">
                     <a
                       href="https://nativonft.medium.com/"
                       target="_blank"
@@ -265,7 +274,7 @@ function LightFooterB(props) {
                     </a>
                   </div>
 
-                  <div className=" w-1/5 md:w-1/2 lg:w-1/5 lg:ml-2">
+                  <div className=" w-1/5 md:w-1/2 lg:w-1/5 lg:ml-2 hover:scale-125">
                     <a
                       href="https://twitter.com/nativonft"
                       target="_blank"
@@ -276,7 +285,7 @@ function LightFooterB(props) {
                     </a>
                   </div>
 
-                  <div className=" w-1/5 md:w-1/2 lg:w-1/5 ">
+                  <div className=" w-1/5 md:w-1/2 lg:w-1/5 hover:scale-125">
                     <a
                       href="https://discord.gg/q2R6rtY4ks"
                       target="_blank"
@@ -287,7 +296,7 @@ function LightFooterB(props) {
                     </a>
                   </div>
 
-                  <div className=" w-1/5 md:w-1/2 lg:w-1/5 ">
+                  <div className=" w-1/5 md:w-1/2 lg:w-1/5 hover:scale-125">
                     <a
                       href="https://t.me/+TFdhJmJzwmkwNDQx"
                       target="_blank"
@@ -309,15 +318,15 @@ function LightFooterB(props) {
                 </p>
 
                 <div name="languagebtn" className=" w-2/5 flex md:-mt-2 justify-center ">
-                  <img className="h-10 hover:bg-yellow2   " src={isMex ? mx : usa} />
+                  <img className="h-10    " src={isMex ? mx : usa} />
 
                   <div name="changelanguage" className="flex flex-col lg:gap-2 lg:flex-row pl-2  lg:-mt-2">
-                    <label className=" hover:bg-yellow2  lg:my-auto text-center	   text-[10px] md:text-sm  text-white   ">
+                    <label className="   lg:my-auto text-center	   text-[10px] md:text-sm  text-white   ">
                       {" "}
                       {t("Navbar.language")}
                     </label>
                     <button
-                      className="hover:bg-yellow2 md:w-1/2 text-[#616161]     text-[10px] md:text-xs rounded-lg"
+                      className="hover:bg-yellow2 hover:scale-110 hover:text-white md:w-1/2 text-[#616161]     text-[10px] md:text-xs rounded-lg"
                       onClick={handleLanguage}
                     >
                       {t("Navbar.change")}
