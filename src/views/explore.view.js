@@ -646,10 +646,10 @@ function Explore() {
             {/* <button className="pt-6 font-open-sans dark:text-grey3 text-xl px-6 lg:px-12 flex flex-row py-3"><img src={arrow} alt="flecha" width={24} height={24} /> <p className="pl-2.5">Atras</p></button> */}
             <div className="flex flex-col lg:flex-row px-6 lg:px-12 bg-inherit lg:bg-grayColor pb-[30px] pt-[51px] lg:py-12">
                 {/* Titulos de la Pagina */}
-                {tokData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Tokens</p> : ""}
-                {colData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todas las Colecciones</p> : ""}
-                {artData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Artistas</p> : ""}
-                <div className="font-open-sans text-base lg:text-[27px] text-grey3 flex flex-row pt-[30px] lg:pt-0">
+                {tokData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Tokens</p> : ""}
+                {colData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todas las Colecciones</p> : ""}
+                {artData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Artistas</p> : ""}
+                <div className="font-open-sans text-base lg:text-[18px] xl:text-[27px] text-grey3 flex flex-row pt-[30px] lg:pt-0">
                     <button value="tok" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${tokData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Tokens</button>
                     <button value="col" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${colData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Colecciones</button>
                     <button value="art" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Artistas</button>
@@ -692,7 +692,7 @@ function Explore() {
                                                         <div className=" bg-white rounded-xl">
                                                             <div className="pb-3">
                                                                 <img
-                                                                    className="object-cover object-center rounded-t-xl w-full h-[163px] xs:w-[163px] lg:w-[340px] lg:h-[340px]"
+                                                                    className="object-cover object-center rounded-t-xl w-full h-[163px] lg:w-[340px] lg:h-[340px]"
                                                                     src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`}
                                                                     alt={item.description}
                                                                 />
@@ -757,28 +757,28 @@ function Explore() {
                                         <b>{t("tokCollection.end")}</b>
                                     </p>
                                 }
-                                className={"flex flex-wrap px-6 lg:px-[46px] gap-4 lg:gap-[19px] md:justify-center"}
+                                className={"flex flex-wrap px-6 lg:px-[46px] gap-4 lg:gap-[19px] justify-center"}
                             >
                                 {collections.items.map((item, key) => {
                                     return (
-                                        <div className="w-full md:w-[360px] lg:w-[460px]" key={key}>
+                                        <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[455px] xl:w-[380px] 2xl:w-[440px]" key={key}>
                                             <a href={"/collection/" + item.collectionID}
                                             >
                                                 <div className="flex flex-row justify-items-center w-full" key={key}>
 
-                                                    <div className="rounded-xl shadow-lg bg-white hover:scale-105 ">
-                                                        <div className="  overflow-hidden rounded-t-md  bg-white   ">
+                                                    <div className="rounded-xl shadow-lg bg-white hover:scale-105 w-full ">
+                                                        <div className="  overflow-hidden rounded-t-md  bg-white ">
 
-                                                            <img className="  h-[190px] object-cover object-center scale-150 w-[460px] lg:h-[306px] " alt={item.description} src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaBanner}`} />
+                                                            <img className="  h-[190px] object-cover object-center scale-150 w-full lg:h-[306px] " alt={item.description} src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaBanner}`} />
 
                                                         </div>
                                                         <div className="flex flex-row  mb-4" name="card_detail">
-                                                            <div className=" z-10 -mt-8 ml-4        ">
-                                                                <img className="  object-cover  rounded-md bg-white  border-2 border-white w-[120px] h-[120px] " src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaIcon}`} alt={item.description} />
+                                                            <div className=" z-10 -mt-4 lg:-mt-8 ml-4        ">
+                                                                <img className="  object-cover  rounded-md bg-white  border-2 border-white w-[90px] h-[90px] lg:w-[120px] lg:h-[120px] " src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaIcon}`} alt={item.description} />
                                                             </div>
 
                                                             <div class="flex flex-col  mx-2 mt-2  ">
-                                                                <div className="   w-full uppercase tracking-tighter text-black text-base	   font-open-sans  font-extrabold    collection-description h-[50px] justify-center items-center">{item.title}</div>
+                                                                <p className="   w-full uppercase tracking-tighter text-black text-base	   font-open-sans  font-extrabold    collection-description h-[24px] lg:h-[50px] justify-center items-center">{item.title}</p>
                                                                 <div className="   w-full uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black  text-ellipsis overflow-hidden whitespace-pre">{t("Landing.popular_col-by") + " " + item.owner_id}</div>
                                                                 <div className="   w-full   text-xs  text-black text-left justify-center font-normal font-open-sans  text-ellipsis overflow-hidden whitespace-nowrap"> <p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center ">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "} {t("Landing.popular_col-tokens_on")}</p></div>
                                                             </div>
@@ -796,7 +796,7 @@ function Explore() {
                             <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
                             <div className="flex flex-col pl-4">
                                 <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
-                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
+                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any collections matching your search</p>
                             </div>
                         </div>
                     }
@@ -827,22 +827,22 @@ function Explore() {
                                         <b>{t("tokCollection.end")}</b>
                                     </p>
                                 }
-                                className={"flex flex-wrap px-6 lg:px-12 gap-4 lg:justify-between"}
+                                className={"flex flex-wrap px-6 lg:px-12 gap-4 justify-center"}
                             >
                                 {artists.items.map((item, key) => {
                                     return (
-                                        <div className="w-full lg:w-[450px]" key={key}>
+                                        <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[295px] xl:w-[380px] 2xl:w-[440px]" key={key}>
                                             <a href={`profile/${item.username.split('.')[0]}`}>
                                                 <div className="flex flex-wrap flex-row justify-between items-center hover:scale-105">
-                                                    <p className="w-auto font-clash-grotesk font-semibold text-3xl text-outlinePressed">{key + 1}</p>
-                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[300px] lg:w-[400px] h-[100px]">
+                                                    <p className="w-auto font-clash-grotesk font-semibold text-[25px] text-outlinePressed">{key + 1}</p>
+                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[290px] sm:w-[240px] md:w-[300px] lg:w-[270px] xl:w-[340px] 2xl:w-[400px] h-[100px] ">
                                                         <div className="px-[7px] flex flex-wrap flex-row">
                                                             <div className="h-[84px] w-[84px]">
                                                                 <img src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`} alt="userImg" className="rounded-md object-cover object-center w-[84px] h-[84px]" />
                                                             </div>
                                                             <div className="flex flex-col-reverse pl-4">
-                                                                <p className="w-[159px] font-open-sans text-xs font-normal leading-[15px] tracking-[1px] overflow-hidden uppercase">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
-                                                                <p className="font-open-sans text-base font-extrabold w-[159px] uppercase">{item.username}</p>
+                                                                <p className="font-open-sans text-[10px] xl:text-xs font-normal leading-[15px] tracking-[1px] overflow-hidden uppercase text-ellipsis whitespace-nowrap">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
+                                                                <p className="font-open-sans text-xs xl:text-base font-extrabold uppercase text-ellipsis overflow-hidden whitespace-nowrap">{item.username}</p>
                                                             </div>
                                                         </div>
                                                     </div>
