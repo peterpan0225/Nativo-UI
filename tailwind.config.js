@@ -57,7 +57,8 @@ module.exports = {
         "Hero_2": "url('./assets/img/landing/firstSection/Hero_2.png')",
         "Hero_poa": "url('./assets/img/landing/firstSection/heropoa_2.jpg')",
         "Hero_mobile_2": "url('./assets/img/landing/firstSection/Hero_mobile_2.png')",
-        "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Crea_y_vende_tus_NFTs_2.png')"
+        "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Crea_y_vende_tus_NFTs_2.png')",
+        "Crea_y_comparte_tus_POAs": "url('./assets/img/landing/thirdSection/BackgroundBlue.png')"
       },
       backgroundSize: {
         '40': '40%'

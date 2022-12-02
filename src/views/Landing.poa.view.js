@@ -6,7 +6,7 @@ import Steps from "../components/steps.component";
 import POASteps from "../components/POASteps.component";
 import Statisct from "../components/statistc.component";
 import Popular_col from "../components/PopularCollections.component";
-import Trendings from "../components/Trendings.component";
+import POAs from "../components/POAs.component";
 import Sponsors from "../components/sponsors.component";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -28,9 +28,7 @@ export default function LandingPoA() {
     <div>
       <POAHero />
       <POASteps/>
-      <Trendings/>
       <Sponsors />
-      <Statisct theme={Landing.theme} />
     </div>
   );
 }
