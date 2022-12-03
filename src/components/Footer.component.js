@@ -75,10 +75,10 @@ function LightFooterB(props) {
 
     if (window.localStorage.getItem("LanguageState") == "en") {
      
-      setIsMex(true);
+      setIsMex(false);
     } else {
      
-      setIsMex(false);
+      setIsMex(true);
     }
   },[]);
 
