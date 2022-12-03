@@ -162,6 +162,7 @@ function Explore() {
     };
 
     let fetchMoreColData = async () => {
+        console.log('carga data colecciones')
         await delay(.75)
         var sort
         var last
@@ -172,12 +173,13 @@ function Explore() {
             sort = 'lt'
         }
         if (colSort == 'collectionID') {
-            last = lastID
+            last = lastID.toString()
         }
         else if (colSort == 'title') {
             last = lastName
         }
         let colData;
+        console.log("antes d ela query")
         const queryData = `
               query($first: Int, $lastTokenID: String){
                   collections(first: $first,  orderBy: ${colSort}, orderDirection: ${colSortOrd}, where: { ${colSort}_${sort}: $lastTokenID, visibility:true, tokenCount_gt:0}){
@@ -209,27 +211,31 @@ function Explore() {
                 },
             })
             .then((data) => {
-                console.log(data.data.collections)
-                setCollections({
-                    ...collections,
-                    items: collections.items.concat(data.data.collections)
-                });
-                setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
-                setLastName(data.data.collections[data.data.collections.length - 1].title)
+                if(data.data.collections.length <= 0){
+                    setCollections({ ...collections, hasMore: false})
+                    return
+                }
                 if (data.data.collections.length < Landing.tokensPerPageNear) {
                     setCollections({ ...collections, hasMore: false, items: collections.items.concat(data.data.collections) });
                     setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
                     setLastName(data.data.collections[data.data.collections.length - 1].title)
                     return;
                 }
+                setCollections({
+                    ...collections,
+                    items: collections.items.concat(data.data.collections)
+                });
+                setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
+                setLastName(data.data.collections[data.data.collections.length - 1].title)
+                console.log(data.data.collections)
             })
             .catch((err) => {
                 colData = 0
+                console.log(err)
             })
     }
 
     let fetchMoreDataArtists = async () => {
-        console.log(lastUsername)
         await delay(.75)
         var sort
         var last
@@ -275,19 +281,22 @@ function Explore() {
                 },
             })
             .then((data) => {
-                setArtists({
-                    ...artists,
-                    items: artists.items.concat(data.data.profiles)
-                });
-                console.log(data.data.profiles)
-                setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
-                setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
+                if(data.data.profiles.length <= 0){
+                    setArtists({ ...artists, hasMore: false})
+                    return
+                }
                 if (data.data.profiles.length < Landing.tokensPerPageNear) {
                     setArtists({ ...artists, hasMore: false, items: artists.items.concat(data.data.profiles) });
                     setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
                     setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
                     return;
                 }
+                setArtists({
+                    ...artists,
+                    items: artists.items.concat(data.data.profiles)
+                });
+                setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
+                setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
             })
             .catch((err) => {
                 console.log(err)
@@ -683,7 +692,7 @@ function Explore() {
                                 {tokens.items.map((item, key) => {
                                     console.log(item)
                                     return (
-                                        <div className="w-full xs:w-[163px] h-[284px] sm:w-1/3 md:w-[225px] lg:w-[340px] lg:h-[490px] " key={key}>
+                                        <div className="w-full xs:w-[163px] h-[284px] sm:w-[185px] md:w-[225px] lg:w-[290px] xl:w-[340px] lg:h-[490px] " key={key}>
                                             <a
                                                 href={"/detail/" + item.token_id}
                                             >
@@ -835,12 +844,12 @@ function Explore() {
                                             <a href={`profile/${item.username.split('.')[0]}`}>
                                                 <div className="flex flex-wrap flex-row justify-between items-center hover:scale-105">
                                                     <p className="w-auto font-clash-grotesk font-semibold text-[25px] text-outlinePressed">{key + 1}</p>
-                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[290px] sm:w-[240px] md:w-[300px] lg:w-[270px] xl:w-[340px] 2xl:w-[400px] h-[100px] ">
+                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[290px] sm:w-[240px] md:w-[300px] lg:w-[260px] xl:w-[340px] 2xl:w-[400px] h-[100px] ">
                                                         <div className="px-[7px] flex flex-wrap flex-row">
                                                             <div className="h-[84px] w-[84px]">
                                                                 <img src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`} alt="userImg" className="rounded-md object-cover object-center w-[84px] h-[84px]" />
                                                             </div>
-                                                            <div className="flex flex-col-reverse pl-4">
+                                                            <div className="flex flex-col-reverse pl-4 w-[190px] sm:w-[140px] md:w-[200px] lg:w-[160px] xl:w-[240px] 2xl:w-[300px]">
                                                                 <p className="font-open-sans text-[10px] xl:text-xs font-normal leading-[15px] tracking-[1px] overflow-hidden uppercase text-ellipsis whitespace-nowrap">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
                                                                 <p className="font-open-sans text-xs xl:text-base font-extrabold uppercase text-ellipsis overflow-hidden whitespace-nowrap">{item.username}</p>
                                                             </div>
