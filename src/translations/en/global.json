@@ -59,6 +59,8 @@
         "myNFTs" : "My NFTs",
         "warning" : "This is a public beta version - Use at your own risk - Unaudited code",
         "language" : "English",
+        "change" : "Change",
+
         "gallery" : "Gallery",
         "onSale" : "Market",
         "login" : "Connect",
@@ -105,6 +107,8 @@
         "tribu" : "Nativo NFT 2022 - Mantained by",
         "cloudMx": "CloudMex Analytics community",
         "btn-NTV" : "Add my NTVs to my wallet",
+        "btn-add" : "Add",
+
         "msg-ntv-title" : "Warning",
         "msg-ntv-desc" : "The transaction that you are about to execute will fail, don't worry there is no problem, execute the transaction, once it fails press cancel to return to the page.",
         "msg-ntv-btn" : "Continue",
