@@ -17,7 +17,7 @@ import { useWalletSelector } from "../utils/walletSelector";
 import Swal from "sweetalert2";
 function LightFooterB(props) {
   const [t, i18n] = useTranslation("global");
-  const [isMex, setIsMex] = useState(true);
+  const [isMex, setIsMex] = useState(false);
 
   const { selector, modal, accounts, accountId } = useWalletSelector();
   async function addNTVToken() {
@@ -71,14 +71,13 @@ function LightFooterB(props) {
   };
 
   useEffect(() => {
-     
+   
 
-    if (window.localStorage.getItem("LanguageState") == "en") {
-     
-      setIsMex(false);
+    if (window.localStorage.getItem("LanguageState") == "es") {
+       setIsMex(true);
     } else {
-     
-      setIsMex(true);
+      window.localStorage.setItem("LanguageState","en")
+      setIsMex(false);
     }
   },[]);
 

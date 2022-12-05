@@ -65,6 +65,7 @@ class App extends Component {
   render() {
     return (
       <>
+     
         <Router >
           <Navbar theme={this.state.theme} />
           <Switch id="page-wrap">
