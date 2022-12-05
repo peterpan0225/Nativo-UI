@@ -363,5 +363,28 @@
         "searchNftById": "Search NFT by ID",
         "modalSearch": "We can't find that NFT",
         "modalSearchText": "Search by another ID"
+    },
+    "Explore" : {
+        "titleTok" : "Explore all Tokens",
+        "titleCol" : "Explore all Collections",
+        "titleArt" : "Explore all Artists",
+        "tabTok" : "Tokens",
+        "tabCol" : "Collections",
+        "tabArt" : "Artists",
+        "sortTimeOld" : "Time  (old to recent)",
+        "sortTimeRec" : "Time  (recent to old)",
+        "noResult" : "No results",
+        "noResTok" : "We searched far and wide and couldn't find any tokens matching your search",
+        "sortBy" : "Sort by",
+        "sortTitAz" : "Title  (A-Z)",
+        "sortTitZa" : "Title  (Z-A)",
+        "noResCol" : "We searched far and wide and couldn't find any collections matching your search",
+        "sortUserAz" : "Username  (A-Z)",
+        "sortUserZa" : "Username  (Z-A)",
+        "tabPopulares" : "Popular",
+        "tabTopSell" : "Top Sellers",
+        "noResArt" : "We searched far and wide and couldn't find any tokens matching your search",
+        "endCol" : "There are no more collections",
+        "endArt" : "There are no more artists"
     }
 }

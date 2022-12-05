@@ -5,6 +5,7 @@ import { useWalletSelector } from "../utils/walletSelector";
 import { fromYoctoToNear } from "../utils/near_interaction";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { useTranslation } from "react-i18next";
+import Swal from 'sweetalert2';
 import nearImage from '../assets/img/landing/trendingSection/Vector.png';
 import filterLogo from "../assets/img/explore/filter.png"
 import arrow from "../assets/img/explore/arrow-right.png"
@@ -55,6 +56,23 @@ function Explore() {
     function delay(n) {
         return new Promise(function (resolve) {
             setTimeout(resolve, n * 1000);
+        });
+    }
+
+    async function futureFeatureMsg(section) {
+        Swal.fire({
+            background: '#0a0a0a',
+            width: '800',
+            html:
+                '<div class="">' +
+                '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' + t("Navbar.comming") + '</div>' +
+                '<div class="font-open-sans  text-sm text-white text-left">' + t("Navbar.commingSubtitle") + '</div>' +
+                '</div>',
+            showCloseButton: true,
+            showCancelButton: false,
+            showConfirmButton: false,
+
+            position: window.innerWidth < 640 ? 'bottom' : 'center'
         });
     }
 
@@ -211,8 +229,8 @@ function Explore() {
                 },
             })
             .then((data) => {
-                if(data.data.collections.length <= 0){
-                    setCollections({ ...collections, hasMore: false})
+                if (data.data.collections.length <= 0) {
+                    setCollections({ ...collections, hasMore: false })
                     return
                 }
                 if (data.data.collections.length < Landing.tokensPerPageNear) {
@@ -281,8 +299,8 @@ function Explore() {
                 },
             })
             .then((data) => {
-                if(data.data.profiles.length <= 0){
-                    setArtists({ ...artists, hasMore: false})
+                if (data.data.profiles.length <= 0) {
+                    setArtists({ ...artists, hasMore: false })
                     return
                 }
                 if (data.data.profiles.length < Landing.tokensPerPageNear) {
@@ -429,21 +447,18 @@ function Explore() {
     }
 
     React.useEffect(() => {
-        if ((urlParams.get('data') == 'tok' || urlParams.get('data') == 'col' || urlParams.get('data') == 'art')) {
-            if (urlParams.get('data') == 'tok') {
-                console.log('carga tok')
+        if ((urlParams.get('opt') == 'tok' || urlParams.get('opt') == 'col' || urlParams.get('opt') == 'art')) {
+            if (urlParams.get('opt') == 'tok') {
                 setTokData(true)
                 setColData(false)
                 setArtData(false)
             }
-            else if (urlParams.get('data') == 'col') {
-                console.log('carga col')
+            else if (urlParams.get('opt') == 'col') {
                 setTokData(false)
                 setColData(true)
                 setArtData(false)
             }
-            else if (urlParams.get('data') == 'art') {
-                console.log('carga art')
+            else if (urlParams.get('opt') == 'art') {
                 setTokData(false)
                 setColData(false)
                 setArtData(true)
@@ -655,24 +670,24 @@ function Explore() {
             {/* <button className="pt-6 font-open-sans dark:text-grey3 text-xl px-6 lg:px-12 flex flex-row py-3"><img src={arrow} alt="flecha" width={24} height={24} /> <p className="pl-2.5">Atras</p></button> */}
             <div className="flex flex-col lg:flex-row px-6 lg:px-12 bg-inherit lg:bg-grayColor pb-[30px] pt-[51px] lg:py-12">
                 {/* Titulos de la Pagina */}
-                {tokData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Tokens</p> : ""}
-                {colData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todas las Colecciones</p> : ""}
-                {artData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">Explora todos los Artistas</p> : ""}
+                {tokData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">{t("Explore.titleTok")}</p> : ""}
+                {colData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">{t("Explore.titleCol")}</p> : ""}
+                {artData ? <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">{t("Explore.titleArt")}</p> : ""}
                 <div className="font-open-sans text-base lg:text-[18px] xl:text-[27px] text-grey3 flex flex-row pt-[30px] lg:pt-0">
-                    <button value="tok" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${tokData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Tokens</button>
-                    <button value="col" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${colData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Colecciones</button>
-                    <button value="art" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>Artistas</button>
+                    <button value="tok" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${tokData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>{t("Explore.tabTok")}</button>
+                    <button value="col" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${colData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>{t("Explore.tabCol")}</button>
+                    <button value="art" onClick={handleData} className={`px-3 lg:px-9 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>{t("Explore.tabArt")}</button>
                 </div>
             </div>
 
             {/* Galerias */}
             {tokData ?
                 <>
-                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
+                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">                        
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortTokens}>
-                            <option value="" disabled selected hidden>Sort by</option>
-                            <option value="oldRecent">Time  (old to recent)</option>
-                            <option value="recentOld">Time  (recent to old)</option>
+                            <option value="" disabled selected hidden>{t("Explore.sortBy")}</option>
+                            <option value="oldRecent">{t("Explore.sortTimeOld")}</option>
+                            <option value="recentOld">{t("Explore.sortTimeRec")}</option>
                         </select>
                     </div>
                     {hasData ?
@@ -681,10 +696,10 @@ function Explore() {
                                 dataLength={tokens.items.length}
                                 next={fetchMoreData}
                                 hasMore={tokens.hasMore}
-                                loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
+                                loader={<h1 className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">{t("tokCollection.loading")}</h1>}
                                 endMessage={
-                                    <p className="text-center w-full py-10 text-xl text-yellow2">
-                                        <b>{t("tokCollection.end")}</b>
+                                    <p className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">
+                                        {t("tokCollection.end")}
                                     </p>
                                 }
                                 className={"flex flex-wrap px-6 lg:px-12 place-content-center gap-4 md:justify-between"}
@@ -730,11 +745,11 @@ function Explore() {
                             </InfiniteScroll>
                         </div>
                         :
-                        <div className="w-full flex flex-row px-6 py-40 items-center">
+                        <div className="w-full flex flex-row px-6 py-40 items-center justify-center">
                             <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
                             <div className="flex flex-col pl-4">
-                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
-                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
+                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">{t("Explore.noResult")}</h1>
+                                <p className="font-open-sans text-base dark:text-black">{t("Explore.noResTok")}</p>
                             </div>
                         </div>
                     }
@@ -747,11 +762,11 @@ function Explore() {
                 <>
                     <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortCollections}>
-                            <option value="" disabled selected hidden>Sort by</option>
-                            <option value="TimeAsc">Time  (old to recent)</option>
-                            <option value="TimeDesc">Time  (recent to old)</option>
-                            <option value="TitleAsc">Title  (A-Z)</option>
-                            <option value="TitleDesc">Title  (Z-A)</option>
+                            <option value="" disabled selected hidden>{t("Explore.sortBy")}</option>
+                            <option value="TimeAsc">{t("Explore.sortTimeOld")}</option>
+                            <option value="TimeDesc">{t("Explore.sortTimeRec")}</option>
+                            <option value="TitleAsc">{t("Explore.sortTitAz")}</option>
+                            <option value="TitleDesc">{t("Explore.sortTitZa")}</option>
                         </select>
                     </div>
                     {hasDataCol ?
@@ -760,10 +775,10 @@ function Explore() {
                                 dataLength={collections.items.length}
                                 next={fetchMoreColData}
                                 hasMore={collections.hasMore}
-                                loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
+                                loader={<h1 className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">{t("tokCollection.loading")}</h1>}
                                 endMessage={
-                                    <p className="text-center w-full py-10 text-xl text-yellow2">
-                                        <b>{t("tokCollection.end")}</b>
+                                    <p className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">
+                                        {t("Explore.endCol")}
                                     </p>
                                 }
                                 className={"flex flex-wrap px-6 lg:px-[46px] gap-4 lg:gap-[19px] justify-center"}
@@ -801,11 +816,11 @@ function Explore() {
                             </InfiniteScroll>
                         </div>
                         :
-                        <div className="w-full flex flex-row px-6 py-40 items-center">
+                        <div className="w-full flex flex-row px-6 py-40 items-center justify-center">
                             <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
                             <div className="flex flex-col pl-4">
-                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</h1>
-                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any collections matching your search</p>
+                                <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">{t("Explore.noResult")}</h1>
+                                <p className="font-open-sans text-base dark:text-black">{t("Explore.noResCol")}</p>
                             </div>
                         </div>
                     }
@@ -815,14 +830,18 @@ function Explore() {
 
             {artData ?
                 <>
-                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
+                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-col-reverse md:flex-row-reverse md:justify-between">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortArtists}>
-                            <option value="" disabled selected hidden>Sort by</option>
-                            <option value="TimeAsc">Time  (old to recent)</option>
-                            <option value="TimeDesc">Time  (recent to old)</option>
-                            <option value="UseAsc">Username  (A-Z)</option>
-                            <option value="UseDesc">Username  (Z-A)</option>
+                            <option value="" disabled selected hidden>{t("Explore.sortBy")}</option>
+                            <option value="TimeAsc">{t("Explore.sortTimeOld")}</option>
+                            <option value="TimeDesc">{t("Explore.sortTimeRec")}</option>
+                            <option value="UseAsc">{t("Explore.sortUserAz")}</option>
+                            <option value="UseDesc">{t("Explore.sortUserZa")}</option>
                         </select>
+                        <div className="font-open-sans text-base text-grey3 flex flex-row pb-4 md:pb-0 ">
+                            <button className={`px-3 lg:px-6 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>{t("Explore.tabPopulares")}</button>
+                            <button onClick={async () => {futureFeatureMsg("test")}} className={`px-3 lg:px-6 hover:text-black hover:font-black`}>{t("Explore.tabTopSell")}</button>
+                        </div>
                     </div>
                     {hasData ?
                         <div className="mb-8">
@@ -830,10 +849,10 @@ function Explore() {
                                 dataLength={artists.items.length}
                                 next={fetchMoreDataArtists}
                                 hasMore={artists.hasMore}
-                                loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
+                                loader={<h1 className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">{t("tokCollection.loading")}</h1>}
                                 endMessage={
-                                    <p className="text-center w-full py-10 text-xl text-yellow2">
-                                        <b>{t("tokCollection.end")}</b>
+                                    <p className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">
+                                        {t("Explore.endArt")}
                                     </p>
                                 }
                                 className={"flex flex-wrap px-6 lg:px-12 gap-4 justify-center"}
@@ -863,11 +882,11 @@ function Explore() {
                             </InfiniteScroll>
                         </div>
                         :
-                        <div className="w-full flex flex-row px-6 py-40 items-center">
+                        <div className="w-full flex flex-row px-6 py-40 items-center justify-center">
                             <img src={search} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
                             <div className="flex flex-col pl-4">
-                                <p className="font-open-sans text-4xl dark:text-black font-bold pb-3">No results</p>
-                                <p className="font-open-sans text-base dark:text-black">We searched far and wide and couldn't find any tokens matching your search</p>
+                                <p className="font-open-sans text-4xl dark:text-black font-bold pb-3">{t("Explore.noResult")}</p>
+                                <p className="font-open-sans text-base dark:text-black">{t("Explore.noResArt")}</p>
                             </div>
                         </div>
                     }
