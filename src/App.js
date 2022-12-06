@@ -20,8 +20,6 @@ import SalesGallery from "./views/salesGallery"
 import ProfileData from "./views/profileData"
 import Profile from "./views/profile"
 import Explore from "./views/explore.view";
-import ExploreCol from "./views/exploreCollections"
-import ExploreArt from  "./views/exploreArtists"
 
 import notFound from "./views/notFound.view";
 
@@ -77,8 +75,6 @@ class App extends Component {
             <Route path="/gallery" component={Gallery} />
             <Route path="/market" component={SalesGallery} />
             <Route path="/explore" component={Explore} />
-            <Route path="/exploreCol" component={ExploreCol} />
-            <Route path="/exploreArt" component={ExploreArt} />
             <Route path="/collections" component={Collections} />
             <Route path="/community" component={Community} />
             <Route path="/collection/:data" component={TokensCollection} />
