@@ -43,6 +43,7 @@ function Explore() {
     const [hasDataArt, setHasDataArt] = React.useState(false)
     const [artSortOrd, setArtSortOrd] = React.useState('desc')
     const [artSort, setArtSort] = React.useState('timestamp')
+    const [artCount, setArtCount] = React.useState(true)
     const [trigger, setTrigger] = React.useState(true)
     const [tokData, setTokData] = React.useState(true)
     const [colData, setColData] = React.useState(false)
@@ -332,6 +333,7 @@ function Explore() {
             setColSort('collectionID')
             setCollections({
                 ...collections,
+                hasMore: true,
                 items: []
             });
         }
@@ -344,6 +346,7 @@ function Explore() {
             setColSort('collectionID')
             setCollections({
                 ...collections,
+                hasMore: true,
                 items: []
             });
         }
@@ -356,6 +359,7 @@ function Explore() {
             setColSort('title')
             setCollections({
                 ...collections,
+                hasMore: true,
                 items: []
             });
         }
@@ -368,6 +372,7 @@ function Explore() {
             setColSort('title')
             setCollections({
                 ...collections,
+                hasMore: true,
                 items: []
             });
         }
@@ -381,8 +386,10 @@ function Explore() {
             }
             setArtSort('timestamp')
             setArtSortOrd('desc')
+            setArtCount(true)
             setArtists({
                 ...artists,
+                hasMore: true,
                 items: []
             });
         }
@@ -392,8 +399,10 @@ function Explore() {
             }
             setArtSort('timestamp')
             setArtSortOrd('asc')
+            setArtCount(false)
             setArtists({
                 ...artists,
+                hasMore: true,
                 items: []
             });
         }
@@ -405,6 +414,7 @@ function Explore() {
             setArtSortOrd('asc')
             setArtists({
                 ...artists,
+                hasMore: true,
                 items: []
             });
         }
@@ -416,6 +426,7 @@ function Explore() {
             setArtSortOrd('desc')
             setArtists({
                 ...artists,
+                hasMore: true,
                 items: []
             });
         }
@@ -447,22 +458,20 @@ function Explore() {
     }
 
     React.useEffect(() => {
-        if ((urlParams.get('opt') == 'tok' || urlParams.get('opt') == 'col' || urlParams.get('opt') == 'art')) {
-            if (urlParams.get('opt') == 'tok') {
-                setTokData(true)
-                setColData(false)
-                setArtData(false)
-            }
-            else if (urlParams.get('opt') == 'col') {
-                setTokData(false)
-                setColData(true)
-                setArtData(false)
-            }
-            else if (urlParams.get('opt') == 'art') {
-                setTokData(false)
-                setColData(false)
-                setArtData(true)
-            }
+        if (urlParams.get('search') == 'tokens') {
+            setTokData(true)
+            setColData(false)
+            setArtData(false)
+        }
+        else if (urlParams.get('search') == 'collections') {
+            setTokData(false)
+            setColData(true)
+            setArtData(false)
+        }
+        else if (urlParams.get('search') == 'artists') {
+            setTokData(false)
+            setColData(false)
+            setArtData(true)
         }
     }, [])
 
@@ -683,11 +692,11 @@ function Explore() {
             {/* Galerias */}
             {tokData ?
                 <>
-                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">                        
+                    <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortTokens}>
                             <option value="" disabled selected hidden>{t("Explore.sortBy")}</option>
-                            <option value="oldRecent">{t("Explore.sortTimeOld")}</option>
                             <option value="recentOld">{t("Explore.sortTimeRec")}</option>
+                            <option value="oldRecent">{t("Explore.sortTimeOld")}</option>
                         </select>
                     </div>
                     {hasData ?
@@ -707,7 +716,7 @@ function Explore() {
                                 {tokens.items.map((item, key) => {
                                     console.log(item)
                                     return (
-                                        <div className="w-full xs:w-[163px] h-[284px] sm:w-[185px] md:w-[225px] lg:w-[290px] xl:w-[340px] lg:h-[490px] " key={key}>
+                                        <div className="w-full xs:w-[163px] h-[284px] sm:w-[185px] md:w-[165px] lg:w-[215px] xl:w-[280px] 2xl:w-[340px] xl:h-[490px] " key={key}>
                                             <a
                                                 href={"/detail/" + item.token_id}
                                             >
@@ -716,7 +725,7 @@ function Explore() {
                                                         <div className=" bg-white rounded-xl">
                                                             <div className="pb-3">
                                                                 <img
-                                                                    className="object-cover object-center rounded-t-xl w-full h-[163px] lg:w-[340px] lg:h-[340px]"
+                                                                    className="object-cover object-center rounded-t-xl w-full h-[163px] lg:w-[340px] xl:h-[340px]"
                                                                     src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`}
                                                                     alt={item.description}
                                                                 />
@@ -733,7 +742,7 @@ function Explore() {
                                                                     /> {fromYoctoToNear(item.price)} NEAR</div>
                                                                 </div>
                                                             </div>
-                                                            <div className="text-black px-3 font-open-sans text-[10px] font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3 lg:pb-[23px]">
+                                                            <div className="text-black px-3 font-open-sans text-[10px] font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3 xl:pb-[23px]">
                                                                 <a href={`profile/${item.creator_id.split('.')[0]}`} className="text-ellipsis overflow-hidden">{t("tokCollection.createdBy") + ":"} {item.creator_id}</a></div>
                                                         </div>
                                                     </div>
@@ -763,8 +772,8 @@ function Explore() {
                     <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-row-reverse">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortCollections}>
                             <option value="" disabled selected hidden>{t("Explore.sortBy")}</option>
-                            <option value="TimeAsc">{t("Explore.sortTimeOld")}</option>
                             <option value="TimeDesc">{t("Explore.sortTimeRec")}</option>
+                            <option value="TimeAsc">{t("Explore.sortTimeOld")}</option>
                             <option value="TitleAsc">{t("Explore.sortTitAz")}</option>
                             <option value="TitleDesc">{t("Explore.sortTitZa")}</option>
                         </select>
@@ -802,9 +811,9 @@ function Explore() {
                                                             </div>
 
                                                             <div class="flex flex-col  mx-2 mt-2  ">
-                                                                <p className="   w-full uppercase tracking-tighter text-black text-base	   font-open-sans  font-extrabold    collection-description h-[24px] lg:h-[50px] justify-center items-center">{item.title}</p>
-                                                                <div className="   w-full uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black  text-ellipsis overflow-hidden whitespace-pre">{t("Landing.popular_col-by") + " " + item.owner_id}</div>
-                                                                <div className="   w-full   text-xs  text-black text-left justify-center font-normal font-open-sans  text-ellipsis overflow-hidden whitespace-nowrap"> <p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center ">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "} {t("Landing.popular_col-tokens_on")}</p></div>
+                                                                <p className="   w-full uppercase tracking-tighter text-black text-base font-open-sans font-extrabold collection-description h-[24px] lg:h-[50px] justify-center items-center break-keep truncate">{item.title}</p>
+                                                                <div className="   w-full uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black truncate">{t("Landing.popular_col-by") + " " + item.owner_id}</div>
+                                                                <div className="   w-full   text-xs  text-black text-left justify-center font-normal font-open-sans truncate"> <p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center truncate">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "} {t("Landing.popular_col-tokens_on")}</p></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -833,14 +842,14 @@ function Explore() {
                     <div className="px-6 lg:px-12 w-full pb-6 lg:py-12 flex flex-col-reverse md:flex-row-reverse md:justify-between">
                         <select name="sort" className="text-base font-open-sans pl-3 py-2.5 border-outlinePressed dark:text-black md:w-[283px]" onChange={handleSortArtists}>
                             <option value="" disabled selected hidden>{t("Explore.sortBy")}</option>
-                            <option value="TimeAsc">{t("Explore.sortTimeOld")}</option>
                             <option value="TimeDesc">{t("Explore.sortTimeRec")}</option>
-                            <option value="UseAsc">{t("Explore.sortUserAz")}</option>
-                            <option value="UseDesc">{t("Explore.sortUserZa")}</option>
+                            <option value="TimeAsc">{t("Explore.sortTimeOld")}</option>
+                            {/* <option value="UseAsc">{t("Explore.sortUserAz")}</option>
+                            <option value="UseDesc">{t("Explore.sortUserZa")}</option> */}
                         </select>
                         <div className="font-open-sans text-base text-grey3 flex flex-row pb-4 md:pb-0 ">
-                            <button className={`px-3 lg:px-6 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>{t("Explore.tabPopulares")}</button>
-                            <button onClick={async () => {futureFeatureMsg("test")}} className={`px-3 lg:px-6 hover:text-black hover:font-black`}>{t("Explore.tabTopSell")}</button>
+                            <button className={`px-3 lg:px-6 hover:text-black hover:font-black ${artData ? "text-black font-black border-b-2 border-yellow4 disabled" : ""}`}>{t("Explore.tabRecent")}</button>
+                            <button onClick={async () => { futureFeatureMsg("test") }} className={`px-3 lg:px-6 hover:text-black hover:font-black`}>{t("Explore.tabTopSell")}</button>
                         </div>
                     </div>
                     {hasData ?
@@ -858,11 +867,18 @@ function Explore() {
                                 className={"flex flex-wrap px-6 lg:px-12 gap-4 justify-center"}
                             >
                                 {artists.items.map((item, key) => {
+                                    var count
+                                    if(artCount){
+                                        count = key + 1
+                                    }
+                                    else{
+                                        count = (artists.items.length) - key
+                                    }
                                     return (
                                         <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[295px] xl:w-[380px] 2xl:w-[440px]" key={key}>
                                             <a href={`profile/${item.username.split('.')[0]}`}>
                                                 <div className="flex flex-wrap flex-row justify-between items-center hover:scale-105">
-                                                    <p className="w-auto font-clash-grotesk font-semibold text-[25px] text-outlinePressed">{key + 1}</p>
+                                                    <p className="w-auto font-clash-grotesk font-semibold text-[25px] text-outlinePressed">{count}</p>
                                                     <div className="bg-white rounded-xl py-2 shadow-lg w-[290px] sm:w-[240px] md:w-[300px] lg:w-[260px] xl:w-[340px] 2xl:w-[400px] h-[100px] ">
                                                         <div className="px-[7px] flex flex-wrap flex-row">
                                                             <div className="h-[84px] w-[84px]">

@@ -75,7 +75,8 @@
         "commingSubtitle" : "Por el momento esta sección no está disponible, pero estamos trabajando para que pronto puedas usarla y aprovecharla al máximo.",
         "logoutMsg" : "¿QUIERES SALIR?",
         "logoutMsgSub" : "Recuerda que para navegar el sitio de manera correcta es necesario que esté conectada tu wallet, de igual forma puedes conectarla en cualquier momento",
-        "createMsg" : "¿Qué deseas crear?"
+        "createMsg" : "¿Qué deseas crear?",
+        "artists" : "Artistas"
     },
     "Footer" : {
         "made" : "Hecho con:",
@@ -381,6 +382,7 @@
         "sortUserZa" : "Nombre de usuario  (Z-A)",
         "tabPopulares" : "Populares",
         "tabTopSell" : "Mejores Vendedores",
+        "tabRecent" : "Recientes",
         "noResArt" : "Buscamos a lo largo y ancho y no pudimos encontrar ningún artista que coincida con su búsqueda",
         "endCol" : "Ya no hay mas colecciones",
         "endArt" : "Ya no hay mas artistas"

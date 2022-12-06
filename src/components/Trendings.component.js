@@ -438,7 +438,7 @@ function Trendings() {
                   })}
                 </Slider>
 
-                <a href='/market' className="lg:w-full lg:text-right lg:mt-[55px] flex flex-row-reverse justify-center lg:justify-start lg:mr-7" >
+                <a href='/explore?search=tokens' className="lg:w-full lg:text-right lg:mt-[55px] flex flex-row-reverse justify-center lg:justify-start lg:mr-7" >
                   <button class="w-full mx-2 rounded border-2  text-gray-400  border-slate-400 lg:bg-white lg:border-2 lg:border-[#F79336]  lg:w-[339px] lg:h-[48px] lg:text-[#F79336] px-4 lg:py-1 capitalize text-darkgray-100 font-bold sm:text-xs md:text-xl lg:text-xl hover:scale-105 font-open-sans text-base  lg:mt-5   lg:mr-7 ">{t("Landing.popular_col-see_all")}</button>
                 </a>
               </Tab.Panel>
@@ -481,7 +481,7 @@ function Trendings() {
                     );
                   })}
                 </Slider>
-                <a href='/collections' className="lg:w-full lg:text-right lg:mt-[55px] flex flex-row-reverse justify-center lg:justify-start lg:mr-7" >
+                <a href='/explore?search=collections' className="lg:w-full lg:text-right lg:mt-[55px] flex flex-row-reverse justify-center lg:justify-start lg:mr-7" >
                   <button class="w-full lg:w-[163px] mx-2 rounded border-2  text-gray-400  border-slate-400 lg:bg-white lg:border-2 lg:border-[#F79336]   lg:h-[48px] lg:text-[#F79336] px-4 py-1 capitalize text-darkgray-100 font-bold sm:text-xs md:text-xl lg:text-xl hover:scale-105 font-open-sans text-base  mt-5 lg:mt-0  lg:mr-7 ">{t("Landing.popular_col-see_all")}</button>
                 </a>
               </Tab.Panel>
