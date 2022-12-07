@@ -227,6 +227,8 @@
         "titleCol" : "Collection Title",
         "descripCol" : "Collection Description",
         "iconCol" : "Collection icon",
+        "uploadAvatar" : "Upload an avatar for the collection",
+        "uploadBanner" : "Upload a banner for the collection",
         "bannerCol" : "Collection cover",
         "msg-1" : "Collection preview at the bottom",
         "createBtn" : "Create collection",
@@ -240,6 +242,12 @@
         "volSale" : "Sales volume",
         "btnImg-1" : "Select image",
         "btnImg-2" : "Loading",
+        "uploadingAvatar" : "Uploading the avatar,wait a moment",
+        "erruploadAvatar" : "Please,select an image as avatar ",
+
+        "uploadingBanner" : "Uploading the banner,wait a moment",
+        "erruploadBanner" : "Please,select an image as banner",
+
         "btnImg-3" : "Change image",
         "err1-title" : "Incomplete data",
         "err1-msg" : "To create a collection you need to fill in all the fields, check that you have filled in all the data",
@@ -254,6 +262,8 @@
         "lblIcon-1" : "Maximum 5mb, accepted formats .jpg, .gif, .png, .webp",
         "errSize-1" : "Size cannot exceed 5mb",
         "errFile" : "Unsupported file type",
+        "errTwitter" : "@ is not necessary   or any other special char",
+
         "lblIcon-2" : "Maximum 10mb, accepted formats .jpg, .gif, .png, .webp",
         "errSize-2" : "Size cannot exceed 10mb",
         "userAcc" : "Your account",
@@ -266,7 +276,12 @@
         "swEditedTit" : "Collection has been edited",
         "swEditedDesc" : "The collection has been edited successfully",
         "swCreatedTit" : "The collection has been created successfully",
-        "swCreatedDesc" : "You will be redirected to my NTFs to add your NTFs to the collection"
+        "swCreatedDesc" : "You will be redirected to my NTFs to add your NTFs to the collection",
+        "website":"Website",
+        "websiteph":"www.ejemplo.com",
+        "twitter":"Project's  Twitter",
+        "twitterph":"twitter/"
+
     },
     "MintNFT" : {
         "maxTitle" : "Less than 60 characters",

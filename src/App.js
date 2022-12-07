@@ -13,6 +13,7 @@ import Detail from "./views/Detail.view";
 import Mint from "./views/mintNft.view";
 import Mint2 from "./views/Mint.view";
 import FinishMint from "./views/FinishMint.view";
+import Collection2 from "./views/Collection.view";
 
 import MisNfts from "./views/MisTokens.view";
 import creCol from "./views/createColl"
@@ -78,6 +79,8 @@ class App extends Component {
             <BlockchainProtectedRoute exact path="/congratulation" component={FinishMint} />
             <BlockchainProtectedRoute path="/profileData/:state" component={ProfileData} />
             <BlockchainProtectedRoute path="/collectionData/:state" component={creCol} />
+            <BlockchainProtectedRoute path="/collection2/:state" component={Collection2} />
+
             <Route path="/profile/:user" component={Profile} />
             <Route path="/gallery" component={Gallery} />
             <Route path="/market" component={SalesGallery} />

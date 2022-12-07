@@ -223,6 +223,12 @@
         "titleCol" : "Título de la colección",
         "descripCol" : "Descripción de la colección",
         "iconCol" : "Icono de la colección",
+        "uploadAvatar" : "Sube un avatar para la colección",
+        "erruploadAvatar" : "Por favor,Selecciona una imagen como avatar",
+
+        "uploadBanner" : "Sube una portada para la colección",
+        "erruploadBanner" : "Por favor,Selecciona una imagen como portada",
+
         "bannerCol" : "Portada de la colección",
         "msg-1" : "Vista previa de la colección en la parte inferior",
         "createBtn" : "Crear colección",
@@ -236,6 +242,8 @@
         "volSale" : "Vol. de venta",
         "btnImg-1" : "Seleccionar imagen",
         "btnImg-2" : "Cargando",
+        "uploadingAvatar" : "Cargando las imagenes,Espera un momento",
+        "uploadingBanner" : "Cargando el banner,Espera un momento",
         "btnImg-3" : "Cambiar imagen",
         "err1-title" : "Datos incompletos",
         "err1-msg" : "Para crear una colección es necesario que rellenes todos los campos, verifica que hayas rellenado todos los datos",
@@ -247,9 +255,12 @@
         "succ-msg" : "Tu colección ha sido creada",
         "placeTitle" : "Min. 1 Caracter",
         "placeDesc" : "Min. 30 Caracteres",
+        
         "lblIcon-1" : "Maximo 5mb, formatos aceptados .jpg, .gif, .png, .webp",
         "errSize-1" : "El tamaño no puede superar los 5mb",
         "errFile" : "Tipo de archivo no soportado",
+        "errTwitter" : "No es necesario en @ o cualquier otro simbolo especial",
+
         "lblIcon-2" : "Maximo 10mb, formatos aceptados .jpg, .gif, .png, .webp",
         "errSize-2" : "El tamaño no puede superar los 10mb",
         "userAcc" : "Tu cuenta",
@@ -262,7 +273,11 @@
         "swEditedTit" : "Se ha editado la colección",
         "swEditedDesc" : "La colección ha sido editada con exito",
         "swCreatedTit" : "La colección ha sido creada con exito",
-        "swCreatedDesc" : "Seras redirigido a mis NFTs para que agregues tus NFTs a la colección"
+        "swCreatedDesc" : "Seras redirigido a mis NFTs para que agregues tus NFTs a la colección",
+        "website":"Sitio web",
+        "websiteph":"www.ejemplo.com",
+        "twitter":"Twitter del proyecto",
+        "twitterph":"twitter/"
     },
     "MintNFT" : {
         "maxTitle" : "Menos de 60 caracteres",
