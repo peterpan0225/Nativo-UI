@@ -167,6 +167,8 @@ function LightHeroE(props) {
         description: formik.values.description,
         media_icon: formik.values.avatar,
         media_banner: formik.values.banner,
+        website:formik.values.website,
+        twitter:formik.values.twitter,
         visibility: false,
         _id: colId,
         _type: "edit"
@@ -178,6 +180,8 @@ function LightHeroE(props) {
         description: formik.values.description,
         media_icon: acd1,
         media_banner: bcd2,
+        website:formik.values.website,
+        twitter:formik.values.twitter,
         visibility: true,
         _id: "0",
         _type: "create"
@@ -483,7 +487,7 @@ function LightHeroE(props) {
               {/* Here goes the info nft  */}
               <div
                 name="create"
-                className="w-full bg-white md:w-2/5 lg:w-4/12 lg:items-center "
+                className="w-full bg-white md:w-2/5 lg:w-5/12 xl:w-4/12 2xl:w-4/12 lg:items-center "
               >
                 <div name="cancel" className="mt-4 px-8   text-white  ">
                   <Button
@@ -491,7 +495,7 @@ function LightHeroE(props) {
                     onClick={history.goBack}
                   >
                     <img className="" alt="back_arrow" src={back_arrow}></img>{" "}
-                    <a className=" normal-case px-2 my-4 text-[#616161]">
+                    <a className=" normal-case lg:text-lg 2xl:text-xl px-2 my-4 text-[#616161]">
                       {t("MintNFT.cancel")}{" "}
                     </a>
                   </Button>
@@ -499,7 +503,7 @@ function LightHeroE(props) {
                 <div className="w-full h-full pb-6 flex flex-col px-10       ">
                   <div classn="tab flex flex-row drop-shadow-md ">
                     <button  >
-                      <h3 className=" text-black py-2 rounded-md    hover:scale-110 tracking-tighter text-4xl 	 font-open-sans font-bold ">
+                      <h3 className=" text-black py-2 rounded-md    hover:scale-110 tracking-tighter text-4xl md:text-3xl	lg:text-4xl  font-open-sans font-bold ">
                         {" "}
                         {t("CreateCol.createBtn")}
                       </h3>
@@ -507,47 +511,40 @@ function LightHeroE(props) {
                   </div>
 
                   <div name="nft" hidden={hide_create_col}>
-                    <p className="my-4  text-base text-[#0A0A0A] font-open-sans font-bold  ">
+                    <p className="my-4  text-base md:text-sm md:tracking-tight lg:text-lg xl:text-xl text-[#0A0A0A] font-open-sans font-bold  ">
                       {t("CreateCol.uploadAvatar")}{" "}
                     </p>
 
                     <div name="avatar" className="overflow-hidden   ">
-                      {/*mint?.file && (
-                        
-                        <img
-                          className="rounded-md    m-auto  object-cover object-center "
-                          alt="hero"
-                          src={mint?.file}
-                        />
-                      )*/}
+                      
                       <label className={` `}>
                         <div className="flex w-full  ">
                           {mint?.avatar ? (
                             <div className="flex flex-col  relative     text-sm h-30 dark:bg-[#EBEBEB] dark:text-darkgray   rounded-lg justify-center  text-center   w-full ">
                               <img
-                                className="w-full h-96 xl:h-72 2xl:h-92 rounded-md    m-auto  object-cover object-center "
+                                className="w-full h-72 max-h-96 md:h-56 lg:h-80 xl:h-[28rem] rounded-md    m-auto  object-cover object-center "
                                 alt="hero"
                                 src={mint?.avatar}
                               />
-                              {/* <div name="text img" className=" w-full flex rounded-lg flex-col  justify-center  absolute opacity-0 hover:opacity-80  bg-black ">
-                             <p className="absolute top-1/2 w-full  text-center text-white   -translate-y-1/2  text-md truncate m-auto">{mint?.name}</p>
-                              <span className="absolute top-1/2  w-full   text-white  border border-white  -translate-y-1 text-sm rounded-md	uppercase font-bold  m-auto  py-2">
+                               <div name="text img" className=" w-full h-full flex rounded-lg flex-col  justify-center  absolute opacity-0 hover:opacity-90  bg-black ">
+                             <p className="absolute top-1/2 left-1/4 w-1/2  text-center text-white   -translate-y-1/2  text-md truncate m-auto">{mint?.avatar}</p>
+                              <span className="absolute top-1/2 left-1/4 mt-4 w-1/2 bg-black  text-white  border border-white  -translate-y-1 text-sm rounded-md	uppercase font-bold  m-auto  py-2">
                                 
                                 {t("MintNFT.changeImg")}
                               </span>
-                        </div> */}
+                        </div>  
                             </div>
                           ) : (
                             <br></br>
                           )}
 
                           {!mint?.avatar && (
-                            <div className="flex flex-col      text-sm h-[150px] dark:bg-[#EBEBEB] dark:text-darkgray   rounded-md justify-center  text-center   w-full ">
+                            <div className="flex flex-col      text-sm h-[150px] md:h-[130px] xl:h-[180px] dark:bg-[#EBEBEB] dark:text-darkgray   rounded-md justify-center  text-center   w-full ">
                               <img
                                 src={upfile}
-                                className="h-[50px]  pt-4 object-contain"
+                                className="h-[50px] xl:h-[60px]  pt-4 object-contain"
                               ></img>
-                              <span className="text-sm  mx-2 lg:text-md pt-6">
+                              <span className="text-sm lg:text-md xl:text-lg mx-2  pt-6">
                                 {" "}
                                 {t("MintNFT.file_type")}
                               </span>
@@ -571,8 +568,8 @@ function LightHeroE(props) {
                       ) : null}
                     </div>
 
-                    <p className="my-4  text-base text-[#0A0A0A] font-open-sans font-bold  ">
-                      {t("CreateCol.uploadBanner")}{" "}
+                    <p className="my-4  text-base md:text-sm md:tracking-tight lg:text-lg xl:text-xl text-[#0A0A0A] font-open-sans font-bold  ">
+                      {t("CreateCol.uploadBanner")}
                     </p>
 
                     <div name="banner" className="overflow-hidden   ">
@@ -589,33 +586,33 @@ function LightHeroE(props) {
                           {mint?.banner ? (
                             <div className="flex flex-col  relative     text-sm h-30 dark:bg-[#EBEBEB] dark:text-darkgray   rounded-lg justify-center  text-center   w-full ">
                               <img
-                                className="w-full h-60 xl:h-72 2xl:h-92 rounded-md    m-auto  object-cover object-center "
+                                className="w-full h-60 md:h-32 lg:h-44 xl:h-52 2xl:h-92 rounded-md    m-auto  object-cover object-center "
                                 alt="hero"
                                 src={mint?.banner}
                               />
-                              {/* <div name="text img" className=" w-full flex rounded-lg flex-col  justify-center  absolute opacity-0 hover:opacity-80  bg-black ">
-                             <p className="absolute top-1/2 w-full  text-center text-white   -translate-y-1/2  text-md truncate m-auto">{mint?.name}</p>
-                              <span className="absolute top-1/2  w-full   text-white  border border-white  -translate-y-1 text-sm rounded-md	uppercase font-bold  m-auto  py-2">
+                              <div name="text img" className=" w-full h-full flex rounded-lg flex-col  justify-center  absolute opacity-0 hover:opacity-90  bg-black ">
+                             <p className="absolute top-1/2 left-1/4 w-1/2  text-center text-white   -translate-y-1/2  text-md truncate m-auto">{mint?.banner}</p>
+                              <span className="absolute top-1/2 left-1/4 mt-4 w-1/2 bg-black  text-white  border border-white  -translate-y-1 text-sm rounded-md	uppercase font-bold  m-auto  py-2">
                                 
                                 {t("MintNFT.changeImg")}
                               </span>
-                        </div> */}
+                        </div>  
                             </div>
                           ) : (
                             <br></br>
                           )}
 
                           {!mint?.banner && (
-                            <div className="flex flex-col      text-sm h-[150px] dark:bg-[#EBEBEB] dark:text-darkgray   rounded-md justify-center  text-center   w-full ">
-                              <img
-                                src={upfile}
-                                className="h-[50px]  pt-4 object-contain"
-                              ></img>
-                              <span className="text-sm  mx-2 lg:text-md pt-6">
-                                {" "}
-                                {t("MintNFT.file_type")}
-                              </span>
-                            </div>
+                            <div className="flex flex-col      text-sm h-[150px] md:h-[130px] xl:h-[180px] dark:bg-[#EBEBEB] dark:text-darkgray   rounded-md justify-center  text-center   w-full ">
+                            <img
+                              src={upfile}
+                              className="h-[50px] xl:h-[60px]  pt-4 object-contain"
+                            ></img>
+                            <span className="text-sm lg:text-md xl:text-lg mx-2  pt-6">
+                              {" "}
+                              {t("MintNFT.file_type")}
+                            </span>
+                          </div>
                           )}
                         </div>
                         <input
@@ -641,7 +638,7 @@ function LightHeroE(props) {
                           <div className="flex justify-between ">
                             <label
                               htmlFor="title"
-                              className="   dark:text-darkgray mt-2 text-base text-[#0A0A0A] font-open-sans font-bold"
+                              className="   dark:text-darkgray mt-2 text-base lg:text-lg xl:text-xl text-[#0A0A0A] font-open-sans font-bold"
                             >
                               {t("MintNFT.titleTxt")}
                             </label>
@@ -657,7 +654,7 @@ function LightHeroE(props) {
                             name="title"
                             onBlur={(e) => handle_title(e)}
                             {...formik.getFieldProps("title")}
-                            className={`font-open-sans mt-1 p-2 border border-[#A4A2A4] h-full dark: dark:text-darkgray   text-left rounded-md justify-center w-full`}
+                            className={`font-open-sans mt-1 p-2 border border-[#A4A2A4] h-full dark: dark:text-darkgray   lg:text-lg xl:text-xl text-left rounded-md justify-center w-full`}
                             placeholdertextcolor="#000"
                             placeholder={t("MintNFT.write_title")}
                           />
@@ -666,7 +663,7 @@ function LightHeroE(props) {
                           <div className="flex mt-2 justify-between ">
                             <label
                               htmlFor="description"
-                              className="  dark:text-darkgray  text-base text-[#0A0A0A] font-open-sans font-bold "
+                              className="  dark:text-darkgray  text-base lg:text-lg xl:text-xl text-[#0A0A0A] font-open-sans font-bold "
                             >
                               {t("MintNFT.descTxt")}
                             </label>
@@ -686,7 +683,7 @@ function LightHeroE(props) {
                               placeholder={t("MintNFT.maxTitle2")}
                               rows="5"
                               {...formik.getFieldProps("description")}
-                              className={`font-open-sans p-2 h-full dark:bg-white dark:text-darkgray rounded-md   text-left justify-center  w-full`}
+                              className={`font-open-sans p-2 h-full dark:bg-white dark:text-darkgray rounded-md   text-left lg:text-lg xl:text-xl justify-center  w-full`}
                             />
                           </div>
                         </div>
@@ -694,7 +691,7 @@ function LightHeroE(props) {
                           <div className="flex justify-between ">
                             <label
                               htmlFor="website"
-                              className="   dark:text-darkgray mt-2 text-base text-[#0A0A0A] font-open-sans font-bold"
+                              className="   dark:text-darkgray mt-2 text-base lg:text-lg xl:text-xl text-[#0A0A0A] font-open-sans font-bold"
                             >
                               {t("CreateCol.website")}
                             </label>
@@ -710,7 +707,7 @@ function LightHeroE(props) {
                             name="website"
                             onBlur={(e) => handle_website(e)}
                             {...formik.getFieldProps("website")}
-                            className={`font-open-sans mt-1 p-2 border border-[#A4A2A4] h-full dark: dark:text-darkgray   text-left rounded-md justify-center w-full`}
+                            className={`font-open-sans mt-1 p-2 border border-[#A4A2A4] h-full dark: dark:text-darkgray   text-left lg:text-lg xl:text-xl rounded-md justify-center w-full`}
                             placeholdertextcolor="#000"
                             placeholder={t("CreateCol.websiteph")}
                           />
@@ -719,7 +716,7 @@ function LightHeroE(props) {
                           <div className="flex justify-between ">
                             <label
                               htmlFor="twitter"
-                              className="   dark:text-darkgray mt-2 text-base text-[#0A0A0A] font-open-sans font-bold"
+                              className="   dark:text-darkgray mt-2 text-base lg:text-lg xl:text-xl text-[#0A0A0A] font-open-sans font-bold"
                             >
                               {t("CreateCol.twitter")}
                             </label>
@@ -735,7 +732,7 @@ function LightHeroE(props) {
                             name="website"
                             onBlur={(e) => handle_twitter(e)}
                             {...formik.getFieldProps("twitter")}
-                            className={`font-open-sans mt-1 p-2 border border-[#A4A2A4] h-full dark: dark:text-darkgray   text-left rounded-md justify-center w-full`}
+                            className={`font-open-sans mt-1 p-2 border border-[#A4A2A4] h-full dark: dark:text-darkgray   text-left lg:text-lg xl:text-xl rounded-md justify-center w-full`}
                             placeholdertextcolor="#000"
                             placeholder={t("CreateCol.twitterph")}
                           />
@@ -760,69 +757,68 @@ function LightHeroE(props) {
               <div
                 name="nft_detail"
                 className={
-                  " hidden md:block px-4 md:px-8  py-8  md:py-20  lg:mx-auto  w-full md:w-3/5  lg:w-3/6 xl:w-5/12  2xl:1/2 drop-shadow-2xl       md:flex-row flex-col  md:justify-center    "
+                  " hidden md:block px-4 md:px-8  py-8  md:py-20  lg:mx-auto  w-full md:w-3/5  lg:w-3/6 xl:w-6/12  2xl:1/2 drop-shadow-2xl       md:flex-row flex-col  md:justify-center    "
                 }
               >
-                <p className=" w-full  text-base font-bold  text-left my-4">
-                  {t("MintNFT.prevNFT")}
+                <p className=" w-full  text-base lg:text-lg xl:text-xl font-bold  text-left my-4">
+                  {t("CreateCol.prevCol")}
                 </p>
                 <div
                   name="card"
                   className={
                     hide_create_col
                       ? " sm:hidden "
-                      : "" + "rounded-2xl flex flex-col    h-full "
+                      : "" + "rounded-2xl flex flex-col    "
                   }
                 >
-                  {" "}
-                  {
-                    //h-7/12
-                  }
-                  <div className="w-full   h-[280px]   md:h-[340px] lg:h-[350px]  xl:h-[450px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
-                    {mint?.file && (
+                 
+                  <div className="w-full   h-[280px]   md:h-[250px] lg:h-[280px]  xl:h-[350px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
+                    {mint?.banner && (
                       <img
                         className=" w-full h-full  object-cover object-center "
-                        alt="hero"
-                        src={mint?.file}
+                        alt="banner"
+                        src={mint?.banner}
                       />
                     )}
                   </div>
                   <div
                     name="card_det"
-                    className="w-full rounded-b-2xl   pt-4 px-4    bg-white h-full md:h-[170px]"
+                    className="w-full flex rounded-b-2xl   pt-4 px-4    bg-white h-full md:h-[100px] lg:h-[120px] xl:h-[140px]"
                   >
-                    <p className=" text-black uppercase text-2xl truncate   md:text-3xl  font-bold font-open-sans">
-                      {formik.values.title
-                        ? formik.values.title
-                        : t("MintNFT.write_title")}
-                    </p>
-                    <p className=" text-black normal-case text-md truncate   md:text-lg   font-open-sans">
-                      {formik.values.description
-                        ? formik.values.description
-                        : t("MintNFT.descTxt")}
-                    </p>
 
-                    <div className="py-2 flex">
+                  <div className=" w-[120px]  h-[120px] lg:w-[140px]  lg:h-[140px] xl:w-[170px]  xl:h-[170px] -translate-y-14 xl:-translate-y-16   translate-x-2 overflow-hidden border border-white   bg-[#EBEBEB]">
+                    {mint?.avatar && (
                       <img
-                        className=" mt-1 w-5 h-5   "
-                        alt="near"
-                        src={nearicon}
+                        className=" w-full h-full  object-cover object-center "
+                        alt="avatar"
+                        src={mint?.avatar}
                       />
+                    )}
+                  </div>
+                  
+                  <div className=" w-[240px]  h-[100px] -translate-y-4   translate-x-2  flex flex-col pt-2 pl-2 border border-white   bg-transparent">
+                   {formik.values.title ?
+                   <p className="normal-case  text-lg lg:text-xl xl:text-2xl truncate font-bold  ">
+                  
+                   {formik.values.title }
+                 </p> :
+                     <p className="normal-case  text-lg lg:text-xl xl:text-2xl truncate font-bold  ">
+                  
+                     {t("CreateCol.titleCol")}
+                   </p> 
+                  }
+                   <p className="text-black font-bold     font-open-sans  text-xs  lg:text-sm  xl:text-lg ">
+                        {t("CreateCol.by")} :   {  window.localStorage.getItem("logged_account")}
+                    </p>
+                   <p className="text-black  mt-4  content-en   font-open-sans  text-[10px] lg:text-xs xl:text-md ">
+                     ITEMS       
+                    </p>
+                  </div>
 
-                      <p className="text-[#F79336] ml-4 normal-case font-bold font-open-sans    text-lg ">
-                        {" "}
-                        {t("MintNFT.PendingPrice")}
-                      </p>
-                    </div>
-
-                    <div className="flex ">
-                      <p className="text-black content-en leading-5 ml-2 mb-2 font-open-sans tracking-[3.45px] text-sm md:text-md ">
-                        {t("tokCollection.createdBy")} :
-                      </p>
-                      <p className="text-black content-en  mb-2 font-open-sans font-bold text-sm md:text-md ">
-                        {window.localStorage.getItem("logged_account")}
-                      </p>
-                    </div>
+                 
+                                               
+                                            
+                                           
                   </div>
                 </div>
               </div>

@@ -236,6 +236,7 @@
         "demoTitle" : "Collection title",
         "demoDescrip" : "Write the description of your collection",
         "creator" : "Creator",
+        "by":"By",
         "contract" : "Contract",
         "noTokens" : "No. of tokens",
         "noSale" : "No. of sales",
@@ -247,7 +248,7 @@
 
         "uploadingBanner" : "Uploading the banner,wait a moment",
         "erruploadBanner" : "Please,select an image as banner",
-
+        "prevCol":"My collection's preview",
         "btnImg-3" : "Change image",
         "err1-title" : "Incomplete data",
         "err1-msg" : "To create a collection you need to fill in all the fields, check that you have filled in all the data",

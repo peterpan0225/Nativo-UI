@@ -236,6 +236,7 @@
         "demoTitle" : "Titulo de la coleccion",
         "demoDescrip" : "Escribe la descripcion de tu coleccion",
         "creator" : "Creador",
+        "by":"Por",
         "contract" : "Contrato",
         "noTokens" : "No. de token:",
         "noSale" : "No. de ventas",
@@ -260,7 +261,7 @@
         "errSize-1" : "El tamaño no puede superar los 5mb",
         "errFile" : "Tipo de archivo no soportado",
         "errTwitter" : "No es necesario en @ o cualquier otro simbolo especial",
-
+        "prevCol":"Previsualización de mi Colección",
         "lblIcon-2" : "Maximo 10mb, formatos aceptados .jpg, .gif, .png, .webp",
         "errSize-2" : "El tamaño no puede superar los 10mb",
         "userAcc" : "Tu cuenta",
