@@ -243,7 +243,7 @@
         "volSale" : "Sales volume",
         "btnImg-1" : "Select image",
         "btnImg-2" : "Loading",
-        "uploadingAvatar" : "Uploading the avatar,wait a moment",
+        "uploadingAvatar" : "Uploading images and creating collection, wait a moment…",
         "erruploadAvatar" : "Please,select an image as avatar ",
 
         "uploadingBanner" : "Uploading the banner,wait a moment",
