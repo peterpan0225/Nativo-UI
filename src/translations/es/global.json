@@ -399,5 +399,10 @@
         "searchNftById": "Buscar NFT por ID",
         "modalSearch": "No podemos encontrar ese NFT",
         "modalSearchText": "Busca por otro ID"
+    },
+    "Alerts" : {
+        "continue" : "Continuar",
+        "buyNFTTit" : "Has comprado un NFT",
+        "buyNFTMsg" : "Felicidades has comprado de manera exitosa el NFT"
     }
 }
