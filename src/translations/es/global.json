@@ -232,6 +232,7 @@
         "bannerCol" : "Portada de la colección",
         "msg-1" : "Vista previa de la colección en la parte inferior",
         "createBtn" : "Crear colección",
+        "createNFT" : "Crear NFT",
         "msg-2" : "Tu imagen puede durar un poco de tiempo en mostrarse",
         "demoTitle" : "Titulo de la coleccion",
         "demoDescrip" : "Escribe la descripcion de tu coleccion",
@@ -254,6 +255,8 @@
         "err3-msg" : "La descripción de la colección debe de tener minimo 30 caracteres",
         "succ-title" : "Colección creada",
         "succ-msg" : "Tu colección ha sido creada",
+        "succ-now" : "Ahora puedes añadir tus creaciones",
+
         "placeTitle" : "Min. 1 Caracter",
         "placeDesc" : "Min. 30 Caracteres",
         
@@ -375,6 +378,8 @@
         "transfer": "Transferir",
         "skip_tittle": "Saltar por ahora",
         "skip_description": "No te preocupues,podrás agregarlo a una colleción o asignarle un precio en los detalles de tus NFT's",
+        "skip_collection_description": "No te preocupues,podrás crear un NFT después",
+
         "skip_accept": "Seguro!"
 
 

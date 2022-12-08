@@ -195,7 +195,7 @@ function LightHeroE(props) {
  
     const wallet = await selector.wallet();
 
-    return;
+  
     wallet.signAndSendTransaction({
       signerId: accountId,
       receiverId: process.env.REACT_APP_CONTRACT_MARKET,
@@ -211,16 +211,7 @@ function LightHeroE(props) {
         }
       ]
     })
-    // Swal.fire({
-    //   html:
-    //   '<div>'+
-    //   '<div class="font-open-sans dark:text-darkgray text-xl font-bold">' +  t("CreateCol.succ-title") + '</div>'+ 
-    //   '<div class="font-open-sans dark:text-darkgray  text-sm">' + t("CreateCol.succ-msg")+ '</div>'+
-    //   '</div>',
-    //   icon: 'success',
-    // }).then(function () {
-    //   window.location.href = "/create"
-    // })
+    
   }
 
   /**
@@ -459,14 +450,10 @@ function LightHeroE(props) {
       }
       else{
         if (execTrans){
-          Swal.fire({
-            title: t("CreateCol.swCreatedTit"),
-            text: t('CreateCol.swCreatedDesc'),
-            icon: 'success',
-            confirmButtonColor: '#E79211'
-          }).then(function () {
-            window.location.href = "/mynfts"
-          })
+          console.log("🪲 ~ file: Collection.view.js:453 ~ execTrans", execTrans)
+          
+
+          //window.location.href = "/Collection/congrats"
         }
       }
     })()

@@ -232,6 +232,7 @@
         "bannerCol" : "Collection cover",
         "msg-1" : "Collection preview at the bottom",
         "createBtn" : "Create collection",
+        "createNFT" : "Create NFT",
         "msg-2" : "Your image may take a little time to display",
         "demoTitle" : "Collection title",
         "demoDescrip" : "Write the description of your collection",
@@ -258,6 +259,7 @@
         "err3-msg" : "The description of the collection must have a minimum of 30 characters",
         "succ-title" : "Collection created",
         "succ-msg" : "Your collection has been created",
+        "succ-now" : "Now you can add your creations",
         "placeTitle" : "Min. 1 Character",
         "placeDesc" : "Min. 30 Characters",
         "lblIcon-1" : "Maximum 5mb, accepted formats .jpg, .gif, .png, .webp",
@@ -376,7 +378,9 @@
         "priceAlertTxt" : "The price you want to change must be lower or higher than the current one",
         "transfer": "Transfer",
         "skip_tittle": "Skip for now",
-        "skip_description": "Don´t worry,you'll be able to add to collction or set it a price at the your NFT's details",
+        "skip_description": "Don´t worry,you'll be able to add to collection or set it a price at the your NFT's details",
+        "skip_collection_description": "Don´t worry,you'll be able to create nft later",
+        
         "skip_accept": "Sure!"
 
     },
