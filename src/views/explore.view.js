@@ -44,6 +44,7 @@ function Explore() {
     const [artSortOrd, setArtSortOrd] = React.useState('desc')
     const [artSort, setArtSort] = React.useState('timestamp')
     const [artCount, setArtCount] = React.useState(true)
+    const [counter, setCounter] = React.useState()
     const [trigger, setTrigger] = React.useState(true)
     const [tokData, setTokData] = React.useState(true)
     const [colData, setColData] = React.useState(false)
@@ -606,7 +607,6 @@ function Explore() {
                     },
                 })
                 .then((data) => {
-                    console.log(data.data.collections)
                     setCollections({
                         ...collections,
                         items: collections.items.concat(data.data.collections)
@@ -639,6 +639,10 @@ function Explore() {
                     socialMedia
                     timestamp
                 }
+                minters(first:5){
+                    id
+                    profileCount
+                }
             }
             `
 
@@ -663,6 +667,7 @@ function Explore() {
                     if (data.data.profiles.length <= 0) {
                         setHasDataArt(false)
                     }
+                    setCounter(parseInt(data.data.minters[0].profileCount))
                     setLastUsername(data.data.profiles[data.data.profiles.length - 1].username)
                     setLastTimestamp(data.data.profiles[data.data.profiles.length - 1].timestamp)
                     setHasDataArt(true)
@@ -872,7 +877,7 @@ function Explore() {
                                         count = key + 1
                                     }
                                     else{
-                                        count = (artists.items.length) - key
+                                        count = counter - key
                                     }
                                     return (
                                         <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[295px] xl:w-[380px] 2xl:w-[440px]" key={key}>
