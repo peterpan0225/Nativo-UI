@@ -220,6 +220,8 @@
     },
     "CreateCol" : {
         "title" : "Nueva Colección",
+        "loading" : "Cargando información",
+
         "titleCol" : "Título de la colección",
         "descripCol" : "Descripción de la colección",
         "iconCol" : "Icono de la colección",
@@ -232,6 +234,7 @@
         "bannerCol" : "Portada de la colección",
         "msg-1" : "Vista previa de la colección en la parte inferior",
         "createBtn" : "Crear colección",
+        
         "createNFT" : "Crear NFT",
         "msg-2" : "Tu imagen puede durar un poco de tiempo en mostrarse",
         "demoTitle" : "Titulo de la coleccion",
@@ -245,7 +248,7 @@
         "btnImg-1" : "Seleccionar imagen",
         "btnImg-2" : "Cargando",
         "uploadingAvatar" : "Subiendo imágenes y creando colección, espera un momento…",
-        "uploadingBanner" : "Cargando el banner,Espera un momento",
+        "EditingCollection" : "Subiendo imágenes y editando colección, espera un momento…",
         "btnImg-3" : "Cambiar imagen",
         "err1-title" : "Datos incompletos",
         "err1-msg" : "Para crear una colección es necesario que rellenes todos los campos, verifica que hayas rellenado todos los datos",

@@ -56,6 +56,7 @@ function LightHeroE(props) {
   const [colName, setColName] = useState("");
   const [aCDI, setAcid] = useState("");
   const [bCDI, setBcid] = useState("");
+  const [tokencounter, setTokencounter] = useState(0);
 
   const [t, i18n] = useTranslation("global");
   const [loading, setLoading] = useState(false);
@@ -165,11 +166,11 @@ function LightHeroE(props) {
       payloadCol = {
         title: formik.values.title,
         description: formik.values.description,
-        media_icon: formik.values.avatar,
-        media_banner: formik.values.banner,
+        media_icon: acd1,
+        media_banner: bcd2,
         website:formik.values.website,
         twitter:formik.values.twitter,
-        visibility: false,
+        visibility: true,
         _id: colId,
         _type: "edit"
       }
@@ -195,7 +196,6 @@ function LightHeroE(props) {
  
     const wallet = await selector.wallet();
 
-  
     wallet.signAndSendTransaction({
       signerId: accountId,
       receiverId: process.env.REACT_APP_CONTRACT_MARKET,
@@ -295,17 +295,23 @@ function LightHeroE(props) {
 +       ' </svg>'
 +' </div>',
         position: 'top-center',
-        title: t("CreateCol.uploadingAvatar"),
+        title:  type ? t("CreateCol.EditingCollection") : t("CreateCol.uploadingAvatar"),
+        
         showConfirmButton: false,
         
       })
 
 
-      let acid = await uploadFileAPI(mint.avatar_file);
+      console.log("🪲 ~ file: Collection.view.js:322 ~ uploadFilesPinata ~ mint", mint)
+      
+      
+      let acid =mint.avatar_file ?  await uploadFileAPI(mint.avatar_file)
+      : formik.values.avatar;
       formik.setFieldValue("avatar", acid);
 
       setAcid(acid)
-      let bcid = await uploadFileAPI(mint.banner_file);
+      let bcid = mint.banner_file ?  await uploadFileAPI(mint.banner_file)
+      :formik.values.banner;
       formik.setFieldValue("banner", bcid);
       setBcid(bcid)
 
@@ -383,23 +389,43 @@ function LightHeroE(props) {
 
   useEffect(() => {
     (async () => {
+
+      
       let urlParams = new URLSearchParams(window.location.search);
       let execTrans = urlParams.has('transactionHashes')
-      let type = state.split(',')
+      const data = window.location.search;
+      
+    
+      const urlParamsid = new URLSearchParams(data);
+      
+      let idprams =urlParamsid.get('id')
+      
+
+      let type = state.split('=')
+    
       if(type[0]=="edit"){
+        Swal.fire({
+          html:'<div className="text-center h-30 w-30">'
+  +       ' <svg role="status" class="inline mr-3 w-10 h-10 text-white  animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">'
+  +       ' <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>'
+  +       ' <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>'
+  +       ' </svg>'
+  +' </div>',
+          position: 'top-center',
+          title:  t("CreateCol.loading")  ,
+          
+          showConfirmButton: false,
+          
+        })
         if (execTrans){
-          Swal.fire({
-            title: t("CreateCol.swEditedTit"),
-            text: t('CreateCol.swEditedDesc'),
-            icon: 'success',
-            confirmButtonColor: '#E79211'
-          }).then(function () {
-            window.location.href = "/collection/"+type[1]
-          })
+          
+            window.location.href = "/viewcollection/"+idprams
+           
         }
         let id = await getNearAccount()
         console.log("Entro a editar coleccion")
         setType(true)
+        
         let userData
         const query = `
           query ($id: String){
@@ -411,6 +437,9 @@ function LightHeroE(props) {
               description
               mediaIcon
               mediaBanner
+              twitter
+              tokenCount
+              website
               visibility
             }
           }
@@ -423,16 +452,34 @@ function LightHeroE(props) {
         await client.query({
             query: gql(query),
             variables: {
-              id: type[1]
+              id: idprams
             }
         })
         .then((data)=> {
-          console.log('profile: ',data.data.collections[0])
-          collectionData = data.data.collections[0]
+          console.log('profile: ',data.data?.collections[0])
+          formik.setFieldValue("title",data.data.collections[0]?.title);
+          formik.setFieldValue("description",data.data.collections[0]?.description);
+          formik.setFieldValue("avatar",data.data.collections[0]?.mediaIcon);
+          formik.setFieldValue("banner",data.data.collections[0]?.mediaBanner);
+          formik.setFieldValue("website",data.data.collections[0]?.website);
+          formik.setFieldValue("twitter",data.data.collections[0]?.twitter);
+          setTokencounter(data.data.collections[0]?.tokenCount);
+          setmint({
+            ...mint,
+            avatar:  `https://nativonft.mypinata.cloud/ipfs/${data.data.collections[0]?.mediaIcon}` ,
+            avatar_file:false,
+            banner:  `https://nativonft.mypinata.cloud/ipfs/${data.data.collections[0]?.mediaBanner}`
+            ,banner_file:false
+          });
+           setColId(data.data.collections[0]?.collectionID)
+         
+          setCollectionData(data.data?.collections[0])
+          Swal.close()
         })
         .catch((err) =>{
           console.log('error: ',err)
         })
+       
         if(collectionData.owner_id == accountId){
           // setColId(collectionData.collectionID)
           // setTitle(collectionData.title)
@@ -445,7 +492,7 @@ function LightHeroE(props) {
           // setTxtBttnBanner(t("CreateCol.btnImg-3"))
         }
         else{
-          window.location.href('/collectionData/create')
+          //window.location.href="/collection/create"
         }
       }
       else{
@@ -453,7 +500,7 @@ function LightHeroE(props) {
           console.log("🪲 ~ file: Collection.view.js:453 ~ execTrans", execTrans)
           
 
-          //window.location.href = "/Collection/congrats"
+          window.location.href = "/collection_congrats"
         }
       }
     })()
@@ -499,8 +546,9 @@ function LightHeroE(props) {
                   <div classn="tab flex flex-row drop-shadow-md ">
                     <button  >
                       <h3 className=" text-black py-2 rounded-md    hover:scale-110 tracking-tighter text-4xl md:text-3xl	lg:text-4xl  font-open-sans font-bold ">
-                        {" "}
-                        {t("CreateCol.createBtn")}
+                        {type ? t("CreateCol.editBtn") : t("CreateCol.createBtn")}
+                        
+                       
                       </h3>
                     </button>
                   </div>
@@ -740,8 +788,8 @@ function LightHeroE(props) {
                             className={`relative w-full bg-yellow2    rounded-md uppercase font-open-sans text-base px-6 py-2 font-bold border-2 border-yellow2 dark:text-white`}
                             disabled={mint?.onSubmitDisabled}
                           >
-                             
-                            {t("CreateCol.createBtn")}
+                           
+                            {type ? t("CreateCol.editBtn") : t("CreateCol.createBtn")}
                           </button>
                         </div>
                       </div>
@@ -810,7 +858,7 @@ function LightHeroE(props) {
                         {t("CreateCol.by")} :   {  window.localStorage.getItem("logged_account")}
                     </p>
                    <p className="text-black  mt-4  content-en   font-open-sans  text-[10px] lg:text-xs xl:text-md ">
-                     ITEMS       
+                     ITEMS      {  " : "+ tokencounter } 
                     </p>
                   </div>
   </div>               

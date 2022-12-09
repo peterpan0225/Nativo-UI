@@ -223,7 +223,10 @@
 
     },
     "CreateCol" : {
+        "loading" : "Loading information",
+
         "title" : "New collection",
+
         "titleCol" : "Collection Title",
         "descripCol" : "Collection Description",
         "iconCol" : "Collection icon",
@@ -245,6 +248,8 @@
         "btnImg-1" : "Select image",
         "btnImg-2" : "Loading",
         "uploadingAvatar" : "Uploading images and creating collection, wait a moment…",
+        "EditingCollection" : "Uploading images and editing collection, wait a moment…",
+
         "erruploadAvatar" : "Please,select an image as avatar ",
 
         "uploadingBanner" : "Uploading the banner,wait a moment",

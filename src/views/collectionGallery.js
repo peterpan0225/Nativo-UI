@@ -572,7 +572,7 @@ return (
               return (
                 <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:p-4" key={index}>
                   <a
-                    href={"/collection/" + i.collectionID}
+                    href={"viewcollection/" + i.collectionID}
                   >
                     <div className="flex flex-row  mb-5 md:mb-0 justify-center " >
                       <div className="trending-token w-full rounded-20 hover:shadow-yellow1   hover:scale-105 ">

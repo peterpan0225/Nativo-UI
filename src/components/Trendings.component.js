@@ -452,7 +452,7 @@ function Trendings() {
                   {collections.items.map((item, key) => {
                     return (
                       <div className="">
-                        <a href={"/collection/" + item.collectionID}
+                        <a href={"viewcollection/" + item.collectionID}
                         >
                           <div className="flex flex-row justify-items-center px-4 mb-4 md:px-6 lg:px-8 " key={key}>
 
