@@ -580,7 +580,7 @@ return
                   </div>
 </div>
 
-  <div className="w-2/3 xl:-translate-x-4">
+  <div className="w-2/3 xl:-translate-x-8 2xl:-translate-x-16">
  <div className=" w-full  h-[100px] -translate-y-4   translate-x-2   flex flex-col pt-2 pl-2 border border-white   bg-transparent">
                    {formik.values.title ?
                    <p className="normal-case  text-lg lg:text-xl xl:text-2xl truncate font-bold  ">
