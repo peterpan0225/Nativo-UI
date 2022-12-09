@@ -721,7 +721,7 @@ function Explore() {
                                 {tokens.items.map((item, key) => {
                                     console.log(item)
                                     return (
-                                        <div className="w-full xs:w-[163px] h-[284px] sm:w-[185px] md:w-[165px] lg:w-[215px] xl:w-[280px] 2xl:w-[340px] xl:h-[490px] " key={key}>
+                                        <div className="w-full xs:w-[158px] h-[279px] sm:w-[180px] md:w-[160px] lg:w-[210px] xl:w-[275px] 2xl:w-[335px] xl:h-[395px] 2xl:h-[485px] " key={key}>
                                             <a
                                                 href={"/detail/" + item.token_id}
                                             >
@@ -730,13 +730,13 @@ function Explore() {
                                                         <div className=" bg-white rounded-xl">
                                                             <div className="pb-3">
                                                                 <img
-                                                                    className="object-cover object-center rounded-t-xl w-full h-[163px] lg:w-[340px] xl:h-[340px]"
+                                                                    className="object-cover object-center rounded-t-xl w-full h-[163px] lg:w-[340px] xl:h-[250px] 2xl:h-[340px]"
                                                                     src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`}
                                                                     alt={item.description}
                                                                 />
                                                             </div>
                                                             <div className="px-3 py-1">
-                                                                <p className=" text-black text-base leading-6 text-ellipsis overflow-hidden whitespace-nowrap  font-open-sans font-extrabold uppercase">{item.title}</p>
+                                                                <p className=" text-black text-base leading-6 text-ellipsis overflow-hidden whitespace-nowrap font-open-sans font-extrabold uppercase">{item.title}</p>
                                                                 <div className="flex justify-start">
                                                                     <div className=" text-base font-open-sans font-semibold py-2 text-yellow4 flex">  <img
                                                                         className="w-[16px] h-[16px] my-auto mr-2"
@@ -746,9 +746,8 @@ function Explore() {
                                                                         height={15}
                                                                     /> {fromYoctoToNear(item.price)} NEAR</div>
                                                                 </div>
+                                                                <a href={`profile/${item.creator_id.split('.')[0]}`}><p className="text-black py-3 font-open-sans text-[10px] xl:pb-[23px] font-semibold leading-4 text-ellipsis overflow-hidden whitespace-nowrap uppercase">{t("tokCollection.createdBy") + ":"} {item.creator_id}</p></a>
                                                             </div>
-                                                            <div className="text-black px-3 font-open-sans text-[10px] font-semibold leading-4 uppercase mx-auto justify-center text-ellipsis overflow-hidden py-3 xl:pb-[23px]">
-                                                                <a href={`profile/${item.creator_id.split('.')[0]}`} className="text-ellipsis overflow-hidden">{t("tokCollection.createdBy") + ":"} {item.creator_id}</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -817,8 +816,8 @@ function Explore() {
 
                                                             <div class="flex flex-col  mx-2 mt-2  ">
                                                                 <p className="   w-[210px]  sm:w-[150px] md:w-[230px] lg:w-[305px] xl:w-[220px] 2xl:w-[280px] uppercase tracking-tighter text-black text-base font-open-sans font-extrabold collection-description h-[50px] justify-center items-center">{item.title}</p>
-                                                                <div className="   w-auto uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black truncate">{t("Landing.popular_col-by") + " " + item.owner_id}</div>
-                                                                <div className="   w-auto   text-xs  text-black text-left justify-center font-normal font-open-sans truncate"> <p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center truncate">{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "} {t("Landing.popular_col-tokens_on")}</p></div>
+                                                                <p className="   w-[210px]  sm:w-[150px] md:w-[230px] lg:w-[305px] xl:w-[220px] 2xl:w-[280px] uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black truncate">{t("Landing.popular_col-by") + " " + item.owner_id}</p>
+                                                                <div className="   w-[210px]  sm:w-[150px] md:w-[230px] lg:w-[305px] xl:w-[220px] 2xl:w-[280px]   text-xs  text-black text-left justify-center font-normal font-open-sans truncate"><p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center truncate uppercase"><b>{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "}</b> {t("Landing.popular_col-tokens_on")}</p></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -874,22 +873,22 @@ function Explore() {
                                 {artists.items.map((item, key) => {
                                     var count
                                     if(artCount){
-                                        count = key + 1
-                                    }
-                                    else{
                                         count = counter - key
                                     }
+                                    else{
+                                        count = key + 1
+                                    }
                                     return (
-                                        <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[295px] xl:w-[380px] 2xl:w-[440px]" key={key}>
+                                        <div className="w-full sm:w-[275px] md:w-[345px] lg:w-[290px] xl:w-[375px] 2xl:w-[435px]" key={key}>
                                             <a href={`profile/${item.username.split('.')[0]}`}>
                                                 <div className="flex flex-wrap flex-row justify-between items-center hover:scale-105">
                                                     <p className="w-auto font-clash-grotesk font-semibold text-[25px] text-outlinePressed">{count}</p>
-                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[290px] sm:w-[240px] md:w-[300px] lg:w-[260px] xl:w-[340px] 2xl:w-[400px] h-[100px] ">
+                                                    <div className="bg-white rounded-xl py-2 shadow-lg w-[285px] sm:w-[235px] md:w-[295px] lg:w-[255px] xl:w-[335px] 2xl:w-[395px] h-[100px] ">
                                                         <div className="px-[7px] flex flex-wrap flex-row">
                                                             <div className="h-[84px] w-[84px]">
                                                                 <img src={`https://nativonft.mypinata.cloud/ipfs/${item.media}`} alt="userImg" className="rounded-md object-cover object-center w-[84px] h-[84px]" />
                                                             </div>
-                                                            <div className="flex flex-col-reverse pl-4 w-[190px] sm:w-[140px] md:w-[200px] lg:w-[160px] xl:w-[240px] 2xl:w-[300px]">
+                                                            <div className="flex flex-col-reverse pl-4 w-[185px] sm:w-[135px] md:w-[195px] lg:w-[155px] xl:w-[235px] 2xl:w-[295px]">
                                                                 <p className="font-open-sans text-[10px] xl:text-xs font-normal leading-[15px] tracking-[1px] overflow-hidden uppercase text-ellipsis whitespace-nowrap">{item.socialMedia.includes('@') ? item.socialMedia : "@" + item.socialMedia}</p>
                                                                 <p className="font-open-sans text-xs xl:text-base font-extrabold uppercase text-ellipsis overflow-hidden whitespace-nowrap">{item.username}</p>
                                                             </div>
