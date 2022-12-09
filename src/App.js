@@ -11,6 +11,9 @@ import Landing from "./views/Landing.view";
 import Gallery from "./views/gallery";
 import Detail from "./views/Detail.view";
 import Mint from "./views/mintNft.view";
+import Mint2 from "./views/Mint.view";
+import FinishMint from "./views/FinishMint.view";
+
 import MisNfts from "./views/MisTokens.view";
 import creCol from "./views/createColl"
 import Collections from "./views/collectionGallery"
@@ -64,11 +67,17 @@ class App extends Component {
   render() {
     return (
       <>
+     
         <Router >
           <Navbar theme={this.state.theme} />
           <Switch id="page-wrap">
-            <Route exact path="/" component={Landing} />
-            <BlockchainProtectedRoute path="/create" component={Mint} />
+             
+             <Route exact path="/" component={Landing} /> 
+          
+
+            {/* <BlockchainProtectedRoute path="/create" component={Mint} /> */}
+            <BlockchainProtectedRoute exact path="/create" component={Mint2} />
+            <BlockchainProtectedRoute exact path="/congratulation" component={FinishMint} />
             <BlockchainProtectedRoute path="/profileData/:state" component={ProfileData} />
             <BlockchainProtectedRoute path="/collectionData/:state" component={creCol} />
             <Route path="/profile/:user" component={Profile} />

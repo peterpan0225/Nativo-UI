@@ -76,7 +76,8 @@ module.exports = {
         'steps-background': "url('./assets/img/landing/thirdSection/Gradient.png')",
         "Hero_2": "url('./assets/img/landing/firstSection/Hero_2.png')",
         "Hero_mobile_2": "url('./assets/img/landing/firstSection/Hero_mobile_2.png')",
-        "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Crea_y_vende_tus_NFTs_2.png')"
+        "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Crea_y_vende_tus_NFTs_2.png')",
+        "ntvTokenBlured": "url('./assets/img/landing/sponsorsSection/bluredntvToken.png')"
       },
       backgroundSize: {
         '40': '40%'

@@ -46,7 +46,11 @@
         "collections" : "Collections",
         "supporting-title" : "Supported by great people",
         "gobernance" : "Be part of the governance with $NTV token",
-        "gobernance-button" : "Participate on nativo dao"
+        "gobernance-button" : "Participate on nativo dao",
+        "near": "NEAR foundation",
+        "nearSub": "Given a grant for development of Nativo.",
+        "cloudMex" : "CloudMex Analytics",
+        "cloudMexSub" : "Web 3.0 hub of software development. Based in Latam."
     },
     "Navbar" : {
         "collections" : "Collections",
@@ -55,6 +59,8 @@
         "myNFTs" : "My NFTs",
         "warning" : "This is a public beta version - Use at your own risk - Unaudited code",
         "language" : "English",
+        "change" : "Change",
+
         "gallery" : "Gallery",
         "onSale" : "Market",
         "login" : "Connect",
@@ -74,9 +80,9 @@
         "comming" : "Comming soon!",
         "close" : "close",
         "commingSubtitle" : "At this moment this sections isn't available, but we're working and soon you can use it and make the most of it",
-        "logoutMsg" : "¿Want to Logout?",
+        "logoutMsg" : "Want to Logout?",
         "logoutMsgSub" : "Remember that to navigate on site correctly, your wallet must be connected, in the same way you can connect it at any time",
-        "createMsg" : "¿what do you want to create?",
+        "createMsg" : "what do you want to create?",
         "artists" : "Artists"
     },
     "Footer" : {
@@ -102,6 +108,8 @@
         "tribu" : "Nativo NFT 2022 - Mantained by",
         "cloudMx": "CloudMex Analytics community",
         "btn-NTV" : "Add my NTVs to my wallet",
+        "btn-add" : "Add",
+
         "msg-ntv-title" : "Warning",
         "msg-ntv-desc" : "The transaction that you are about to execute will fail, don't worry there is no problem, execute the transaction, once it fails press cancel to return to the page.",
         "msg-ntv-btn" : "Continue",
@@ -136,7 +144,7 @@
         "loading" : "Loading...",
         "end" : "There are no more NFTs",
         "noData" : "No NFTs Currently",
-        "createdBy" : "by",
+        "createdBy" : "Created by",
         "seeDetails" : "See Detail",
         "hasTok" : "The collection currently has no NFTs",
         "seeMore" : "...See more",
@@ -263,6 +271,7 @@
     },
     "MintNFT" : {
         "maxTitle" : "Less than 60 characters",
+        "maxTitle2":"Max. 36 chars",
         "minTitle" : "Title must be longer than 5",
         "maxDesc" : "Less than 1000 characters",
         "minDesc" : "The minimum description is 5 characters",
@@ -275,7 +284,12 @@
         "loadMsg" : "Wait a moment please",
         "changeImg" : "Change",
         "upImg" : "Upload Image",
+        "upImage" : "Upload your art piece",
+        "drag&drop":"Drag or Drop your file",
+        "file_type":"PNG, FIG, WEBP, Max. 10Mb",
         "title" : "New NFT",
+        "coleccion":"Collections",
+        "write_title":"Write the title here",
         "addColBtn" : "Add Collection",
         "colName" : "Collection Name",
         "userCol" : "Your collections",
@@ -288,6 +302,7 @@
         "errCol-2" : "To be able to mine a token, it is necessary to create a collection before",
         "errCol-3" : "Create collection",
         "createNFT" : "Create NFT",
+        "prevNFT":"My NFT's preview ",
         "sweetTitle" : "Select a collection",
         "sweetTxt" : "To create an NFT it is necessary to select a collection, select one and try again",
         "noColTit" : "You don't have collections",
@@ -301,11 +316,25 @@
         "swPerTxt" : "You cannot define a royalty percentage greater than 50%, check your percentages",
         "swVer" : "Check the royalty information",
         "lblRoyalties" : "Royalties",
-        "placeAccount" : "Account",
+        "placeAccount" : "Benefited account",
         "placePercent" : "Percentage",
+        "PendingPrice" : "Pending Price",
+        "SetPrice" : "Set Price",
+        "Skip" : "Skip",
         "btnRemove" : "Remove",
         "btnRoyalties" : "Add royalties",
-        "new" : "New NFT"
+        "new" : "New NFT",
+        "congrats" : "Congrats!",
+        "congratsYourNft" : "Your NFT has been created",
+        "Savecongrats":"Save",
+        "Continuecongrats":"Continue",
+
+        "AccetTerms":"Accept terms and conditions first",
+        "alertoptions":"Select one option",
+
+        "alertCol":"Select a collection",
+        "alertPrice":"Select a higher price than 0",
+        "cancel":"Cancel"
     },
     "Modal" : {
         "accept" : "I accept the terms and conditions of service",
@@ -319,6 +348,9 @@
         "transAlert3Btn" : "Transfer",
         "account" : "Account",
         "price" : "Price",
+        "setHighestprice" : "Error in the price",
+        "setHighestpriceTxt" : "The Price must be more than 0",
+
         "changePrice" : "Change price",
         "putSale" : "Put on sale",
         "offerAlert1Txt" : "To be able to bid on NFT you must accept the terms and conditions",
@@ -327,7 +359,11 @@
         "offerAlert2Txt-2" : "To be able to bid on an NFT it is necessary that the offer is less than the sale price",
         "priceAlert" : "Invalid price",
         "priceAlertTxt" : "The price you want to change must be lower or higher than the current one",
-        "transfer": "Transfer"
+        "transfer": "Transfer",
+        "skip_tittle": "Skip for now",
+        "skip_description": "Don´t worry,you'll be able to add to collction or set it a price at the your NFT's details",
+        "skip_accept": "Sure!"
+
     },
     "Profile" : {
         "title" : "Create profile",
@@ -355,7 +391,9 @@
         "comboOpc" : "Select the collection",
         "btnAdd" : "Add NFT",
         "btnCol" : "Create collection",
-        "msgNoCol" : "You haven't created a collection yet, first create a collection to add your NFT"
+        "msgNoCol" : "You haven't created a collection yet, first create a collection to add your NFT",
+        "addtocol":"Add a collection"
+
     },
     "searchNftById" : {
         "contract" : "Contract",
