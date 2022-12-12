@@ -142,7 +142,7 @@
         "noData" : "No hay NFTs Actualmente",
         "createdBy" : "Creado por",
         "seeDetails" : "Ver Detalle",
-        "hasTok" : "La coleccion no tiene NFTs actualmente",
+        "hasTok" : "La colección no tiene NFTs actualmente",
         "seeMore" : "...Ver más",
         "seeLess" : "Ver menos",
         "search" : "Busca por: Cuenta ó Título..",
@@ -178,7 +178,7 @@
         "cancelBid" : "Cancelar oferta",
         "btnAddNFTCol" : "Agregar NFT a una colección",
         "msgAddToken" : "Agregar NFT a una colección",
-        "msgAddToken2" : "Selecciona la coleccion a la que deseas agregar el NFT"
+        "msgAddToken2" : "Selecciona la colección a la que deseas agregar el NFT"
     },
     "MyNFTs" : {
         "title" : "Mis NFTs",
@@ -237,8 +237,8 @@
         
         "createNFT" : "Crear NFT",
         "msg-2" : "Tu imagen puede durar un poco de tiempo en mostrarse",
-        "demoTitle" : "Titulo de la coleccion",
-        "demoDescrip" : "Escribe la descripcion de tu coleccion",
+        "demoTitle" : "Titulo de la colección",
+        "demoDescrip" : "Escribe la descripcion de tu colección",
         "creator" : "Creador",
         "by":"Por",
         "contract" : "Contrato",
@@ -253,7 +253,7 @@
         "err1-title" : "Datos incompletos",
         "err1-msg" : "Para crear una colección es necesario que rellenes todos los campos, verifica que hayas rellenado todos los datos",
         "err2-title" : "Titulo de la colección muy corto",
-        "err2-msg" : "El titulo de la coleccion debe de tener minimo 10 caracteres",
+        "err2-msg" : "El titulo de la colección debe de tener minimo 10 caracteres",
         "err3-title" : "Descripción de la colección muy corta",
         "err3-msg" : "La descripción de la colección debe de tener minimo 30 caracteres",
         "succ-title" : "Colección creada",
@@ -273,10 +273,10 @@
         "userAcc" : "Tu cuenta",
         "userCont" : "Este es tu contrato",
         "visibility": "Visibilidad",
-        "vis-msg" : "Da clic aqui para mostrar u ocultar tu coleccion",
-        "title2" : "Editar coleccion",
-        "editBtn" : "Editar coleccion",
-        "idCol" : "ID de la coleccion:",
+        "vis-msg" : "Da clic aqui para mostrar u ocultar tu colección",
+        "title2" : "Editar colección",
+        "editBtn" : "Editar colección",
+        "idCol" : "ID de la colección:",
         "swEditedTit" : "Se ha editado la colección",
         "swEditedDesc" : "La colección ha sido editada con exito",
         "swCreatedTit" : "La colección ha sido creada con exito",
@@ -406,14 +406,14 @@
         "addNTV" : "Agregar mis NTVs a mi wallet"
     },
     "addToken" : {
-        "alert1-title" : "Selecciona una coleccion",
-        "alert1-msg" : "Tienes que seleccionar la coleccion a la que deseas agregar el NFT",
+        "alert1-title" : "Selecciona una colección",
+        "alert1-msg" : "Tienes que seleccionar la colección a la que deseas agregar el NFT",
         "alert2-title" : "Advertencia",
-        "alert2-msg" : "Solo podras agregar una sola vez tu NFT a una coleccion, verifica que hayas seleccionado la correcta",
+        "alert2-msg" : "Solo podras agregar una sola vez tu NFT a una colección, verifica que hayas seleccionado la correcta",
         "comboOpc" : "Seleccione la colección",
         "btnAdd" : "Agregar NFT",
         "btnCol" : "Crear colección",
-        "msgNoCol" : "Aun no has creado una coleccion, primero crea una coleccion para agregar tu NFT",
+        "msgNoCol" : "Aun no has creado una colección, primero crea una para agregar tu NFT",
         "addtocol":"2- Añadir a colección"
     },
     "searchNftById" : {

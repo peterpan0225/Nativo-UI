@@ -170,7 +170,7 @@ function LightHeroE(props) {
         media_banner: bcd2,
         website:formik.values.website,
         twitter:formik.values.twitter,
-        visibility: true,
+        visibility: visibility,
         _id: colId,
         _type: "edit"
       }
@@ -183,7 +183,7 @@ function LightHeroE(props) {
         media_banner: bcd2,
         website:formik.values.website,
         twitter:formik.values.twitter,
-        visibility: true,
+        visibility: visibility,
         _id: "0",
         _type: "create"
       }
@@ -457,30 +457,11 @@ function LightHeroE(props) {
         })
         .then((data)=> {
           console.log('profile: ',data.data?.collections[0])
-          formik.setFieldValue("title",data.data.collections[0]?.title);
-          formik.setFieldValue("description",data.data.collections[0]?.description);
-          formik.setFieldValue("avatar",data.data.collections[0]?.mediaIcon);
-          formik.setFieldValue("banner",data.data.collections[0]?.mediaBanner);
-          formik.setFieldValue("website",data.data.collections[0]?.website);
-          formik.setFieldValue("twitter",data.data.collections[0]?.twitter);
-          setTokencounter(data.data.collections[0]?.tokenCount);
-          setmint({
-            ...mint,
-            avatar:  `https://nativonft.mypinata.cloud/ipfs/${data.data.collections[0]?.mediaIcon}` ,
-            avatar_file:false,
-            banner:  `https://nativonft.mypinata.cloud/ipfs/${data.data.collections[0]?.mediaBanner}`
-            ,banner_file:false
-          });
-           setColId(data.data.collections[0]?.collectionID)
+         setCollectionData(data.data?.collections[0]);
          
-          setCollectionData(data.data?.collections[0])
-          Swal.close()
-        })
-        .catch((err) =>{
-          console.log('error: ',err)
-        })
-       
-        if(collectionData.owner_id == accountId){
+         console.log("🪲 ~ file: Collection.view.js:462 ~ .then ~ accountId", accountId)
+         console.log("🪲 ~ file: Collection.view.js:462 ~ .then ~ collectionData", collectionData)
+         if(data.data?.collections[0].owner_id == accountId){
           // setColId(collectionData.collectionID)
           // setTitle(collectionData.title)
           // setDesc(collectionData.description)
@@ -490,10 +471,33 @@ function LightHeroE(props) {
           // document.getElementById('visibility').checked = collectionData.visibility
           // setTxtBttnIcon(t("CreateCol.btnImg-3"))
           // setTxtBttnBanner(t("CreateCol.btnImg-3"))
+          formik.setFieldValue("title",data.data?.collections[0].title);
+          formik.setFieldValue("description",data.data?.collections[0].description);
+          formik.setFieldValue("avatar",data.data?.collections[0].mediaIcon);
+          formik.setFieldValue("banner",data.data?.collections[0].mediaBanner);
+          formik.setFieldValue("website",data.data?.collections[0].website);
+          formik.setFieldValue("twitter",data.data?.collections[0].twitter);
+          setVisibility(data.data?.collections[0].visibility)
+          setTokencounter(data.data?.collections[0].tokenCount);
+          setmint({
+            ...mint,
+            avatar:  `https://nativonft.mypinata.cloud/ipfs/${data.data.collections[0]?.mediaIcon}` ,
+            avatar_file:false,
+            banner:  `https://nativonft.mypinata.cloud/ipfs/${data.data.collections[0]?.mediaBanner}`
+            ,banner_file:false
+          });
+           setColId(data.data.collections[0]?.collectionID)
+          
+          Swal.close()
+        }else{
+          window.location.href="/viewcollection/"+data.data.collections[0]?.collectionID
         }
-        else{
-          //window.location.href="/collection/create"
-        }
+        })
+        .catch((err) =>{
+          console.log('error: ',err)
+        })
+       
+       
       }
       else{
         if (execTrans){
@@ -616,14 +620,7 @@ function LightHeroE(props) {
                     </p>
 
                     <div name="banner" className="overflow-hidden   ">
-                      {/*mint?.file && (
-                        
-                        <img
-                          className="rounded-md    m-auto  object-cover object-center "
-                          alt="hero"
-                          src={mint?.file}
-                        />
-                      )*/}
+                    
                       <label className={` `}>
                         <div className="flex w-full  ">
                           {mint?.banner ? (
@@ -780,6 +777,30 @@ function LightHeroE(props) {
                             placeholder={t("CreateCol.twitterph")}
                           />
                         </div>
+
+                        <div className="flex justify-between ">
+                            <label
+                              htmlFor="Visibility"
+                              className=" text-sm  dark:text-darkgray   uppercase font-semibold font-raleway"
+                            >
+                              {t("CreateCol.visibility")}
+                            </label>
+
+                            <label class="inline-flex relative items-center mr-5 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                className="sr-only peer"
+                                checked={visibility}
+                                readOnly
+                              />
+                              <div
+                                onClick={() => {
+                                  setVisibility(!visibility)
+                                }}
+                                className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#F79336]"
+                              ></div>
+                            </label>
+                          </div>
 
                         <div className="relative group mt-10 rounded-md">
                           {/* <div className="absolute -inset-0.5 bg-gradient-to-r from-[#f2b159] to-[#ca7e16] rounded-full blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt group-hover:-inset-1"></div> */}

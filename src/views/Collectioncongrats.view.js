@@ -569,7 +569,7 @@ return
                   >
 
 <div className="w-1/3">
-<div className=" w-[120px]  h-[120px] lg:w-[140px]  lg:h-[140px] xl:w-[170px]  xl:h-[170px] -translate-y-14 xl:-translate-y-16   translate-x-2 overflow-hidden border border-white   bg-[#EBEBEB]">
+<div className=" w-[120px]  h-[120px] lg:w-[140px]  lg:h-[140px] xl:w-[170px]  xl:h-[170px] -translate-y-14 xl:-translate-y-16   md:translate-x-2 overflow-hidden border border-white   bg-[#EBEBEB]">
                     {mint?.avatar && (
                       <img
                         className=" w-full h-full  object-cover object-center "
@@ -580,8 +580,8 @@ return
                   </div>
 </div>
 
-  <div className="w-2/3 xl:-translate-x-8 2xl:-translate-x-16">
- <div className=" w-full  h-[100px] -translate-y-4   translate-x-2   flex flex-col pt-2 pl-2 border border-white   bg-transparent">
+  <div className="sm:w-2/3   xl:-translate-x-8 2xl:-translate-x-16">
+ <div className=" w-full  h-[100px] -translate-y-4   translate-x-10 md:translate-x-2   flex flex-col pt-2 pl-2 border border-white   bg-transparent">
                    {formik.values.title ?
                    <p className="normal-case  text-lg lg:text-xl xl:text-2xl truncate font-bold  ">
                   
