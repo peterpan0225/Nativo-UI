@@ -288,10 +288,14 @@
         "website":"Website",
         "websiteph":"www.ejemplo.com",
         "twitter":"Project's  Twitter",
-        "twitterph":"twitter/"
+        "twitterph":"twitter/",
+
+        "makeVisible":"make this collection visible?"
+
 
     },
     "MintNFT" : {
+        
         "maxTitle" : "Less than 60 characters",
         "maxTitle2":"Max. 36 chars",
         "minTitle" : "Title must be longer than 5",
@@ -356,7 +360,11 @@
 
         "alertCol":"Select a collection",
         "alertPrice":"Select a higher price than 0",
-        "cancel":"Cancel"
+        "cancel":"Cancel",
+        "createcolbefore":"We are sorry,you do not have a collection yet,create one before",
+        "createcolredirect":"You will be redirected to create one "
+
+
     },
     "Modal" : {
         "accept" : "I accept the terms and conditions of service",

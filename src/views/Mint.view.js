@@ -622,6 +622,20 @@ function LightHeroE(props) {
           console.log("collections: ", data.data.collections);
           if (data.data.collections.length <= 0) {
             setNoCollections(false);
+            Swal.fire({
+              background: '#0a0a0a',
+              width: '600',
+              heightAuto: false,
+              position: 'top-center',
+              icon: 'warning',
+              title: t("MintNFT.createcolbefore"),
+              text:t("MintNFT.createcolredirect"),
+              showConfirmButton: false,
+              timer:6000
+              
+            }).then(()=>{
+              window.location.href="/collection/create"
+            })
           } else {
             userData = data.data.collections;
             setCollectionData(userData);

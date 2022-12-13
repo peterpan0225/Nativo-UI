@@ -130,264 +130,15 @@ function LightHeroE(props) {
       // banner: Yup.string().required(t("MintNFT.required")),
     }),
     onSubmit: async (values) => {
-
-      //evitar que el usuario pueda volver a hacer click hasta que termine el minado
-     
-
-    /* Si se cargaron las imagenes a pinata desde el state */ 
-   let res= await uploadFilesPinata();
-   
-
-    if(  res.status===true ){
-     
-      saveCollection(res.avatar_cid,res.banner_cid)
-      return;
-    }
-   else{
-    console.log("no subio algo")
-    return;
-   }
-      
-
-
+ 
+    
 
     },
   });
-
- async function saveCollection(acd1,bcd2) {
-    // console.log("Hola");
-  //  console.log("🪲 ~ file: Collection.view.js:416 ~ saveCollection ~ type", type)
-
-    let contract = await getNearContract();
-    const owner = await getNearAccount()
-    let payloadCol
-    if(type){
-      payloadCol = {
-        title: formik.values.title,
-        description: formik.values.description,
-        media_icon: formik.values.avatar,
-        media_banner: formik.values.banner,
-        website:formik.values.website,
-        twitter:formik.values.twitter,
-        visibility: false,
-        _id: colId,
-        _type: "edit"
-      }
-    }
-    else{
-      payloadCol = {
-        title: formik.values.title,
-        description: formik.values.description,
-        media_icon: acd1,
-        media_banner: bcd2,
-        website:formik.values.website,
-        twitter:formik.values.twitter,
-        visibility: true,
-        _id: "0",
-        _type: "create"
-      }
-    }     
-    
-  
-     console.log("🪲 ~ file: Collection.view.js:432 ~ saveCollection ~ payloadCol", payloadCol)
-
-   
  
-    const wallet = await selector.wallet();
-
-  
-    wallet.signAndSendTransaction({
-      signerId: accountId,
-      receiverId: process.env.REACT_APP_CONTRACT_MARKET,
-      actions: [
-        {
-          type: "FunctionCall",
-          params: {
-            methodName: "add_new_user_collection",
-            args: payloadCol,
-            gas: 300000000000000,
-            deposit: 1,
-          }
-        }
-      ]
-    })
-    // Swal.fire({
-    //   html:
-    //   '<div>'+
-    //   '<div class="font-open-sans dark:text-darkgray text-xl font-bold">' +  t("CreateCol.succ-title") + '</div>'+ 
-    //   '<div class="font-open-sans dark:text-darkgray  text-sm">' + t("CreateCol.succ-msg")+ '</div>'+
-    //   '</div>',
-    //   icon: 'success',
-    // }).then(function () {
-    //   window.location.href = "/create"
-    // })
-  }
-
-  /**
-   * hace que cuando se toque la imagen se cambien el valor de touch de formik
-   */
-  function imageAvatarClick() {
-    formik.setFieldTouched("avatar");
-  }
-  /* 
-  
-  /* 
-  Esta funcion toma el archivo y lo guarda en el state 
-  */
-  async function saveAvatarFilePinata(e) {
-
-    try {
-      let file = e.target.files[0];
-
-    setmint({
-      ...mint,
-      avatar: URL.createObjectURL(e.target.files[0]),
-      avatar_file:e.target.files[0],
-      avatar_name: file?.name,
-    });
-    console.log(
-      "🪲 ~ file: Collection.view.js:490 ~ saveAvatarFilePinata ~ mint",
-      mint
-    );
-    } catch (error) {
-      console.log("canceled")
-    }
-    
-  }
-
-  /**
-   * hace que cuando se toque la imagen se cambien el valor de touch de formik
-   */
-  function imageBannerClick() {
-    formik.setFieldTouched("banner");
-  }
-  /*
-  Esta funcion toma el archivo del state y lo sube a pinata para recuperar el CID
-  */
-  const uploadFilesPinata = async ()=> {
-    let respo={
-      avatar_cid:"",
-      banner_cid:"",
-      status:false
-    }
-    if (!mint.avatar){
-      Swal.fire({
-        position: 'top-center',
-        icon: 'warning',
-        title: t("CreateCol.erruploadAvatar"),
-        showConfirmButton: false,
-        timer:4000
-        
-      })
-       
-      return respo ;
-    }
-    if (!mint.banner){
-      Swal.fire({
-        position: 'top-center',
-        icon: 'warning',
-        title: t("CreateCol.erruploadBanner"),
-        showConfirmButton: false,
-        timer:4000
-        
-      })
-      return respo;
-    }
-    
-    else{
-      console.log("Uploading   ")
-      Swal.fire({
-        html:'<div className="text-center h-30 w-30">'
-+       ' <svg role="status" class="inline mr-3 w-10 h-10 text-white  animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">'
-+       ' <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>'
-+       ' <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>'
-+       ' </svg>'
-+' </div>',
-        position: 'top-center',
-        title: t("CreateCol.uploadingAvatar"),
-        showConfirmButton: false,
-        
-      })
-
-
-      let acid = await uploadFileAPI(mint.avatar_file);
-      formik.setFieldValue("avatar", acid);
-
-      setAcid(acid)
-      let bcid = await uploadFileAPI(mint.banner_file);
-      formik.setFieldValue("banner", bcid);
-      setBcid(bcid)
-
-
-      respo={
-        avatar_cid:acid,
-        banner_cid:bcid,
-        status:true
-      }
-      Swal.close()
-      return respo;
-    }
-    
-  }
-  /* 
-  Esta funcion toma el archivo y lo guarda en el state 
-  */
-  async function saveBannerFilePinata(e) {
-    try {
-      let file = e.target.files[0];
-
-      setmint({
-        ...mint,
-        banner: URL.createObjectURL(e.target.files[0]),
-        banner_file:e.target.files[0],
-        banner_name: file?.name,
-      });
-      console.log(
-        "🪲 ~ file: Collection.view.js:490 ~ saveAvatarFilePinata ~ mint",
-        mint
-      );
-    } catch (error) {
-      console.log("canceled")
-    }
-   
-  }
-
  
-
-  const format = (v) => {
-    return v < 10 ? "0" + v : v;
-  };
-  const fechaActual = async () => {
-    let contract = await getNearContract();
-    const data = await contract.account.connection.provider.block({
-      finality: "final",
-    });
-    const dateActual = new Date(data.header.timestamp / 1000000);
-    const fs =
-      format(dateActual.getFullYear()) +
-      "-" +
-      format(dateActual.getMonth() + 1) +
-      "-" +
-      format(dateActual.getDate());
-    setactualDate(fs);
-  };
-
  
-  
-  function handle_title(e) {
-    setType_info({ ...type_info, title: e.target.value });
-    console.log(
-      "🪲 ~ file: Mint.view.js ~ line 420 ~ handle_title ~ setType_info",
-      type_info
-    );
-  }
-  function handle_website(e) {
-    setType_info({ ...type_info, website: e.target.value });
-  }
-  function handle_twitter(e) {
-    setType_info({ ...type_info, twitter: e.target.value });
-  }
-
+ 
   const { state } = useParams();
 
   useEffect(() => {
@@ -448,19 +199,25 @@ return
 
 
 
-
     })()
   },[])
   const SkipPrice = () => {
     Swal.fire({
+      background: '#0a0a0a',
+      width: '600',
+      heightAuto: false,
       title: t("Modal.skip_tittle"),
       text: t("Modal.skip_collection_description"),
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      buttonsStyling: false,
+     
       cancelButtonText: "No",
       confirmButtonText: t("Modal.skip_accept"),
+      customClass: {
+        confirmButton: 'flex py-4 bg-[#011801] hover:bg-[#025F2E] active:bg-[#0A9A05] w-full h-[20px] lg:h-[40px]  my-4 p-4 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center  active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2   " ',
+        cancelButton: 'flex py-4   hover:bg-[#540603] active:bg-[#D80B05] w-full h-[20px] lg:h-[40px]    my-4 p-2 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 " ',
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.href = "/mynfts";
@@ -554,7 +311,7 @@ return
                   }
                 >
                  
-                  <div className="w-full   h-[280px]   md:h-[250px] lg:h-[280px]  xl:h-[350px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
+                  <div className="w-full   h-[250px]   md:h-[250px] lg:h-[280px]  xl:h-[350px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
                     {mint?.banner && (
                       <img
                         className=" w-full h-full  object-cover object-center "
@@ -565,11 +322,11 @@ return
                   </div>
                   <div
                     name="card_det"
-                    className="w-full flex rounded-b-2xl   pt-4 px-4    bg-white h-full md:h-[100px] lg:h-[120px] xl:h-[140px]"
+                    className="w-full flex rounded-b-2xl    pl-4 xl:pl-8 bg-white h-full md:h-[100px] lg:h-[120px] xl:h-[170px]" //px-4
                   >
 
-<div className="w-1/3">
-<div className=" w-[120px]  h-[120px] lg:w-[140px]  lg:h-[140px] xl:w-[170px]  xl:h-[170px] -translate-y-14 xl:-translate-y-16   md:translate-x-2 overflow-hidden border border-white   bg-[#EBEBEB]">
+<div className="w-2/6">
+<div className=" -translate-y-6 md:-translate-y-10 xl:-translate-y-16 w-[100px]  h-[100px] md:w-[120px]  md:h-[120px]    lg:w-[140px]  lg:h-[140px] xl:w-[200px]  xl:h-[200px] overflow-hidden border border-white   bg-[#EBEBEB]">{/* -translate-y-14 xl:-translate-y-16   md:translate-x-2   */}
                     {mint?.avatar && (
                       <img
                         className=" w-full h-full  object-cover object-center "
@@ -579,9 +336,8 @@ return
                     )}
                   </div>
 </div>
-
-  <div className="sm:w-2/3   xl:-translate-x-8 2xl:-translate-x-16">
- <div className=" w-full  h-[100px] -translate-y-4   translate-x-10 md:translate-x-2   flex flex-col pt-2 pl-2 border border-white   bg-transparent">
+  <div className="w-4/6  ">   {/*  xl:-translate-x-8 2xl:-translate-x-16  */}
+  <div className=" w-full  h-[100px]   flex flex-col pt-2  lg:pl-2 border border-white   bg-transparent"> {/* -translate-y-4   translate-x-10 md:translate-x-2   */}
                    {formik.values.title ?
                    <p className="normal-case  text-lg lg:text-xl xl:text-2xl truncate font-bold  ">
                   

@@ -284,7 +284,9 @@
         "website":"Sitio web",
         "websiteph":"www.ejemplo.com",
         "twitter":"Twitter del proyecto",
-        "twitterph":"twitter/"
+        "twitterph":"twitter/",
+        "makeVisible":"¿Hacer visible esta colección?"
+
     },
     "MintNFT" : {
         "maxTitle" : "Menos de 60 caracteres",
@@ -353,7 +355,10 @@
         "congratsYourNft" : "  Tu NFT ha sido mintado",
       
 
-        "cancel":"Cancelar"
+        "cancel":"Cancelar",
+        "createcolbefore":"Lo sentimos,no tienes una colección aún,crea una antes",
+        "createcolredirect":"Serás redirigido a crear una."
+
        
     },
     "Modal" : {
