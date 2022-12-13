@@ -848,7 +848,7 @@ function LightHeroE(props) {
                   }
                 >
                  
-                  <div className="w-full   h-[280px]   md:h-[250px] lg:h-[280px]  xl:h-[350px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
+                  <div className="w-full   h-[250px]   md:h-[250px] lg:h-[280px]  xl:h-[350px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
                     {mint?.banner && (
                       <img
                         className=" w-full h-full  object-cover object-center "
@@ -859,11 +859,11 @@ function LightHeroE(props) {
                   </div>
                   <div
                     name="card_det"
-                    className="w-full flex rounded-b-2xl   pt-4 px-4    bg-white h-full md:h-[100px] lg:h-[120px] xl:h-[140px]"
+                    className="w-full flex rounded-b-2xl   pl-4 xl:pl-8    bg-white h-full md:h-[100px] lg:h-[120px] xl:h-[170px]"
                   >
 
-<div className="w-1/3">
-<div className=" w-[120px]  h-[120px] lg:w-[140px]  lg:h-[140px] xl:w-[170px]  xl:h-[170px] -translate-y-14 xl:-translate-y-16   translate-x-2 overflow-hidden border border-white   bg-[#EBEBEB]">
+<div className="w-2/6">
+<div className="-translate-y-6 md:-translate-y-10 xl:-translate-y-16  w-[100px]  h-[100px] lg:w-[120px]  lg:h-[120px]  xl:w-[200px]  xl:h-[200px]  overflow-hidden border border-white   bg-[#EBEBEB]">
                     {mint?.avatar && (
                       <img
                         className=" w-full h-full  object-cover object-center "
@@ -874,8 +874,8 @@ function LightHeroE(props) {
                   </div>
 </div>
 
-  <div className="w-2/3 xl:-translate-x-4">
- <div className=" w-full  h-[100px] -translate-y-4   translate-x-2   flex flex-col pt-2 pl-2 border border-white   bg-transparent">
+  <div className="w-4/6">
+ <div className=" w-full  h-[100px]   flex flex-col pt-2 lg:pl-2 border border-white   bg-transparent">
                    {formik.values.title ?
                    <p className="normal-case  text-lg lg:text-xl xl:text-2xl truncate font-bold  ">
                   

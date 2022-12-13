@@ -215,7 +215,7 @@ return
       cancelButtonText: "No",
       confirmButtonText: t("Modal.skip_accept"),
       customClass: {
-        confirmButton: 'flex py-4 bg-[#011801] hover:bg-[#025F2E] active:bg-[#0A9A05] w-full h-[20px] lg:h-[40px]  my-4 p-4 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center  active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2   " ',
+        confirmButton: 'flex py-4   hover:bg-yellow2   w-full h-[20px] lg:h-[40px]  my-4 p-4 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center  active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2   " ',
         cancelButton: 'flex py-4   hover:bg-[#540603] active:bg-[#D80B05] w-full h-[20px] lg:h-[40px]    my-4 p-2 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 " ',
       },
     }).then((result) => {
