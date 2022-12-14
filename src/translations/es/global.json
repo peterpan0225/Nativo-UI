@@ -226,10 +226,12 @@
         "descripCol" : "Descripción de la colección",
         "iconCol" : "Icono de la colección",
         "uploadAvatar" : "Sube un avatar para la colección",
-        "erruploadAvatar" : "Por favor,Selecciona una imagen como avatar",
+        "erruploadAvatartitle" : "La imagen para el Avatar no fue cargada",
+        "erruploadAvatar" : "Por favor,selecciona una imagen como avatar",
 
         "uploadBanner" : "Sube una portada para la colección",
-        "erruploadBanner" : "Por favor,Selecciona una imagen como portada",
+        "erruploadBannertitle" : "La imagen para la portada no fue cargada",
+        "erruploadBanner" : "Por favor,selecciona una imagen como portada",
 
         "bannerCol" : "Portada de la colección",
         "msg-1" : "Vista previa de la colección en la parte inferior",
@@ -247,8 +249,11 @@
         "volSale" : "Vol. de venta",
         "btnImg-1" : "Seleccionar imagen",
         "btnImg-2" : "Cargando",
-        "uploadingAvatar" : "Subiendo imágenes y creando colección, espera un momento…",
-        "EditingCollection" : "Subiendo imágenes y editando colección, espera un momento…",
+        "CreatingCollection" : "Subiendo imágenes y creando colección",
+        "CreatingCollectionWait" : "Espera un momento…",
+
+        "EditingCollection" : "Subiendo imágenes y editando colección",
+        "EditingCollectionWait" : "Espera un momento…",
         "btnImg-3" : "Cambiar imagen",
         "err1-title" : "Datos incompletos",
         "err1-msg" : "Para crear una colección es necesario que rellenes todos los campos, verifica que hayas rellenado todos los datos",

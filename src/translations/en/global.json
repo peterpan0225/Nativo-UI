@@ -247,12 +247,17 @@
         "volSale" : "Sales volume",
         "btnImg-1" : "Select image",
         "btnImg-2" : "Loading",
-        "uploadingAvatar" : "Uploading images and creating collection, wait a moment…",
-        "EditingCollection" : "Uploading images and editing collection, wait a moment…",
+        "CreatingCollection" : "Uploading images and creating collection",
+        "CreatingCollectionWait" : " Wait a moment…",
 
+        "EditingCollection" : "Uploading images and editing collection",
+        "EditingCollectionWait" : "Wait a moment…",
+
+        "erruploadAvatartitle" : "Avatar image not charged",
         "erruploadAvatar" : "Please,select an image as avatar ",
 
         "uploadingBanner" : "Uploading the banner,wait a moment",
+        "erruploadBannertitle" : "Banner image not charged",
         "erruploadBanner" : "Please,select an image as banner",
         "prevCol":"My collection's preview",
         "btnImg-3" : "Change image",
