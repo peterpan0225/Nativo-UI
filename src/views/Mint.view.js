@@ -623,15 +623,19 @@ function LightHeroE(props) {
           if (data.data.collections.length <= 0) {
             setNoCollections(false);
             Swal.fire({
+              timer:6000,
               background: '#0a0a0a',
-              width: '600',
-              heightAuto: false,
-              position: 'top-center',
-              icon: 'warning',
-              title: t("MintNFT.createcolbefore"),
-              text:t("MintNFT.createcolredirect"),
+              width: '800',
+              html:
+                '<div class="">' +
+                '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("MintNFT.createcolbefore") + '</div>' +
+                '<div class="font-open-sans  text-sm text-white text-left">' + t("MintNFT.createcolredirect") + '</div>' +
+                '</div>',
+              
               showConfirmButton: false,
-              timer:6000
+              showCancelButton:false,
+              buttonsStyling: false,
+              position: window.innerWidth < 1024 ? 'bottom' : 'center'
               
             }).then(()=>{
               window.location.href="/collection/create"

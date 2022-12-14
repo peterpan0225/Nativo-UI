@@ -204,20 +204,22 @@ return
   const SkipPrice = () => {
     Swal.fire({
       background: '#0a0a0a',
-      width: '600',
-      heightAuto: false,
-      title: t("Modal.skip_tittle"),
-      text: t("Modal.skip_collection_description"),
-      icon: "warning",
+      width: '800',
+      html:
+        '<div class="">' +
+        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Modal.skip_tittle") + '</div>' +
+        '<div class="font-open-sans  text-sm text-white text-left">' + t("Modal.skip_collection_description") + '</div>' +
+        '</div>',
+      confirmButtonText: t("Modal.skip_accept"),
+      cancelButtonText: "No",
       showCancelButton: true,
       buttonsStyling: false,
-     
-      cancelButtonText: "No",
-      confirmButtonText: t("Modal.skip_accept"),
       customClass: {
-        confirmButton: 'flex py-4   hover:bg-yellow2   w-full h-[20px] lg:h-[40px]  my-4 p-4 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center  active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2   " ',
-        cancelButton: 'flex py-4   hover:bg-[#540603] active:bg-[#D80B05] w-full h-[20px] lg:h-[40px]    my-4 p-2 lg:mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 " ',
+        confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        cancelButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center  justify-center px-3 py-2  mx-2 border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed'
       },
+      confirmButtonColor: '#f79336',
+      position: window.innerWidth < 1024 ? 'bottom' : 'center'
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.href = "/mynfts";
