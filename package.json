@@ -23,6 +23,7 @@
     "@near-wallet-selector/near-wallet": "^6.0.0",
     "@near-wallet-selector/nightly": "^6.0.0",
     "@near-wallet-selector/nightly-connect": "^6.0.0",
+    "@near-wallet-selector/opto-wallet": "^7.3.0",
     "@near-wallet-selector/sender": "^6.0.1",
     "@near-wallet-selector/wallet-connect": "^6.0.0",
     "@testing-library/jest-dom": "^4.2.4",

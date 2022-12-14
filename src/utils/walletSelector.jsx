@@ -9,6 +9,7 @@ import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
 import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
+import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
 import { providers, utils } from "near-api-js";
 
 const WalletSelectorContext = React.createContext(null);
@@ -29,6 +30,7 @@ export const WalletSelectorContextProvider = ({ children }) => {
                 // setupMathWallet(),
                 // setupNightly(),
                 setupMeteorWallet(),
+                setupOptoWallet(),
             ],
         });
         const _modal = setupModal(_selector, { contractId: process.env.REACT_APP_CONTRACT });
