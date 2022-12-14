@@ -262,41 +262,42 @@ function LightEcommerceB(props) {
       // let toks = await ext_call(process.env.REACT_APP_CONTRACT_MARKET,"offer",payload,300000000000000,fromNearToYocto(amount))
       const wallet = await selector.wallet();
       
-      // wallet.signAndSendTransaction({
-      //   signerId: accountId,
-      //   receiverId: process.env.REACT_APP_CONTRACT_MARKET,
-      //   actions: [
-      //     {
-      //       type: "FunctionCall",
-      //       params: {
-      //         methodName: "offer",
-      //         args: payload,
-      //         gas: 300000000000000,
-      //         deposit: fromNearToYocto(amount),
-      //       }
-      //     }
-      //   ]
-      // })
-      Swal.fire({
-        background: '#0a0a0a',
-        width: '800',
-        html:
-          '<div class="">' +
-          '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Alerts.buyNFTTit") + '</div>' +
-          '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.buyNFTMsg") + '</div>' +
-          '</div>',
-        confirmButtonText: t("Alerts.continue"),
-        buttonsStyling: false,
-        customClass: {
-          confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
-        },
-        confirmButtonColor: '#f79336',
-        position: window.innerWidth < 1024 ? 'bottom' : 'center'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = "/mynfts"
-        }
-      });
+      wallet.signAndSendTransaction({
+        signerId: accountId,
+        receiverId: process.env.REACT_APP_CONTRACT_MARKET,
+        actions: [
+          {
+            type: "FunctionCall",
+            params: {
+              methodName: "offer",
+              args: payload,
+              gas: 300000000000000,
+              deposit: fromNearToYocto(amount),
+            }
+          }
+        ]
+      }).then(() => {
+        Swal.fire({
+          background: '#0a0a0a',
+          width: '800',
+          html:
+            '<div class="">' +
+            '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Alerts.buyNFTTit") + '</div>' +
+            '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.buyNFTMsg") + '</div>' +
+            '</div>',
+          confirmButtonText: t("Alerts.continue"),
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+          },
+          confirmButtonColor: '#f79336',
+          position: window.innerWidth < 1024 ? 'bottom' : 'center'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/mynfts"
+          }
+        });
+      })
     }
   }
 
@@ -321,6 +322,27 @@ function LightEcommerceB(props) {
           }
         }
       ]
+    }).then(() => {
+      Swal.fire({
+        background: '#0a0a0a',
+        width: '800',
+        html:
+          '<div class="">' +
+          '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Alerts.offerCanTit") + '</div>' +
+          '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.offerCanMsg") + '</div>' +
+          '</div>',
+        confirmButtonText: t("Alerts.continue"),
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        },
+        confirmButtonColor: '#f79336',
+        position: window.innerWidth < 1024 ? 'bottom' : 'center'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "/detail/"+props.tokens.tokenID
+        }
+      });
     })
   }
 
@@ -356,6 +378,27 @@ function LightEcommerceB(props) {
           }
         }
       ]
+    }).then(() => {
+      Swal.fire({
+        background: '#0a0a0a',
+        width: '800',
+        html:
+          '<div class="">' +
+          '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Alerts.acceptOffTit") + '</div>' +
+          '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.acceptOffMsg") + '</div>' +
+          '</div>',
+        confirmButtonText: t("Alerts.continue"),
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        },
+        confirmButtonColor: '#f79336',
+        position: window.innerWidth < 1024 ? 'bottom' : 'center'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      });
     })
   }
 

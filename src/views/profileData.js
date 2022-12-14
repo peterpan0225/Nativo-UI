@@ -143,6 +143,27 @@ function LightHeroE(props) {
               }
             }
           ]
+        }).then(() => {
+          Swal.fire({
+            background: '#0a0a0a',
+            width: '800',
+            html:
+              '<div class="">' +
+              '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  (type ? t("Alerts.editProTit") : t("Alerts.createProMsg")) + '</div>' +
+              '<div class="font-open-sans  text-sm text-white text-left">' + (type ? t("Alerts.editProMsg") : t("Alerts.createProMsg")) + '</div>' +
+              '</div>',
+            confirmButtonText: t("Alerts.continue"),
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+            },
+            confirmButtonColor: '#f79336',
+            position: window.innerWidth < 1024 ? 'bottom' : 'center'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/profile/"+account.split('.')[0]
+            }
+          });
         })
       }
       //if de error

@@ -234,6 +234,27 @@ function LightHeroE(props) {
           }
         }
       ]
+    }).then(() => {
+      Swal.fire({
+        background: '#0a0a0a',
+        width: '800',
+        html:
+          '<div class="">' +
+          '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  (type ? t("Alerts.editColTit") : t("Alerts.createColTit")) + '</div>' +
+          '<div class="font-open-sans  text-sm text-white text-left">' + (type ? t("Alerts.editColMsg") : t("Alerts.createColMsg")) + '</div>' +
+          '</div>',
+        confirmButtonText: t("Alerts.continue"),
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        },
+        confirmButtonColor: '#f79336',
+        position: window.innerWidth < 1024 ? 'bottom' : 'center'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          (type ? window.location.href = "/collection/"+colId : window.location.href = "/mynfts")
+        }
+      });
     })
     // Swal.fire({
     //   html:

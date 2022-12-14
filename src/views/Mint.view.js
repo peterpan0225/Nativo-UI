@@ -364,6 +364,28 @@ function LightHeroE(props) {
 
                 return wallet
                   .signAndSendTransactions({ transactions })
+                  .then(() => {
+                    Swal.fire({
+                      background: '#0a0a0a',
+                      width: '800',
+                      html:
+                        '<div class="">' +
+                        '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' + t("Alerts.createNFTTit") + '</div>' +
+                        '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.createNFTMsg") + '</div>' +
+                        '</div>',
+                      confirmButtonText: t("Alerts.continue"),
+                      buttonsStyling: false,
+                      customClass: {
+                        confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+                      },
+                      confirmButtonColor: '#f79336',
+                      position: window.innerWidth < 1024 ? 'bottom' : 'center'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.href = "/congratulation"
+                      }
+                    });
+                  })
                   .catch((err) => {
                     alert("Failed to add messages exception " + err);
                     console.log("Failed to add messages");
@@ -436,6 +458,28 @@ function LightHeroE(props) {
 
             return wallet
               .signAndSendTransactions({ transactions })
+              .then(() => {
+                Swal.fire({
+                  background: '#0a0a0a',
+                  width: '800',
+                  html:
+                    '<div class="">' +
+                    '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' + t("Alerts.createNFTTit") + '</div>' +
+                    '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.createNFTMsg") + '</div>' +
+                    '</div>',
+                  confirmButtonText: t("Alerts.continue"),
+                  buttonsStyling: false,
+                  customClass: {
+                    confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+                  },
+                  confirmButtonColor: '#f79336',
+                  position: window.innerWidth < 1024 ? 'bottom' : 'center'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = "/congratulation"
+                  }
+                });
+              })
               .catch((err) => {
                 alert("Failed to add messages exception " + err);
                 console.log("Failed to add messages");
@@ -706,40 +750,40 @@ function LightHeroE(props) {
                         <div className="flex w-full  ">
                           {mint?.file ? (
                             <div className="flex flex-col  relative     text-sm h-30 dark:bg-[#EBEBEB] dark:text-darkgray   rounded-lg justify-center  text-center   w-full ">
-                              
+
                               <img
-                          className="w-full h-60 xl:h-72 2xl:h-92 rounded-md    m-auto  object-cover object-center "
-                          alt="hero"
-                          src={mint?.file}
-                          
-                        />
-                        {/* <div name="text img" className=" w-full flex rounded-lg flex-col  justify-center  absolute opacity-0 hover:opacity-80  bg-black ">
+                                className="w-full h-60 xl:h-72 2xl:h-92 rounded-md    m-auto  object-cover object-center "
+                                alt="hero"
+                                src={mint?.file}
+
+                              />
+                              {/* <div name="text img" className=" w-full flex rounded-lg flex-col  justify-center  absolute opacity-0 hover:opacity-80  bg-black ">
                              <p className="absolute top-1/2 w-full  text-center text-white   -translate-y-1/2  text-md truncate m-auto">{mint?.name}</p>
                               <span className="absolute top-1/2  w-full   text-white  border border-white  -translate-y-1 text-sm rounded-md	uppercase font-bold  m-auto  py-2">
                                 
                                 {t("MintNFT.changeImg")}
                               </span>
                         </div> */}
-                             
+
                             </div>
                           ) : <br></br>}
 
-{!mint?.file &&
+                          {!mint?.file &&
 
-(
-  <div className="flex flex-col      text-sm h-[150px] dark:bg-[#EBEBEB] dark:text-darkgray   rounded-md justify-center  text-center   w-full ">
-    <img
-      src={upfile}
-      className="h-[50px]  pt-4 object-contain"
-    ></img>
-    <span className="text-sm  mx-2 lg:text-md pt-6">
-      {" "}
-      {t("MintNFT.file_type")}
-    </span>
-  </div>
-)
-}
-                         
+                            (
+                              <div className="flex flex-col      text-sm h-[150px] dark:bg-[#EBEBEB] dark:text-darkgray   rounded-md justify-center  text-center   w-full ">
+                                <img
+                                  src={upfile}
+                                  className="h-[50px]  pt-4 object-contain"
+                                ></img>
+                                <span className="text-sm  mx-2 lg:text-md pt-6">
+                                  {" "}
+                                  {t("MintNFT.file_type")}
+                                </span>
+                              </div>
+                            )
+                          }
+
                         </div>
                         <input
                           onChange={uploadFilePinata}
@@ -794,7 +838,7 @@ function LightHeroE(props) {
                               {t("MintNFT.descTxt")}
                             </label>
                             {formik.touched.description &&
-                            formik.errors.description ? (
+                              formik.errors.description ? (
                               <div className="leading-7 text-sm text-red-600 font-open-sans">
                                 {formik.errors.description}
                               </div>
@@ -990,7 +1034,7 @@ function LightHeroE(props) {
                       </div>
                     </form>
                   </div>
-                  
+
                 </div>
               </div>
               {window.innerWidth >= 640 ? (
@@ -1053,14 +1097,14 @@ function LightHeroE(props) {
                       </div>
 
                       <div className="flex ">
-                      <p className="text-black content-en leading-5 ml-2 mb-2 font-open-sans tracking-[3.45px] text-sm md:text-md ">
-                                              {t("tokCollection.createdBy")} : 
-                                                
-                                            </p>
-                                            <p className="text-black content-en  mb-2 font-open-sans font-bold text-sm md:text-md ">
-                                              
-                                              {  window.localStorage.getItem("logged_account")}
-                                            </p>
+                        <p className="text-black content-en leading-5 ml-2 mb-2 font-open-sans tracking-[3.45px] text-sm md:text-md ">
+                          {t("tokCollection.createdBy")} :
+
+                        </p>
+                        <p className="text-black content-en  mb-2 font-open-sans font-bold text-sm md:text-md ">
+
+                          {window.localStorage.getItem("logged_account")}
+                        </p>
                       </div>
                     </div>
                   </div>

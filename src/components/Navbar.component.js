@@ -44,7 +44,7 @@ import createCol from '../assets/img/navBar/menu/plus-col.png';
 
 
 function LightHeaderB(props) {
-  const { selector, modal, accounts, accountId } = useWalletSelector();
+  const { selector, modal, accounts, accountId, logged } = useWalletSelector();
   const APIURL = process.env.REACT_APP_API_TG;
   const [state, setState] = useState({
     owner: "",
@@ -65,6 +65,15 @@ function LightHeaderB(props) {
   const [showFinanceSubMenu, setShowFinanceSubMenu] = useState(false);
   const [showProfileSubMenu, setShowProfileSubMenu] = useState(false);
   const [showSearchSubMenu, setShowSearchSubMenu] = useState(false);
+  const [signIn, setSignIn] = useState(false)
+
+  useEffect(() => {
+    if(signIn){
+      console.log('Se inicio sesion')
+      window.location.reload()
+    }
+    //window.location.reload()
+  },[accountId])
 
   const handleMenuStateChange = () => {
 
@@ -123,6 +132,7 @@ function LightHeaderB(props) {
 
   const handleSignIn = () => {
     modal.show()
+    setSignIn(true)
   }
 
   const handleLanguage = () => {
