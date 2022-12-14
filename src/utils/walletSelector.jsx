@@ -25,12 +25,12 @@ export const WalletSelectorContextProvider = ({ children }) => {
             modules: [
                 setupNearWallet(),
                 setupMyNearWallet(),
-                setupSender(),
-                setupHereWallet(),
+                //setupSender(),
+                //setupHereWallet(),
                 // setupMathWallet(),
                 // setupNightly(),
                 setupMeteorWallet(),
-                setupOptoWallet(),
+                //setupOptoWallet(),
             ],
         });
         const _modal = setupModal(_selector, { contractId: process.env.REACT_APP_CONTRACT });
