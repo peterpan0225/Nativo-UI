@@ -148,7 +148,7 @@ function LightHeroE(props) {
 
       const query = `
       query ($id: String){
-        collections(first:1,orderBy:id,orderDirection:desc ,where:{owner_id:$id}){
+        collections(first:1,orderBy:collectionID,orderDirection:desc ,where:{owner_id:$id}){
           id
           owner_id
           collectionID
