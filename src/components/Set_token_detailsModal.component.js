@@ -597,7 +597,7 @@ export default function Set_token_detailModal(props) {
                               </p>
                               <a
                                 className="relative bg-lime-600 text-white text-center font-bold  text-sm  xl:text-lg  2xl:text-lg px-6 py-3 rounded-md   ease-linear transition-all duration-150  hover:scale-105"
-                                href="/collectionData/create"
+                                href="/collection/create"
                               >
                                 {t("addToken.btnCol")}
                               </a>

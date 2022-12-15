@@ -75,7 +75,7 @@ function LightHeroE(props) {
             icon: 'success',
             confirmButtonColor: '#E79211'
           }).then(function () {
-            window.location.href = "/collection/"+type[1]
+            window.location.href = "viewcollection/"+type[1]
           })
         }
         let id = await getNearAccount()
@@ -126,7 +126,7 @@ function LightHeroE(props) {
           setTxtBttnBanner(t("CreateCol.btnImg-3"))
         }
         else{
-          window.location.href('/collectionData/create')
+          window.location.href('/collection/create')
         }
       }
       else{

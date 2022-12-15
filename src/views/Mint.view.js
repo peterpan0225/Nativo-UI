@@ -622,6 +622,24 @@ function LightHeroE(props) {
           console.log("collections: ", data.data.collections);
           if (data.data.collections.length <= 0) {
             setNoCollections(false);
+            Swal.fire({
+              timer:6000,
+              background: '#0a0a0a',
+              width: '800',
+              html:
+                '<div class="">' +
+                '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("MintNFT.createcolbefore") + '</div>' +
+                '<div class="font-open-sans  text-sm text-white text-left">' + t("MintNFT.createcolredirect") + '</div>' +
+                '</div>',
+              
+              showConfirmButton: false,
+              showCancelButton:false,
+              buttonsStyling: false,
+              position: window.innerWidth < 1024 ? 'bottom' : 'center'
+              
+            }).then(()=>{
+              window.location.href="/collection/create"
+            })
           } else {
             userData = data.data.collections;
             setCollectionData(userData);
@@ -966,7 +984,7 @@ function LightHeroE(props) {
                                     </p>
                                     <a
                                       className="relative bg-lime-600 text-white text-center font-bold uppercase text-sm px-6 py-3 rounded-md   ease-linear transition-all duration-150  hover:scale-105"
-                                      href="/collectionData/create"
+                                      href="/collection/create"
                                     >
                                       {t("addToken.btnCol")}
                                     </a>
@@ -1000,9 +1018,10 @@ function LightHeroE(props) {
                     "  px-4 md:px-8  py-8  md:py-20  lg:mx-auto  w-full md:w-3/5  lg:w-3/6 xl:w-5/12  2xl:1/2 drop-shadow-2xl       md:flex-row flex-col  md:justify-center    "
                   }
                 >
-                  <p className=" w-full  text-base font-bold  text-left my-4">
-                    {t("MintNFT.prevNFT")}
-                  </p>
+                   
+                  <p className=" w-full  text-base lg:text-lg xl:text-xl font-bold  text-left my-4">
+                  {t("MintNFT.prevNFT")}
+                </p>
                   <div
                     name="card"
                     className={

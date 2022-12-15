@@ -224,23 +224,43 @@
 
     },
     "CreateCol" : {
+        "loading" : "Loading information",
+
         "title" : "New collection",
+
         "titleCol" : "Collection Title",
         "descripCol" : "Collection Description",
         "iconCol" : "Collection icon",
+        "uploadAvatar" : "Upload an avatar for the collection",
+        "uploadBanner" : "Upload a banner for the collection",
         "bannerCol" : "Collection cover",
         "msg-1" : "Collection preview at the bottom",
         "createBtn" : "Create collection",
+        "createNFT" : "Create NFT",
         "msg-2" : "Your image may take a little time to display",
         "demoTitle" : "Collection title",
         "demoDescrip" : "Write the description of your collection",
         "creator" : "Creator",
+        "by":"By",
         "contract" : "Contract",
         "noTokens" : "No. of tokens",
         "noSale" : "No. of sales",
         "volSale" : "Sales volume",
         "btnImg-1" : "Select image",
         "btnImg-2" : "Loading",
+        "CreatingCollection" : "Uploading images and creating collection",
+        "CreatingCollectionWait" : " Wait a moment…",
+
+        "EditingCollection" : "Uploading images and editing collection",
+        "EditingCollectionWait" : "Wait a moment…",
+
+        "erruploadAvatartitle" : "Avatar image not charged",
+        "erruploadAvatar" : "Please,select an image as avatar ",
+
+        "uploadingBanner" : "Uploading the banner,wait a moment",
+        "erruploadBannertitle" : "Banner image not charged",
+        "erruploadBanner" : "Please,select an image as banner",
+        "prevCol":"My collection's preview",
         "btnImg-3" : "Change image",
         "err1-title" : "Incomplete data",
         "err1-msg" : "To create a collection you need to fill in all the fields, check that you have filled in all the data",
@@ -250,11 +270,14 @@
         "err3-msg" : "The description of the collection must have a minimum of 30 characters",
         "succ-title" : "Collection created",
         "succ-msg" : "Your collection has been created",
+        "succ-now" : "Now you can add your creations",
         "placeTitle" : "Min. 1 Character",
         "placeDesc" : "Min. 30 Characters",
         "lblIcon-1" : "Maximum 5mb, accepted formats .jpg, .gif, .png, .webp",
         "errSize-1" : "Size cannot exceed 5mb",
         "errFile" : "Unsupported file type",
+        "errTwitter" : "@ is not necessary   or any other special char",
+
         "lblIcon-2" : "Maximum 10mb, accepted formats .jpg, .gif, .png, .webp",
         "errSize-2" : "Size cannot exceed 10mb",
         "userAcc" : "Your account",
@@ -267,9 +290,18 @@
         "swEditedTit" : "Collection has been edited",
         "swEditedDesc" : "The collection has been edited successfully",
         "swCreatedTit" : "The collection has been created successfully",
-        "swCreatedDesc" : "You will be redirected to my NTFs to add your NTFs to the collection"
+        "swCreatedDesc" : "You will be redirected to my NTFs to add your NTFs to the collection",
+        "website":"Website",
+        "websiteph":"www.ejemplo.com",
+        "twitter":"Project's  Twitter",
+        "twitterph":"twitter/",
+
+        "makeVisible":"make this collection visible?"
+
+
     },
     "MintNFT" : {
+        
         "maxTitle" : "Less than 60 characters",
         "maxTitle2":"Max. 36 chars",
         "minTitle" : "Title must be longer than 5",
@@ -334,7 +366,11 @@
 
         "alertCol":"Select a collection",
         "alertPrice":"Select a higher price than 0",
-        "cancel":"Cancel"
+        "cancel":"Cancel",
+        "createcolbefore":"To create your first token in Nativo.art you first need create a collection",
+        "createcolredirect":"We will redirect you so you can create."
+
+
     },
     "Modal" : {
         "accept" : "I accept the terms and conditions of service",
@@ -361,7 +397,9 @@
         "priceAlertTxt" : "The price you want to change must be lower or higher than the current one",
         "transfer": "Transfer",
         "skip_tittle": "Skip for now",
-        "skip_description": "Don´t worry,you'll be able to add to collction or set it a price at the your NFT's details",
+        "skip_description": "Don´t worry,you'll be able to add to collection or set it a price at the your NFT's details",
+        "skip_collection_description": "Don´t worry,you'll be able to create nft later",
+        
         "skip_accept": "Sure!"
 
     },
