@@ -330,7 +330,7 @@ function LightHeroE(props) {
             },
           },
         ],
-        walletCallbackUrl: "/mynfts".toString(),
+        // walletCallbackUrl: "/mynfts".toString(),
       });
     } 
     if ( colID>= 0) {
@@ -377,7 +377,6 @@ function LightHeroE(props) {
     window.localStorage.setItem("price_setted", true);
 
     const wallet = await selector.wallet();
-
     return wallet.signAndSendTransactions({ transactions })
     .then(() => {
       Swal.fire({
@@ -400,12 +399,8 @@ function LightHeroE(props) {
           window.location.href = "/mynfts"
         }
       });
-    })
-    .catch((err) => {
-      alert("Failed to add messages exception " + err);
-      console.log("Failed to add messages");
-
-      throw err;
+    }).catch((err) => {
+      console.log("error: ", err);
     });
   };
 

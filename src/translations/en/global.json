@@ -435,7 +435,9 @@
         "createNFTMsg" : "Congratulations you have successfully created your NFT",
         "congratsTit" : "Operation performed",
         "congratsMsgV1" : "Your NFT has been successfully put up for sale",
-        "congratsMsgV2" : "Your NFT has been successfully listed and added to a collection"
+        "congratsMsgV2" : "Your NFT has been successfully listed and added to a collection",
+        "removeSaleTit" : "You have removed your NFT from sale",
+        "removeSaleMsg" : "Your NFT has been successfully removed from sale"
     },
     "Explore" : {
         "titleTok" : "Explore all Tokens",

@@ -433,7 +433,9 @@
         "createNFTMsg" : "Felicidades has creado tu NFT de manera exitosa",
         "congratsTit" : "Operacion realizada",
         "congratsMsgV1" : "Tu NFT se ha puesto a la venta de manera exitosa",
-        "congratsMsgV2" : "Tu NFT se ha puesto a la venta y agregado a una colección de manera exitosa"
+        "congratsMsgV2" : "Tu NFT se ha puesto a la venta y agregado a una colección de manera exitosa",
+        "removeSaleTit" : "Has quitado de la venta tu NFT",
+        "removeSaleMsg" : "Se ha quitado de la venta tu NFT de manera exitosa"
     },
     "Explore" : {
         "titleTok" : "Explora todos los Tokens",

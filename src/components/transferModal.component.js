@@ -117,7 +117,9 @@ export default function TransferModal(props) {
               });
             })
           }
-        })
+        }).catch((err) => {
+          console.log("error: ", err);
+        });
 
    
     },

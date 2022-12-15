@@ -74,6 +74,9 @@ function LightFooterB(props) {
             }
           });
         })
+        .catch((err) => {
+          console.log("error: ", err);
+        });
       }
     });
   }

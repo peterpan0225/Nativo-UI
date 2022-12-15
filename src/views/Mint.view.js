@@ -387,10 +387,7 @@ function LightHeroE(props) {
                     });
                   })
                   .catch((err) => {
-                    alert("Failed to add messages exception " + err);
-                    console.log("Failed to add messages");
-
-                    throw err;
+                    console.log("error: ", err);
                   });
 
                 // let tokenres = await contract.nft_mint(
@@ -481,10 +478,7 @@ function LightHeroE(props) {
                 });
               })
               .catch((err) => {
-                alert("Failed to add messages exception " + err);
-                console.log("Failed to add messages");
-
-                throw err;
+                console.log("error: ", err);
               });
             // let tokenres = await contract.nft_mint(
             //   payload,

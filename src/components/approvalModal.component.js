@@ -103,6 +103,9 @@ export default function ApprovalModal(props) {
             }
           });
         })
+        .catch((err) => {
+          console.log("error: ", err);
+        });
         
 
    

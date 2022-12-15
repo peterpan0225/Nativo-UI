@@ -109,7 +109,9 @@ export default function PriceModal(props) {
               window.location.href = "/detail/"+props.tokenID
             }
           });
-        })
+        }).catch((err) => {
+          console.log("error: ", err);
+        });
         // 
         
 

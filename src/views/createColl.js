@@ -168,6 +168,8 @@ function LightHeroE(props) {
         media_icon: mediaIcon,
         media_banner: mediaBanner,
         visibility: visibility,
+        twitter: "",
+        website: "",
         _id: colId,
         _type: "edit"
       }
@@ -179,6 +181,8 @@ function LightHeroE(props) {
         media_icon: mediaIcon,
         media_banner: mediaBanner,
         visibility: visibility,
+        twitter: "",
+        website: "",
         _id: "0",
         _type: "create"
       }
@@ -255,7 +259,9 @@ function LightHeroE(props) {
           (type ? window.location.href = "/collection/"+colId : window.location.href = "/mynfts")
         }
       });
-    })
+    }).catch((err) => {
+      console.log("error: ", err);
+    });
     // Swal.fire({
     //   html:
     //   '<div>'+

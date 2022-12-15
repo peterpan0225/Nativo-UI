@@ -110,6 +110,9 @@ export default function OfferModal(props) {
             }
           });
         })
+        .catch((err) => {
+          console.log("error: ", err);
+        });
         
       // if (highestbidder != 'notienealtos') {
       //   if (bigAmount <= BigInt(highestbidder)) {

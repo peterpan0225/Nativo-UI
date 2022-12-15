@@ -125,6 +125,7 @@ function LightHeroE(props) {
           media: values.image,
           biography: values.title,
           social_media: values.description,
+          media_banner: "",
           _type: action
         }
         console.log(payload)
@@ -165,6 +166,9 @@ function LightHeroE(props) {
             }
           });
         })
+        .catch((err) => {
+          console.log("error: ", err);
+        });
       }
       //if de error
 //test

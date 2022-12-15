@@ -297,7 +297,9 @@ function LightEcommerceB(props) {
             window.location.href = "/mynfts"
           }
         });
-      })
+      }).catch((err) => {
+        console.log("error: ", err);
+      });
     }
   }
 
@@ -343,7 +345,9 @@ function LightEcommerceB(props) {
           window.location.href = "/detail/"+props.tokens.tokenID
         }
       });
-    })
+    }).catch((err) => {
+      console.log("error: ", err);
+    });
   }
 
   async function processAcceptOffer(listed,tokenID){
@@ -399,7 +403,9 @@ function LightEcommerceB(props) {
           window.location.reload()
         }
       });
-    })
+    }).catch((err) => {
+      console.log("error: ", err);
+    });
   }
 
   async function makeAnOffer() {
