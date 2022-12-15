@@ -1018,9 +1018,10 @@ function LightHeroE(props) {
                     "  px-4 md:px-8  py-8  md:py-20  lg:mx-auto  w-full md:w-3/5  lg:w-3/6 xl:w-5/12  2xl:1/2 drop-shadow-2xl       md:flex-row flex-col  md:justify-center    "
                   }
                 >
-                  <p className=" w-full  text-base font-bold  text-left my-4">
-                    {t("MintNFT.prevNFT")}
-                  </p>
+                   
+                  <p className=" w-full  text-base lg:text-lg xl:text-xl font-bold  text-left my-4">
+                  {t("MintNFT.prevNFT")}
+                </p>
                   <div
                     name="card"
                     className={

@@ -361,8 +361,8 @@
       
 
         "cancel":"Cancelar",
-        "createcolbefore":"Lo sentimos,no tienes una colección aún,crea una antes",
-        "createcolredirect":"Serás redirigido a crear una."
+        "createcolbefore":"Para crear tu primer token en Nativo.art primero necesitas una colección.",
+        "createcolredirect":"Te redireccionaremos para que puedas crearla."
 
        
     },

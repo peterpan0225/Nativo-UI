@@ -112,11 +112,11 @@ function LightHeroE(props) {
         .min(5, t("MintNFT.minDesc")),
       website: Yup.string()
         .max(1000, t("MintNFT.maxDesc"))
-        .required(t("MintNFT.required"))
+        
         .min(5, t("MintNFT.minDesc")),
       twitter: Yup.string()
-        .max(1000, t("MintNFT.maxDesc"))
-        .required(t("MintNFT.required"))
+        .max(40, t("MintNFT.maxDesc"))
+        
         .matches(/^[0A-Za-z0-9]/, t("CreateCol.errTwitter"))
         .min(5, t("MintNFT.minDesc")),
 

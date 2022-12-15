@@ -366,8 +366,8 @@
         "alertCol":"Select a collection",
         "alertPrice":"Select a higher price than 0",
         "cancel":"Cancel",
-        "createcolbefore":"We are sorry,you do not have a collection yet,create one before",
-        "createcolredirect":"You will be redirected to create one "
+        "createcolbefore":"To create your first token in Nativo.art you first need create a collection",
+        "createcolredirect":"We will redirect you so you can create."
 
 
     },
