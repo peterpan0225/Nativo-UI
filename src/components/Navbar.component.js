@@ -269,7 +269,7 @@ function LightHeaderB(props) {
               window.location.href = "/create"
           } 
           if(result.dismiss == 'cancel') {
-              window.location.href = "/collectionData/create" 
+              window.location.href = "/collection/create" 
           }
         });
       
@@ -680,7 +680,7 @@ function LightHeaderB(props) {
                             <MenuB.Item
                             >
                               {({ active }) => (
-                                <a href="/collectionData/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
+                                <a href="/collection/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
                                   <div className="flex justify-start">
                                     <span className=" m-2">
                                       <img
@@ -963,7 +963,7 @@ function LightHeaderB(props) {
                         <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center ">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
                       </div>
                     </button>
-                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collectionData/create" }}>
+                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collection/create" }}>
                       <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
                         <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center ">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
                       </div>

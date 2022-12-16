@@ -86,7 +86,13 @@ module.exports = {
         'raleway': ['raleway', 'sans-serif'], 
         'open-sans': ['Open Sans', 'sans-serif'],
         'clash-grotesk': ["Clash Grotesk", "sans-serif"]
-      }
+      },
+      screens: {
+        'xxs': '320px',
+        'xs': '375px',
+        // => @media (min-width: 640px) { ... }
+  
+      },
     }
   },
   plugins: [],
