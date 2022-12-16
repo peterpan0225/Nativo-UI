@@ -799,7 +799,7 @@ function Explore() {
                                 {collections.items.map((item, key) => {
                                     return (
                                         <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[455px] xl:w-[380px] 2xl:w-[440px]" key={key}>
-                                            <a href={"/collection/" + item.collectionID}
+                                            <a href={"/viewcollection/" + item.collectionID}
                                             >
                                                 <div className="flex flex-row justify-items-center w-full" key={key}>
 
