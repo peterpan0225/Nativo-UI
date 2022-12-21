@@ -26,7 +26,7 @@ export const WalletSelectorContextProvider = ({ children }) => {
                 setupNearWallet(),
                 setupMyNearWallet(),
                 //setupSender(),
-                //setupHereWallet(),
+                setupHereWallet(),
                 // setupMathWallet(),
                 // setupNightly(),
                 setupMeteorWallet(),
