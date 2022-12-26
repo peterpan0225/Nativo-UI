@@ -4,12 +4,10 @@ import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupModal } from "@near-wallet-selector/modal-ui";
 import { setupNearWallet } from "@near-wallet-selector/near-wallet";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
-import { setupSender } from "@near-wallet-selector/sender";
 import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
 import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
-import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
 import { providers, utils } from "near-api-js";
 
 const WalletSelectorContext = React.createContext(null);
@@ -25,12 +23,10 @@ export const WalletSelectorContextProvider = ({ children }) => {
             modules: [
                 setupNearWallet(),
                 setupMyNearWallet(),
-                //setupSender(),
-                setupHereWallet(),
-                // setupMathWallet(),
-                // setupNightly(),
                 setupMeteorWallet(),
-                //setupOptoWallet(),
+                setupHereWallet(),
+                setupMathWallet(),
+                setupNightly(),
             ],
         });
         const _modal = setupModal(_selector, { contractId: process.env.REACT_APP_CONTRACT });
