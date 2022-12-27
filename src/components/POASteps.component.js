@@ -11,8 +11,8 @@ import Ellipse_7 from "../assets/img/landing/thirdSection/Ellipse_7.png";
 import Money_Icon from "../assets/img/landing/thirdSection/shareicon.png";
 import NFTImage_Icon from "../assets/img/landing/thirdSection/NFTImage_Icon2.png";
 import Wallet_Icon from "../assets/img/landing/thirdSection/Wallet_Icon2.png";
-import rigth_arrow from "../assets/img/landing/thirdSection/arrow-right.png";
-import NftStepsCard from "./NftStepsCard.component";
+import rigth_arrow from "../assets/img/landing/thirdSection/arrow-right-purple.png";
+import POAStepsCard from "./POAStepsCard.component";
 import { render } from "@testing-library/react";
 import { Account } from "near-api-js";
 import { useWalletSelector } from "../utils/walletSelector";
@@ -80,7 +80,7 @@ function NftSteps(props) {
         <div className="w-full flex flex-row flex-wrap lg:flex-nowrap mt-[12px] lg:mt-[50px]">
         {steps.map((card, i) => {
             return (
-            <NftStepsCard card={card} key={i}/>
+            <POAStepsCard card={card} key={i}/>
             )
           })}
 

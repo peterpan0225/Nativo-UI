@@ -99,7 +99,21 @@
         "collections" : "Historias de Trabajo",
         "supporting-title" : "Apoyado por personas grandiosas",
         "gobernance" : "Sé parte de la gobernanza con el token $NTV",
-        "gobernance-button" : "Participa en nativo dao"
+        "gobernance-button" : "Participa en nativo dao",
+        "near": "fundación NEAR",
+        "nearSub": "Realizó un grant para el desarrollo de Nativo.",
+        "cloudMex" : "CloudMex Analytics",
+        "cloudMexSub" : "Empresa Web 3.0 de desarrollo de software. Localizada en Latinoamérica.",
+        "Certificate": "Obtén tu POA",
+        "CertificateSub": "Crea POAs personalizados que permanecen para siempre en blockchain.",
+        "CertificateSub1": "Añade valor siendo un creador verificado.",
+        "CertificateSub2": "Construye confianza protegiéndote de impostores y scam.",
+        "Story": "Historia de tu obra",
+        "StorySub": "Crea y sigue toda la historia de tu obra de arte.",
+        "StorySub1": "Incluye audio, video e imágenes, para registrar tu obra.",
+        "Share": "Comparte tu POA",
+        "ShareSub": "Obtén un código QR personalizado para compartir tus POAs.",
+        "ShareSub1": "Interactúa con tu obra de arte y certifica tus POAs que permanecerán en tu perfil."
     },
     "Navbar" : {
         "collections" : "Colecciones",

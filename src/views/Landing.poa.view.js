@@ -7,7 +7,7 @@ import POASteps from "../components/POASteps.component";
 import Statisct from "../components/statistc.component";
 import Popular_col from "../components/PopularCollections.component";
 import POAs from "../components/POAs.component";
-import Sponsors from "../components/sponsors.component";
+import Description from "../components/descriptionpoa.component";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
@@ -27,8 +27,8 @@ export default function LandingPoA() {
   return (
     <div>
       <POAHero />
+      <Description />
       <POASteps/>
-      <Sponsors />
     </div>
   );
 }
