@@ -112,6 +112,24 @@ function LightHeroE(props) {
       const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
       //getting total nfts
 
+      Swal.fire({
+          
+          
+
+        background: '#0a0a0a',
+        width: '800',
+        heightAuto: false,
+        html:'<div className="text-center h-30 w-30">'
++   '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("CreateCol.loading")  + '</div>' 
++       ' <svg role="status" class="inline mr-3 w-10 h-10 text-white  animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">'
++       ' <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>'
++       ' <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>'
++       ' </svg>'
++' </div>',
+        showCancelButton: false,
+        showConfirmButton:false,
+        position: window.innerWidth < 1024 ? 'bottom' : 'center'
+      })
       let payload = {
         account_id: window.localStorage.getItem("logged_account"),
       };
@@ -235,7 +253,7 @@ function LightHeroE(props) {
         .catch((err) => {
           console.log("error: ", err);
         });
-
+        Swal.close()
       setLoading(false);
 
       setstate({
@@ -259,7 +277,8 @@ function LightHeroE(props) {
         userCollections:{userData}
       });
 
-     
+      Swal.close()
+
 
 
       
@@ -330,7 +349,7 @@ function LightHeroE(props) {
             },
           },
         ],
-        walletCallbackUrl: "/mynfts".toString(),
+        // walletCallbackUrl: "/mynfts".toString(),
       });
     } 
     if ( colID>= 0) {
@@ -377,12 +396,30 @@ function LightHeroE(props) {
     window.localStorage.setItem("price_setted", true);
 
     const wallet = await selector.wallet();
-
-    return wallet.signAndSendTransactions({ transactions }).catch((err) => {
-      alert("Failed to add messages exception " + err);
-      console.log("Failed to add messages");
-
-      throw err;
+    return wallet.signAndSendTransactions({ transactions })
+    .then(() => {
+      Swal.fire({
+        background: '#0a0a0a',
+        width: '800',
+        html:
+          '<div class="">' +
+          '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' + t("Alerts.congratsTit") + '</div>' +
+          '<div class="font-open-sans  text-sm text-white text-left">' + (colID>=0 ? t("Alerts.congratsMsgV2") : t("Alerts.congratsMsgV1")) + '</div>' +
+          '</div>',
+        confirmButtonText: t("Alerts.continue"),
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+        },
+        confirmButtonColor: '#f79336',
+        position: window.innerWidth < 1024 ? 'bottom' : 'center'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "/mynfts"
+        }
+      });
+    }).catch((err) => {
+      console.log("error: ", err);
     });
   };
 
@@ -455,7 +492,7 @@ function LightHeroE(props) {
   };
   return (
     <section className="text-gray-600 body-font   bg-[#F1EDF2]   h-full md:h-screen  ">
-      {loading ? (
+      {false ? (
         <>
           <div className="grid grid-cols-1 gap-4 place-content-center items-center">
             <h1 className="text-5xl font-semibold pt-60 text-center ">
@@ -491,8 +528,7 @@ function LightHeroE(props) {
                  
 {/* 1 */}
 
-{
-                window.innerWidth >=640  &&
+{ window.innerWidth >=640  &&
                 <div name="nft" hidden={hide_create_col}>
                 {!hide_set_price ? (
                   <p className="my-4  text-base lg:text-lg  xl:text-xl    text-[#0A0A0A] font-open-sans font-bold  ">
@@ -582,17 +618,7 @@ function LightHeroE(props) {
                     )}
 
                     <div className="w-full flex flex-col gap-2">
-                      {/* {!hide_set_price ? (
-                        <button
-                          className={`w-full relative px-4 py-2 bg-yellow2  rounded-md  text-white   text-center hover:scale-105 tracking-tighter  font-open-sans text-sm lg:text-lg  xl:text-xl   font-bold `}
-                          onClick={(e) => {
-                            setHide_set_save(true);
-                            setHide_set_price(!hide_set_price);
-                          }}
-                        >
-                          {t("Modal.putSale")}
-                        </button>
-                      ) : ( */}
+                      
                         <>
                         <p className="my-4  text-base lg:text-lg xl:text-xl   text-[#0A0A0A] font-open-sans font-bold  ">
                         {t("Modal.price")}
@@ -632,22 +658,7 @@ function LightHeroE(props) {
                           </div>
                           <hr className="border-t-2 border-yellow2 py-2	"></hr>
                         </>
-                      {/* )} */}
-
-                      {/* {!hide_set_col ? (
-                        <>
-                          <button
-                            className={`w-full relative px-4 py-2 bg-yellow2  rounded-md  text-white   text-center hover:scale-105 tracking-tighter  font-open-sans text-sm lg:text-lg  xl:text-xl   font-bold `}
-                            onClick={(e) => {
-                              setHide_set_save(true);
-
-                              setHide_set_col(!hide_set_col);
-                            }}
-                          >
-                            Añadir a colleccion
-                          </button>
-                        </>
-                      ) : ( */}
+                    
                         <>
                           <div name="collections " className="my-4">
                             <div className="flex justify-between ">
@@ -714,7 +725,7 @@ function LightHeroE(props) {
                                   </p>
                                   <a
                                     className="relative bg-lime-600 text-white text-center font-bold  text-sm px-6 py-3 rounded-md   ease-linear transition-all duration-150  hover:scale-105"
-                                    href="/collectionData/create"
+                                    href="/collection/create"
                                   >
                                     {t("addToken.btnCol")}
                                   </a>
@@ -723,11 +734,7 @@ function LightHeroE(props) {
                             )}
                           </div>
                         </>
-                      {/* )} */}
-
-                      {/*  btn save*/}
-
-                      {/* {hide_set_save && ( */}
+                     
                         <>
                           <div className="mt-3">
                             <input
@@ -785,6 +792,9 @@ function LightHeroE(props) {
                     "  px-4 md:px-8  py-8  md:py-20  mx-auto  w-4/5 md:w-3/5  lg:w-3/6 xl:w-5/12  2xl:1/2 drop-shadow-2xl       md:flex-row flex-col  md:justify-center    "
                   }
                 >
+                    <p className=" w-full  text-base lg:text-lg xl:text-xl font-bold  text-left my-4">
+                  {t("MintNFT.prevNFT")}
+                </p>
                   
                   <div
                     name="card"
@@ -799,12 +809,14 @@ function LightHeroE(props) {
                       //h-7/12
                     }
                     <div className="w-full   h-[280px]   md:h-[340px] lg:h-[350px]  xl:h-[450px]  overflow-hidden rounded-t-2xl   bg-[#EBEBEB]">
-                      
-                        <img
+                      { LToken?.metadata?.media ? <img
                           className=" w-full h-full  object-cover object-center "
                           alt="hero"
                           src={`https://nativonft.mypinata.cloud/ipfs/${LToken?.metadata?.media}`}
-                        />
+                        />:
+                        <br></br>
+                        }
+                        
                      
                     </div>
                     <div

@@ -37,7 +37,7 @@ function NftSteps(props) {
       text: t("Landing.steps-create"),
       sub: t("Landing.steps-sub2"),
       arrow: rigth_arrow,
-      redirect: "collectionData/create"
+      redirect: "collection/create"
     },
     {
       imgSrc: NFTImage_Icon,
@@ -58,7 +58,7 @@ function NftSteps(props) {
   ];
 
   function createCollectionRoute() {
-    window.location.href = '/collectionData/create';
+    window.location.href = '/collection/create';
   }
 
   function createNFTRoute() {

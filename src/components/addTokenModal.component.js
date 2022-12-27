@@ -118,7 +118,31 @@ export default function AddTokenModal(props) {
               }
             }
           ]
+        }).then(() => {
+          Swal.fire({
+            background: '#0a0a0a',
+            width: '800',
+            html:
+              '<div class="">' +
+              '<div class="font-open-sans  text-base font-extrabold text-white mb-4 text-left uppercase">' +  t("Alerts.addTokColTit") + '</div>' +
+              '<div class="font-open-sans  text-sm text-white text-left">' + t("Alerts.addTokColMsg") + '</div>' +
+              '</div>',
+            confirmButtonText: t("Alerts.continue"),
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'font-open-sans uppercase text-base  font-extrabold  text-white  text-center bg-yellow2 rounded-md bg-yellow2 px-3 py-[10px] mx-2',
+            },
+            confirmButtonColor: '#f79336',
+            position: window.innerWidth < 1024 ? 'bottom' : 'center'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload()
+            }
+          });
         })
+        .catch((err) => {
+          console.log("error: ", err);
+        });
       }
     })
   }
@@ -245,7 +269,7 @@ export default function AddTokenModal(props) {
                   <>
                     <div className="flex flex-col justify-center">
                       <h1 className="text-darkgray text-xl text-center font-raleway mb-4">{t('addToken.msgNoCol')}</h1>
-                      <a className="relative bg-yellow2 text-white text-center font-bold uppercase text-sm px-6 py-3 rounded-full shadow outline-none focus:outline-none  ease-linear transition-all duration-150 hover:shadow-yellow1 hover:scale-105" href="/collectionData/create">{t('addToken.btnCol')}</a>
+                      <a className="relative bg-yellow2 text-white text-center font-bold uppercase text-sm px-6 py-3 rounded-full shadow outline-none focus:outline-none  ease-linear transition-all duration-150 hover:shadow-yellow1 hover:scale-105" href="/collection/create">{t('addToken.btnCol')}</a>
                     </div>
                   </>
                 }

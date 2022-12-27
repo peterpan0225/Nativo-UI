@@ -24,6 +24,7 @@ import finances from '../assets/img/navBar/Finances.png';
 import loans from '../assets/img/navBar/Prestamos.png';
 import stacking from '../assets/img/navBar/Stacking.png';
 import tokenIcon from '../assets/img/navBar/token.png';
+import artistIcon from '../assets/img/navBar/Artist.png'
 import filter from '../assets/img/navBar/filter_none.png';
 import accountCircle from '../assets/img/navBar/profile/account_circle.png';
 import createCollection from '../assets/img/navBar/profile/crear_coleccion.png';
@@ -43,7 +44,7 @@ import createCol from '../assets/img/navBar/menu/plus-col.png';
 
 
 function LightHeaderB(props) {
-  const { selector, modal, accounts, accountId } = useWalletSelector();
+  const { selector, modal, accounts, accountId, logged } = useWalletSelector();
   const APIURL = process.env.REACT_APP_API_TG;
   const [state, setState] = useState({
     owner: "",
@@ -64,6 +65,15 @@ function LightHeaderB(props) {
   const [showFinanceSubMenu, setShowFinanceSubMenu] = useState(false);
   const [showProfileSubMenu, setShowProfileSubMenu] = useState(false);
   const [showSearchSubMenu, setShowSearchSubMenu] = useState(false);
+  const [signIn, setSignIn] = useState(false)
+
+  useEffect(() => {
+    if(signIn){
+      console.log('Se inicio sesion')
+      window.location.reload()
+    }
+    //window.location.reload()
+  },[accountId])
 
   const handleMenuStateChange = () => {
 
@@ -122,6 +132,7 @@ function LightHeaderB(props) {
 
   const handleSignIn = () => {
     modal.show()
+    setSignIn(true)
   }
 
   const handleLanguage = () => {
@@ -258,7 +269,7 @@ function LightHeaderB(props) {
               window.location.href = "/create"
           } 
           if(result.dismiss == 'cancel') {
-              window.location.href = "/collectionData/create" 
+              window.location.href = "/collection/create" 
           }
         });
       
@@ -334,7 +345,7 @@ function LightHeaderB(props) {
   }
 
   let handleAllCollections = async (e) => {
-    window.location.href = '/collections?search=all'
+    window.location.href = '/explore?search=collections'
   }
 
 
@@ -422,7 +433,7 @@ function LightHeaderB(props) {
                             </a>
                           )}
                         </MenuB.Item>
-                        <MenuB.Item onClick={async () => { window.location.href = "/market" }}>
+                        <MenuB.Item onClick={async () => { window.location.href = "/explore?search=tokens" }}>
                           {({ active }) => (
                             <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -437,7 +448,21 @@ function LightHeaderB(props) {
                             </a>
                           )}
                         </MenuB.Item>
-
+                        <MenuB.Item onClick={async () => { window.location.href = "/explore?search=artists" }}>
+                          {({ active }) => (
+                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                              <div className="flex justify-start cursor-pointer">
+                                <img
+                                  className="mr-2"
+                                  src={artistIcon}
+                                  alt='banner'
+                                  width="20px"
+                                  height="20px" />
+                                <p className=" self-center"> {t("Navbar.artists")}</p>
+                              </div>
+                            </a>
+                          )}
+                        </MenuB.Item>
 
 
                       </div>
@@ -655,7 +680,7 @@ function LightHeaderB(props) {
                             <MenuB.Item
                             >
                               {({ active }) => (
-                                <a href="/collectionData/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
+                                <a href="/collection/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
                                   <div className="flex justify-start">
                                     <span className=" m-2">
                                       <img
@@ -849,7 +874,7 @@ function LightHeaderB(props) {
                               height="20px" />
                             <p className="ml-4">{t("Navbar.explore")}</p>
                           </button>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/collections?search=all">
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/explore?search=collections">
                             <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
                             <img
                               className="mr-4"
@@ -858,11 +883,20 @@ function LightHeaderB(props) {
                               width="25px"
                               height="20px" />
                           </a>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/market">
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=tokens">
                             <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
                             <img
                               className="mr-4"
                               src={tokenIcon}
+                              alt='banner'
+                              width="25px"
+                              height="20px" />
+                          </a>
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=artists">
+                            <p className="font-open-sans font-semibold text-base">{t("Navbar.artists")}</p>
+                            <img
+                              className="mr-4"
+                              src={artistIcon}
                               alt='banner'
                               width="25px"
                               height="20px" />
@@ -929,7 +963,7 @@ function LightHeaderB(props) {
                         <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center ">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
                       </div>
                     </button>
-                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collectionData/create" }}>
+                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collection/create" }}>
                       <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
                         <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center ">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
                       </div>
@@ -1028,7 +1062,7 @@ function LightHeaderB(props) {
                               height="20px" />
                             <p className="ml-4">{t("Navbar.explore")}</p>
                           </button>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/collections?search=all">
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/explore?search=collections">
                             <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
                             <img
                               className="mr-4"
@@ -1037,11 +1071,20 @@ function LightHeaderB(props) {
                               width="25px"
                               height="20px" />
                           </a>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/market">
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=tokens">
                             <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
                             <img
                               className="mr-4"
                               src={tokenIcon}
+                              alt='banner'
+                              width="25px"
+                              height="20px" />
+                          </a>
+                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=artists">
+                            <p className="font-open-sans font-semibold text-base">{t("Navbar.artists")}</p>
+                            <img
+                              className="mr-4"
+                              src={artistIcon}
                               alt='banner'
                               width="25px"
                               height="20px" />

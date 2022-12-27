@@ -47,7 +47,7 @@ function LightHeroE(props) {
             </button>
             </Link> 
           }
-            <Link to="/market">
+            <Link to="/explore">
               <button className="flex inline-flex rounded-xlarge w-full h-[50px]  mt-0  lg:w-[158px]" >
                   <div className="flex flex-col font-bold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
                   <svg className="fill-current w-[342px] h-[48px] mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>

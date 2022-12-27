@@ -118,6 +118,8 @@
         "myNFTs" : "My NFTs",
         "warning" : "This is a public beta version - Use at your own risk - Unaudited code",
         "language" : "English",
+        "change" : "Change",
+
         "gallery" : "Gallery",
         "onSale" : "Market",
         "login" : "Connect",
@@ -139,7 +141,8 @@
         "commingSubtitle" : "At this moment this sections isn't available, but we're working and soon you can use it and make the most of it",
         "logoutMsg" : "Want to Logout?",
         "logoutMsgSub" : "Remember that to navigate on site correctly, your wallet must be connected, in the same way you can connect it at any time",
-        "createMsg" : "what do you want to create?"
+        "createMsg" : "what do you want to create?",
+        "artists" : "Artists"
     },
     "Footer" : {
         "made" : "Made with:",
@@ -164,6 +167,8 @@
         "tribu" : "Nativo NFT 2022 - Mantained by",
         "cloudMx": "CloudMex Analytics community",
         "btn-NTV" : "Add my NTVs to my wallet",
+        "btn-add" : "Add",
+
         "msg-ntv-title" : "Warning",
         "msg-ntv-desc" : "The transaction that you are about to execute will fail, don't worry there is no problem, execute the transaction, once it fails press cancel to return to the page.",
         "msg-ntv-btn" : "Continue",
@@ -278,23 +283,43 @@
 
     },
     "CreateCol" : {
+        "loading" : "Loading information",
+
         "title" : "New collection",
+
         "titleCol" : "Collection Title",
         "descripCol" : "Collection Description",
         "iconCol" : "Collection icon",
+        "uploadAvatar" : "Upload an avatar for the collection",
+        "uploadBanner" : "Upload a banner for the collection",
         "bannerCol" : "Collection cover",
         "msg-1" : "Collection preview at the bottom",
         "createBtn" : "Create collection",
+        "createNFT" : "Create NFT",
         "msg-2" : "Your image may take a little time to display",
         "demoTitle" : "Collection title",
         "demoDescrip" : "Write the description of your collection",
         "creator" : "Creator",
+        "by":"By",
         "contract" : "Contract",
         "noTokens" : "No. of tokens",
         "noSale" : "No. of sales",
         "volSale" : "Sales volume",
         "btnImg-1" : "Select image",
         "btnImg-2" : "Loading",
+        "CreatingCollection" : "Uploading images and creating collection",
+        "CreatingCollectionWait" : " Wait a moment…",
+
+        "EditingCollection" : "Uploading images and editing collection",
+        "EditingCollectionWait" : "Wait a moment…",
+
+        "erruploadAvatartitle" : "Avatar image not charged",
+        "erruploadAvatar" : "Please,select an image as avatar ",
+
+        "uploadingBanner" : "Uploading the banner,wait a moment",
+        "erruploadBannertitle" : "Banner image not charged",
+        "erruploadBanner" : "Please,select an image as banner",
+        "prevCol":"My collection's preview",
         "btnImg-3" : "Change image",
         "err1-title" : "Incomplete data",
         "err1-msg" : "To create a collection you need to fill in all the fields, check that you have filled in all the data",
@@ -304,11 +329,14 @@
         "err3-msg" : "The description of the collection must have a minimum of 30 characters",
         "succ-title" : "Collection created",
         "succ-msg" : "Your collection has been created",
+        "succ-now" : "Now you can add your creations",
         "placeTitle" : "Min. 1 Character",
         "placeDesc" : "Min. 30 Characters",
         "lblIcon-1" : "Maximum 5mb, accepted formats .jpg, .gif, .png, .webp",
         "errSize-1" : "Size cannot exceed 5mb",
         "errFile" : "Unsupported file type",
+        "errTwitter" : "@ is not necessary   or any other special char",
+
         "lblIcon-2" : "Maximum 10mb, accepted formats .jpg, .gif, .png, .webp",
         "errSize-2" : "Size cannot exceed 10mb",
         "userAcc" : "Your account",
@@ -321,9 +349,18 @@
         "swEditedTit" : "Collection has been edited",
         "swEditedDesc" : "The collection has been edited successfully",
         "swCreatedTit" : "The collection has been created successfully",
-        "swCreatedDesc" : "You will be redirected to my NTFs to add your NTFs to the collection"
+        "swCreatedDesc" : "You will be redirected to my NTFs to add your NTFs to the collection",
+        "website":"Website",
+        "websiteph":"www.ejemplo.com",
+        "twitter":"Project's  Twitter",
+        "twitterph":"twitter/",
+
+        "makeVisible":"make this collection visible?"
+
+
     },
     "MintNFT" : {
+        
         "maxTitle" : "Less than 60 characters",
         "maxTitle2":"Max. 36 chars",
         "minTitle" : "Title must be longer than 5",
@@ -388,7 +425,11 @@
 
         "alertCol":"Select a collection",
         "alertPrice":"Select a higher price than 0",
-        "cancel":"Cancel"
+        "cancel":"Cancel",
+        "createcolbefore":"To create your first token in Nativo.art you first need create a collection",
+        "createcolredirect":"We will redirect you so you can create."
+
+
     },
     "Modal" : {
         "accept" : "I accept the terms and conditions of service",
@@ -415,7 +456,9 @@
         "priceAlertTxt" : "The price you want to change must be lower or higher than the current one",
         "transfer": "Transfer",
         "skip_tittle": "Skip for now",
-        "skip_description": "Don´t worry,you'll be able to add to collction or set it a price at the your NFT's details",
+        "skip_description": "Don´t worry,you'll be able to add to collection or set it a price at the your NFT's details",
+        "skip_collection_description": "Don´t worry,you'll be able to create nft later",
+        
         "skip_accept": "Sure!"
 
     },
@@ -456,5 +499,65 @@
         "searchNftById": "Search NFT by ID",
         "modalSearch": "We can't find that NFT",
         "modalSearchText": "Search by another ID"
+    },
+    "Alerts" : {
+        "continue" : "Continue",
+        "buyNFTTit" : "You have bought an NFT",
+        "buyNFTMsg" : "Congratulations you have successfully purchased the NFT",
+        "addTokColTit" : "You have added an NFT to your collection",
+        "addTokColMsg" : "Congratulations you have added your NFT to a collection",
+        "approveTokTit" : "You have put an NFT up for sale",
+        "approveTokMsg" : "Congratulations your NFT is already for sale",
+        "addNTVTit" : "You have added your NTV Token to your wallet",
+        "addNTVMsg" : "Congratulations, you can now view your NTV token in your wallet",
+        "addOfferTit" : "You have made an offer",
+        "addOfferMsg" : "Congratulations your offer has been made",
+        "changePriceTit" : "You have changed the price of your NFT",
+        "changePriceMsg" : "Congratulations you have changed the price of your NFT",
+        "transferNFTTit" : "Transferred NFT",
+        "transferNFTMsg" : "You have transferred your NFT to: ",
+        "createColTit" : "You have created a collection",
+        "createColMsg" : "Congratulations you have created a collection",
+        "editColTit" : "You have edited a collection",
+        "editColMsg" : "Congratulations you have edited your collection",
+        "offerCanTit" : "You have canceled an offer",
+        "offerCanMsg" : "You have canceled your offer successfully",
+        "acceptOffTit" : "You have accepted an offer",
+        "acceptOffMsg" : "You have accepted an offer for your NFT",
+        "createProTit" : "You have created your profile",
+        "createProMsg" : "Congratulations you have successfully created your profile",
+        "editProTit" : "You have edited your profile",
+        "editProMsg" : "Congratulations you have successfully edited your profile",
+        "createNFTTit" : "You have created an NFT",
+        "createNFTMsg" : "Congratulations you have successfully created your NFT",
+        "congratsTit" : "Operation performed",
+        "congratsMsgV1" : "Your NFT has been successfully put up for sale",
+        "congratsMsgV2" : "Your NFT has been successfully listed and added to a collection",
+        "removeSaleTit" : "You have removed your NFT from sale",
+        "removeSaleMsg" : "Your NFT has been successfully removed from sale"
+    },
+    "Explore" : {
+        "titleTok" : "Explore all Tokens",
+        "titleCol" : "Explore all Collections",
+        "titleArt" : "Explore all Artists",
+        "tabTok" : "Tokens",
+        "tabCol" : "Collections",
+        "tabArt" : "Artists",
+        "sortTimeOld" : "Time  (old to recent)",
+        "sortTimeRec" : "Time  (recent to old)",
+        "noResult" : "No results",
+        "noResTok" : "We searched far and wide and couldn't find any tokens matching your search",
+        "sortBy" : "Sort by",
+        "sortTitAz" : "Title  (A-Z)",
+        "sortTitZa" : "Title  (Z-A)",
+        "noResCol" : "We searched far and wide and couldn't find any collections matching your search",
+        "sortUserAz" : "Username  (A-Z)",
+        "sortUserZa" : "Username  (Z-A)",
+        "tabPopulares" : "Popular",
+        "tabTopSell" : "Top Sellers",
+        "tabRecent" : "Recent",
+        "noResArt" : "We searched far and wide and couldn't find any tokens matching your search",
+        "endCol" : "There are no more collections",
+        "endArt" : "There are no more artists"
     }
 }

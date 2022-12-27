@@ -4,6 +4,24 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    screens: {
+      'xs': '390px',
+
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     extend: {
       boxShadow: {
         's': '4px 1px 17px rgba(253, 252, 252, 0.05)',
@@ -42,11 +60,13 @@ module.exports = {
         "textOutlinePressed" : " #FDFCFD",
         "grayColor" : "#F3F0F5",
         "dark-blue" : "#164E55",
-        "Light/Light" : "#ECE7EE"
+        "Light/Light" : "#ECE7EE",
+        "grey3" : "#616161"
       },
       borderRadius: {
         'xlarge': '15px',
         '20': '20px',
+        '3px' : '3px',
       },
       backgroundImage: {
         'background-landing': "url('./assets/img/background_landing.png')",
@@ -68,7 +88,13 @@ module.exports = {
         'raleway': ['raleway', 'sans-serif'], 
         'open-sans': ['Open Sans', 'sans-serif'],
         'clash-grotesk': ["Clash Grotesk", "sans-serif"]
-      }
+      },
+      screens: {
+        'xxs': '320px',
+        'xs': '375px',
+        // => @media (min-width: 640px) { ... }
+  
+      },
     }
   },
   plugins: [],
