@@ -375,7 +375,7 @@ function LightHeaderB(props) {
                 placeholder={t("Navbar.search")}
                 value={buscar}
                 {...formik.getFieldProps("search")}
-                className={`w-full focus:border flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
+                className={`w-full   flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
               />
 
               <button
