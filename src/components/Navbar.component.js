@@ -371,16 +371,16 @@ function LightHeaderB(props) {
   <input
                 type="search"
                 id="search"
-                name="search"
+                name="search_lg"
                 placeholder={t("Navbar.search")}
                 value={buscar}
                 {...formik.getFieldProps("search")}
-                className={`w-full flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
+                className={`w-full focus:border flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
               />
 
               <button
                 type="submit"
-                className={` dark:text-white  w-10 h-10 `}
+                className={` dark:text-white  w-[100px] h-10 `}
               >
                 
                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -775,20 +775,21 @@ function LightHeaderB(props) {
                       </button>
                       <form
                         onSubmit={formik.handleSubmit}
-                        className="w-full relative flex my-auto h-[40px] items-center mx-2"
+                        className="w-full   flex justify-between my-auto h-[40px] items-center mx-2"
                       >
                         <input
                           type="search"
                           id="search"
-                          name="search"
+                          name="search_sm"
                           placeholder={t("Navbar.search")}
                           value={buscar}
                           {...formik.getFieldProps("search")}
                           className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center   rounded-md  dark:bg-[#0A0A0A] focus-visible:outline-none  `}
                         />
+
                         <button
                           type="submit"
-                          className={` dark:text-white absolute right-0 mr-2 `}
+                          className={` dark:text-white  w-[100px]  `}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -966,19 +967,29 @@ function LightHeaderB(props) {
                         <p>{t("Navbar.community")}</p>
                       </a>
                     </div>
-                    <button className="flex    w-full h-[40px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
-                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center ">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                    <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
+                      <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} 
+                         </span>
+                         <img className="manImg  mt-2 mr-2 w-5 h-5 "  src={createNft}></img>
                       </div>
                     </button>
-                    <button className="flex    w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collection/create" }}>
-                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center ">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                    <button className="     w-full h-[50px]   mt-3" onClick={() => { window.location = "/collection/create" }}>
+                      <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
+                          {t("Navbar.createCollection")} 
+                           </span>
+                           <img className="manImg mt-2 mr-2 w-5 h-5  "  src={createCol}></img> 
                       </div>
                     </button>
-                    <button className="flex    w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { logOut() }}>
-                      <div className="flex flex-col font-extrabold h-full text-yellow2  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-yellow2">
-                        <span className="title-font  text-yellow2 font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center ">{t("Navbar.logout")}<img className="manImg self-center ml-[6px]" width="20px" height="20px" src={salir}></img> </span>
+                   
+                    <button className="    w-full h-[50px]  mt-3" onClick={() => { logOut() }}>
+                      <div className="flex  font-extrabold h-full text-yellow2  text-center justify-between shadow-s border-solid border-2 rounded-md border-yellow2">
+                        <span className="title-font  text-yellow2 font-open-sans text-[15px] tracking-tighter lg:font-bold px-5 pt-2 uppercase  flex   ">
+                          {t("Navbar.logout")} </span>
+                          <img className="manImg mt-2 mr-2 w-5 h-5" width="20px" height="20px" src={salir}></img>
                       </div> 
                     </button>
                   </Menu>
@@ -1013,12 +1024,12 @@ function LightHeaderB(props) {
                       </button>
                       <form
                         onSubmit={formik.handleSubmit}
-                        className="w-full relative flex my-auto h-[40px] items-center mx-2"
+                        className="w-full   flex justify-between my-auto h-[40px] mx-2"
                       > 
                         <input
                           type="search"
                           id="search"
-                          name="search"
+                          name="search_md"
                           placeholder={t("Navbar.search")}
                           value={buscar}
                           {...formik.getFieldProps("search")}
@@ -1026,7 +1037,7 @@ function LightHeaderB(props) {
                         />
                         <button
                           type="submit"
-                          className={` dark:text-white absolute right-0 mr-2 `}
+                          className={` dark:text-white   w-[100px] `}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
