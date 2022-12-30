@@ -246,7 +246,7 @@ function LightHeaderB(props) {
       
       Swal.fire({
         background: '#0a0a0a',
-        width: '800',
+        width: '500',
         heightAuto: false,
         html:
           '<div class=" flex flex-col overflow-hidden">' +
