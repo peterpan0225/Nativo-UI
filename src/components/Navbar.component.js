@@ -260,8 +260,8 @@ function LightHeaderB(props) {
         showConfirmButton: true,
         buttonsStyling: false,
         customClass: {
-          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
-          cancelButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
+          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 pl-4  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-left  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
+          cancelButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 px-4  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-right  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
         },
         position: window.innerWidth < 1024 ? 'bottom' : 'center'
       }).then((result) => {
@@ -359,10 +359,10 @@ function LightHeaderB(props) {
               href="/"
               className="flex flex-row"
             >
-              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[105px] lg:h-[60px]" alt="logo" width="105px" height="60px" />
+              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[100px] lg:h-[60px]" alt="logo" width="100px" height="60px" />
             </a>
           </div>
-          <nav className={" lg:mr-auto lg:ml-4 lg:py-1 lg:border-l lg:border-gray-400	 flex-wrap items-center text-base justify-center hidden lg:flex " + (menu ? "esconder-nav" : "")}>
+          <nav className={" lg:mr-auto lg:ml-4 lg:py-1 lg:border-l lg:border-gray-400	   items-center text-base justify-center hidden lg:flex " + (menu ? "esconder-nav" : "")}>
             <form
               onSubmit={formik.handleSubmit}
               className="w-[275px] relative flex justify-between my-auto items-center"
@@ -489,7 +489,7 @@ function LightHeaderB(props) {
                   <div className="flex flex-nowrap flex-row-reverse h-full">
                     <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
                       <div className="w-full flex relative h-full">
-                        <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
+                        <div className="mr-2  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
                           {t("Navbar.finance")}
                         </div>
                       </div>
@@ -563,7 +563,7 @@ function LightHeaderB(props) {
               )}
             </MenuB>
 
-            <a href="/community" className="mr-5 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
+            <a href="/community" className="mr-2 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
               {t("Navbar.community")}
             </a>
 
