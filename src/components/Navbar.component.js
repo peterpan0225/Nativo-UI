@@ -499,7 +499,7 @@ function LightHeaderB(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
+                    <MenuB.Items static className="w-[240px]  md:w-[240px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
                       <div className="py-1">
                       
                       <MenuB.Item onClick={async  => { window.location.href = "/poa" }}>

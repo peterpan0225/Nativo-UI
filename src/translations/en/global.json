@@ -86,8 +86,8 @@
         "artists" : "Artists",
         "services" : "Services",
         "nativoDAO" : "Nativo DAO",
-        "poa" : "POA",
-        "ntvFarm" : "NTV Farm"
+        "poa" : "Certificate of Art",
+        "ntvFarm" : "$NTV Farm"
     },
     "Footer" : {
         "made" : "Made with:",
