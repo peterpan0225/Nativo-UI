@@ -81,7 +81,11 @@
         "logoutMsg" : "¿QUIERES SALIR?",
         "logoutMsgSub" : "Recuerda que para navegar el sitio de manera correcta es necesario que esté conectada tu wallet, de igual forma puedes conectarla en cualquier momento",
         "createMsg" : "¿Qué deseas crear?",
-        "artists" : "Artistas"
+        "artists" : "Artistas",
+        "services" : "Servicios",
+        "nativoDAO" : "Nativo DAO",
+        "poa" : "POA",
+        "ntvFarm" : "NTV Farm"
     },
     "Footer" : {
         "made" : "Hecho con:",
