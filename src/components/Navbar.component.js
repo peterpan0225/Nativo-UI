@@ -246,7 +246,7 @@ function LightHeaderB(props) {
       
       Swal.fire({
         background: '#0a0a0a',
-        width: '800',
+        width: '500',
         heightAuto: false,
         html:
           '<div class=" flex flex-col overflow-hidden">' +
@@ -260,8 +260,8 @@ function LightHeaderB(props) {
         showConfirmButton: true,
         buttonsStyling: false,
         customClass: {
-          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
-          cancelButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
+          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 px-10  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-left  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
+          cancelButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 px-4  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-right  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
         },
         position: window.innerWidth < 1024 ? 'bottom' : 'center'
       }).then((result) => {
@@ -353,38 +353,46 @@ function LightHeaderB(props) {
     <>
 
       <header className="text-gray-600 body-font shadow-sm sticky top-0 z-50 bg-[#ffffff]">
-        <div className=" flex  px-5  flex-row items-center movil-header dark:bg-[#0A0A0A] h-[80px]">
-          <div className="w-full flex flex-row justify-between lg:w-auto">
+        <div className=" flex  px-5  flex-row justify-between items-center movil-header dark:bg-[#0A0A0A] h-[80px]">
+          <div className="w-[100px] flex flex-row justify-between ">
             <a
               href="/"
               className="flex flex-row"
             >
-              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[105px] lg:h-[60px]" alt="logo" width="105px" height="60px" />
+              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[100px] lg:h-[60px]" alt="logo" width="100px" height="60px" />
             </a>
           </div>
-          <nav className={" lg:mr-auto lg:ml-4 lg:py-1 lg:border-l lg:border-gray-400	 flex-wrap items-center text-base justify-center hidden lg:flex " + (menu ? "esconder-nav" : "")}>
+          <nav className={" lg:mr-auto lg:ml-4 lg:py-1 lg:border-l lg:border-gray-400	   items-center text-base justify-center hidden lg:flex " + (menu ? "esconder-nav" : "")}>
             <form
               onSubmit={formik.handleSubmit}
-              className="w-[275px] relative flex my-auto h-[40px] items-center"
+              className="w-[275px] relative flex justify-between my-auto items-center"
             >
-              <input
+              <div className="flex justify-between  h-[40px] border border-solid  rounded-md   border-white2">
+  <input
                 type="search"
                 id="search"
-                name="search"
+                name="search_lg"
                 placeholder={t("Navbar.search")}
                 value={buscar}
                 {...formik.getFieldProps("search")}
-                className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center  border-solid border rounded-md border-white2  dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
+                className={`w-full   flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
               />
+
               <button
                 type="submit"
-                className={` dark:text-white absolute right-0 mr-2 `}
+                className={` dark:text-white  w-[100px] h-10 `}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
+                
+               
               </button>
+              </div>
+            
+              
             </form>
 
 
@@ -579,7 +587,7 @@ function LightHeaderB(props) {
               )}
             </MenuB>
 
-            <a href="/community" className="mr-5 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
+            <a href="/community" className="mr-2 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
               {t("Navbar.community")}
             </a>
 
@@ -791,20 +799,21 @@ function LightHeaderB(props) {
                       </button>
                       <form
                         onSubmit={formik.handleSubmit}
-                        className="w-full relative flex my-auto h-[40px] items-center mx-2"
+                        className="w-full   flex justify-between my-auto h-[40px] items-center mx-2"
                       >
                         <input
                           type="search"
                           id="search"
-                          name="search"
+                          name="search_sm"
                           placeholder={t("Navbar.search")}
                           value={buscar}
                           {...formik.getFieldProps("search")}
                           className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center   rounded-md  dark:bg-[#0A0A0A] focus-visible:outline-none  `}
                         />
+
                         <button
                           type="submit"
-                          className={` dark:text-white absolute right-0 mr-2 `}
+                          className={` dark:text-white  w-[100px]  `}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -823,7 +832,7 @@ function LightHeaderB(props) {
                   <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
                     <div>
                       <button
-                      className={` mt-5 text-white b border-0 py-2  focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase flex w-full`}
+                      className={` mt-5 text-white b border-0 py-2  focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase flex `}
                       style={{ justifyContent: "center" }}
                       onClick={handleProfileSubMenu}>
                       <div className="flex items-center">
@@ -865,7 +874,7 @@ function LightHeaderB(props) {
                             height="20px" />
                         </button>
                         <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.create")}</p>
+                          <p className="font-open-sans font-semibold text-base">{t("Navbar.create")+"AAAA"}</p>
                           <img
                             className="mr-4"
                             src={createToken}
@@ -991,20 +1000,30 @@ function LightHeaderB(props) {
                         <p>{t("Navbar.community")}</p>
                       </a>
                     </div>
-                    <button className="flex  rounded-xlarge w-full h-[40px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
-                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center ">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                    <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
+                      <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} 
+                         </span>
+                         <img className="manImg  mt-2 mr-2 w-5 h-5 "  src={createNft}></img>
                       </div>
                     </button>
-                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { window.location = "/collection/create" }}>
-                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2  ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center ">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                    <button className="     w-full h-[50px]   mt-3" onClick={() => { window.location = "/collection/create" }}>
+                      <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
+                          {t("Navbar.createCollection")} 
+                           </span>
+                           <img className="manImg mt-2 mr-2 w-5 h-5  "  src={createCol}></img> 
                       </div>
                     </button>
-                    <button className="flex  rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={() => { logOut() }}>
-                      <div className="flex flex-col font-extrabold h-full text-yellow2  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-yellow2">
-                        <span className="title-font  text-yellow2 font-open-sans text-base lg:font-extrabold p-5 uppercase leading-6 flex justify-center ">{t("Navbar.logout")}<img className="manImg self-center ml-[6px]" width="20px" height="20px" src={salir}></img> </span>
-                      </div>
+                   
+                    <button className="    w-full h-[50px]  mt-3" onClick={() => { logOut() }}>
+                      <div className="flex  font-extrabold h-full text-yellow2  text-center justify-between shadow-s border-solid border-2 rounded-md border-yellow2">
+                        <span className="title-font  text-yellow2 font-open-sans text-[15px] tracking-tighter lg:font-bold px-5 pt-2 uppercase  flex   ">
+                          {t("Navbar.logout")} </span>
+                          <img className="manImg mt-2 mr-2 w-5 h-5" width="20px" height="20px" src={salir}></img>
+                      </div> 
                     </button>
                   </Menu>
                 </div>
@@ -1012,11 +1031,12 @@ function LightHeaderB(props) {
               :
               <>
                 <button
-                  className={`ml-auto  text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[320px] lg:w-auto rounded-md font-open-sans font-extrabold uppercase hidden lg:flex items-center`}
+                  className={`ml-auto  text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[160px] rounded-md font-open-sans font-extrabold uppercase hidden lg:flex items-center`}
                   style={{ justifyContent: "center" }}
                   // disabled={state?.tokens.onSale}
                   onClick={handleSignIn}>
-                  <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>{t("Navbar.login")}
+                  <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>
+                  {t("Navbar.login")}
                 </button>
                 <div className="lg:hidden">
                   <div className="flex mr-[35px]">
@@ -1037,12 +1057,12 @@ function LightHeaderB(props) {
                       </button>
                       <form
                         onSubmit={formik.handleSubmit}
-                        className="w-full relative flex my-auto h-[40px] items-center mx-2"
-                      >
+                        className="w-full   flex justify-between my-auto h-[40px] mx-2"
+                      > 
                         <input
                           type="search"
                           id="search"
-                          name="search"
+                          name="search_md"
                           placeholder={t("Navbar.search")}
                           value={buscar}
                           {...formik.getFieldProps("search")}
@@ -1050,7 +1070,7 @@ function LightHeaderB(props) {
                         />
                         <button
                           type="submit"
-                          className={` dark:text-white absolute right-0 mr-2 `}
+                          className={` dark:text-white   w-[100px] `}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -1188,14 +1208,21 @@ function LightHeaderB(props) {
                         <p>{t("Navbar.community")}</p>
                       </div>
                     </div>
-                    <button className="flex inline-flex rounded-xlarge w-full h-[40px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
-                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold  p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} <img className="manImg  self-center ml-[6px]" width="20px" height="20px" src={createNft}></img> </span>
+                    <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
+                      <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} 
+                         </span>
+                         <img className="manImg  mt-2 mr-2 w-5 h-5 "  src={createNft}></img>
                       </div>
                     </button>
-                    <button className="flex inline-flex rounded-xlarge w-full h-[40px]  lg:w-[159px] mt-3" onClick={handleSignIn}>
-                      <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-base lg:font-extrabold p-0 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.createCollection")} <img className="manImg self-center ml-[6px]" width="20px" height="20px" src={createCol}></img> </span>
+                    <button className="     w-full h-[50px]   mt-3" onClick={handleSignIn}>
+                      <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                        <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
+                          {t("Navbar.createCollection")} 
+                           </span>
+                           <img className="manImg mt-2 mr-2 w-5 h-5  "  src={createCol}></img> 
                       </div>
                     </button>
                   </Menu>
