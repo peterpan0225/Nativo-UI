@@ -32,6 +32,7 @@ import notFound from "./views/notFound.view";
 //este hoc nos regresa el componente que le mandamos si tiene instalado metamask
 //import MetamaskProtectedRoute from "./HOCS/MetamaskProtectedRoute.hoc";
 import BlockchainProtectedRoute from "./HOCS/BlockchainProtectedRoute.hoc";
+import LandingPOA from "./views/Landing.poa.view";
 const { create } = require("ipfs-http-client");
 
 //instancia de ipfs
@@ -73,6 +74,9 @@ class App extends Component {
         <Router >
           <Navbar theme={this.state.theme} />
           <Switch id="page-wrap">
+            <Route exact path="/" component={Landing} />
+            <Route path="/poa/" component={LandingPOA} />
+            <BlockchainProtectedRoute path="/create" component={Mint} />
              
              <Route exact path="/" component={Landing} /> 
           
