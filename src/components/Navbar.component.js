@@ -515,7 +515,7 @@ function LightHeaderB(props) {
                           )}
                       </MenuB.Item>
 
-                      <MenuB.Item onClick={async => { window.location.href = "https://app.mynearwallet.com/staking/nativo.pool.near" }}>
+                      <MenuB.Item onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near",'_blank') }}>
                           {({ active }) => (
                             <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -528,7 +528,7 @@ function LightHeaderB(props) {
                           )}
                       </MenuB.Item>
 
-                      <MenuB.Item onClick={async => { window.location.href = "https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/" }}>
+                      <MenuB.Item onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/",'_blank') }}>
                           {({ active }) => (
                             <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
                               <div className="flex justify-start cursor-pointer">
@@ -954,13 +954,13 @@ function LightHeaderB(props) {
                             <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z"/><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z"/><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z"/><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z"/></g></svg>
                           </div>
                         </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "https://app.mynearwallet.com/staking/nativo.pool.near" }}>
+                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near",'_blank') }}>
                           <p className="font-open-sans font-semibold text-base">{t("Navbar.ntvFarm")}</p>
                           <div className="w-[25px] h-[20px] fill-white mr-4">
                             <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></svg>
                           </div>
                         </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/" }}>
+                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/",'_blank') }}>
                           <p className="font-open-sans font-semibold text-base">{t("Navbar.nativoDAO")}</p>
                           <div className="w-[25px] h-[20px] fill-white mr-4">
                             <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"/></svg>
@@ -1151,13 +1151,13 @@ function LightHeaderB(props) {
                             <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z"/><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z"/><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z"/><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z"/></g></svg>
                           </div>
                         </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "https://app.mynearwallet.com/staking/nativo.pool.near" }}>
+                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near",'_blank') }}>
                           <p className="font-open-sans font-semibold text-base">{t("Navbar.ntvFarm")}</p>
                           <div className="w-[25px] h-[20px] fill-white mr-4">
                             <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></svg>
                           </div>
                         </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/" }}>
+                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/",'_blank') }}>
                           <p className="font-open-sans font-semibold text-base">{t("Navbar.nativoDAO")}</p>
                           <div className="w-[25px] h-[20px] fill-white mr-4">
                             <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"/></svg>
