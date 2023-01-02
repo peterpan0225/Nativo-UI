@@ -55,11 +55,10 @@
     "Landingpoa": {
         "title" : "Prueba de Autenticidad,",
         "title-2" : "certifica tu arte fisico",
-        "subtitle" : "Nativo es un marketplace de NFT que busca recuperar la cultura nativa de países hispánicos a través del",
-        "subtitle2" : "ecosistema de Blockchain.",
+        "subtitle" : "Realiza un registro On-Chain tu arte físico. Muéstralo en tus exposiciones en IRL.",
         "connect" : "Conectar mi near wallet",
         "btnCollections" : "Colecciones",
-        "gallery" : "Registro",
+        "register" : "Solicita acceso anticipado",
         "useNear" : "Utiliza tu Near wallet",
         "useNear-sub" : "Con ellas podrás comprar tus NFTs e ingresa a tu panel",
         "artist" : "Como artista crea nuevos NFT",
@@ -103,17 +102,7 @@
         "near": "fundación NEAR",
         "nearSub": "Realizó un grant para el desarrollo de Nativo.",
         "cloudMex" : "CloudMex Analytics",
-        "cloudMexSub" : "Empresa Web 3.0 de desarrollo de software. Localizada en Latinoamérica.",
-        "Certificate": "Obtén tu POA",
-        "CertificateSub": "Crea POAs personalizados que permanecen para siempre en blockchain.",
-        "CertificateSub1": "Añade valor siendo un creador verificado.",
-        "CertificateSub2": "Construye confianza protegiéndote de impostores y scam.",
-        "Story": "Historia de tu obra",
-        "StorySub": "Crea y sigue toda la historia de tu obra de arte.",
-        "StorySub1": "Incluye audio, video e imágenes, para registrar tu obra.",
-        "Share": "Comparte tu POA",
-        "ShareSub": "Obtén un código QR personalizado para compartir tus POAs.",
-        "ShareSub1": "Interactúa con tu obra de arte y certifica tus POAs que permanecerán en tu perfil."
+        "cloudMexSub" : "Empresa Web 3.0 de desarrollo de software. Localizada en Latinoamérica."
     },
     "Navbar" : {
         "collections" : "Colecciones",
