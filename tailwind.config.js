@@ -73,6 +73,8 @@ module.exports = {
         'hero-rocket': "url('./assets/img/Rocket.png')",
         'trendings-background': "url('./assets/img/Trending2.png')",
         'crear-background': "url('./assets/img/Back_Crear.png')",
+        "Hero_poa": "url('./assets/img/landing/firstSection/heropoa_2.png')",
+        "Hero_poa_mobile": "url('./assets/img/landing/firstSection/heropoa_mobile.png')",
         'steps-background': "url('./assets/img/landing/thirdSection/Optimized-Gradient.png')",
         "Hero_2": "url('./assets/img/landing/firstSection/Optimized-Hero_2.png')",
         "Hero_mobile_2": "url('./assets/img/landing/firstSection/Optimized-Hero_mobile_2.png')",
