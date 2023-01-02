@@ -73,13 +73,12 @@ module.exports = {
         'hero-rocket': "url('./assets/img/Rocket.png')",
         'trendings-background': "url('./assets/img/Trending2.png')",
         'crear-background': "url('./assets/img/Back_Crear.png')",
-        'steps-background': "url('./assets/img/landing/thirdSection/Gradient.png')",
-        "Hero_2": "url('./assets/img/landing/firstSection/Hero_2.png')",
         "Hero_poa": "url('./assets/img/landing/firstSection/heropoa_2.jpg')",
         "Hero_poa_mobile": "url('./assets/img/landing/firstSection/heropoa_mobile.jpg')",
-        "Hero_mobile_2": "url('./assets/img/landing/firstSection/Hero_mobile_2.png')",
-        "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Crea_y_vende_tus_NFTs_2.png')",
-        "Crea_y_comparte_tus_POAs": "url('./assets/img/landing/thirdSection/BackgroundBlue.png')",
+        'steps-background': "url('./assets/img/landing/thirdSection/Optimized-Gradient.png')",
+        "Hero_2": "url('./assets/img/landing/firstSection/Optimized-Hero_2.png')",
+        "Hero_mobile_2": "url('./assets/img/landing/firstSection/Optimized-Hero_mobile_2.png')",
+        "Crea_y_vende_tus_NFTs_2": "url('./assets/img/landing/thirdSection/Optimized-Crea_y_vende_tus_NFTs_2.png')",
         "ntvTokenBlured": "url('./assets/img/landing/sponsorsSection/bluredntvToken.png')"
       },
       backgroundSize: {
