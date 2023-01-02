@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import verifyImage from '../assets/img/Check.png';
 import rocket from '../assets/img/Rocket.png';
 import arrowRight from '../assets/img/landing/firstSection/ARROW.png';
-import certificado from '../assets/img/landing/firstSection/certificado.png';
 import plus from '../assets/img/landing/firstSection/plus.png';
 
 
