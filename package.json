@@ -14,7 +14,7 @@
     "@mui/material": "^5.2.3",
     "@near-wallet-selector/core": "^6.0.1",
     "@near-wallet-selector/default-wallets": "^6.0.0",
-    "@near-wallet-selector/here-wallet": "^7.3.0",
+    "@near-wallet-selector/here-wallet": "^7.4.0",
     "@near-wallet-selector/ledger": "^6.0.0",
     "@near-wallet-selector/math-wallet": "^6.0.1",
     "@near-wallet-selector/meteor-wallet": "^6.0.0",
