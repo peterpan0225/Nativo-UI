@@ -260,7 +260,7 @@ function LightHeaderB(props) {
         showConfirmButton: true,
         buttonsStyling: false,
         customClass: {
-          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 pl-4  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-left  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
+          confirmButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 px-10  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-left  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
           cancelButton: 'flex py-2 w-full h-[40px]  mt-0 ml-5 px-4  lg:w-[200px] title-font  text-white font-open-sans font-normal lg:font-extrabold text-base uppercase leading-6  justify-center hover:text-textOutlineHover active:text-textOutlinePressed flex flex-col font-extrabold h-full text-white  text-right  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed " ',
         },
         position: window.innerWidth < 1024 ? 'bottom' : 'center'
