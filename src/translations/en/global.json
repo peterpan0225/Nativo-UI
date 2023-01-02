@@ -499,6 +499,7 @@
         "tabRecent" : "Recent",
         "noResArt" : "We searched far and wide and couldn't find any tokens matching your search",
         "endCol" : "There are no more collections",
-        "endArt" : "There are no more artists"
+        "endArt" : "There are no more artists",
+        "searchTit" : "Search results"
     }
 }
