@@ -549,6 +549,7 @@
         "tabRecent" : "Recientes",
         "noResArt" : "Buscamos a lo largo y ancho y no pudimos encontrar ningún artista que coincida con su búsqueda",
         "endCol" : "Ya no hay mas colecciones",
-        "endArt" : "Ya no hay mas artistas"
+        "endArt" : "Ya no hay mas artistas",
+        "searchTit" : "Resultados de la busqueda"
     }
 }

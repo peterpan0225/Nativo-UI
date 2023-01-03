@@ -11,7 +11,7 @@ import Pagination from '@mui/material/Pagination';
 import { Account } from "near-api-js";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { useTranslation } from "react-i18next";
-
+import searchImg from "../assets/img/explore/youtube_searched_for.png"
 import InfiniteScroll from "react-infinite-scroll-component";
 import verifyImage from '../assets/img/Check.png';
 import { Fab } from "@mui/material";
@@ -66,7 +66,7 @@ function LightEcommerceA() {
     items: [],
     hasMore: true
   });
-  
+
   const APIURL = process.env.REACT_APP_API_TG;
   const location = useLocation();
   const handleChangePage = (e, value) => {
@@ -94,9 +94,9 @@ function LightEcommerceA() {
     setfiltro(c => ({ ...c, ...v }))
   }
 
-  function delay(n){
-    return new Promise(function(resolve){
-        setTimeout(resolve,n*1000);
+  function delay(n) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, n * 1000);
     });
   }
 
@@ -140,16 +140,16 @@ function LightEcommerceA() {
       .then((data) => {
         colData = data.data.collections;
         if (data.data.collections.length <= Landing.tokensPerPage) {
-          setCollections({...collections, hasMore: false });
+          setCollections({ ...collections, hasMore: false });
           setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
           return;
         }
 
         if (data.data.collections.length > Landing.tokensPerPage) {
-          setCollections({...collections, hasMore: true });
-           setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
+          setCollections({ ...collections, hasMore: true });
+          setLastID(parseInt(data.data.collections[data.data.collections.length - 1].collectionID))
         }
-       
+
         setpage(page + 1)
       })
       .catch((err) => {
@@ -157,30 +157,30 @@ function LightEcommerceA() {
       })
 
 
-      if(colData != 0 ) {
-        let col = colData.map((collection) => {
-          return {
-            title: collection.title,
-            owner: collection.owner_id,
-            tokenCount: collection.tokenCount,
-            description: collection.description,
-            mediaIcon: collection.mediaIcon,
-            mediaBanner: collection.mediaBanner,
-            collectionID: collection.collectionID
-          };
-        });
-    
-        await setLanding({
-          ...Landing,
-          tokens: col,
-          nPages: 0,
-        });
-        setCollections({
-          ...collections,
-          items: collections.items.concat(col)
-        });
-      }
-      
+    if (colData != 0) {
+      let col = colData.map((collection) => {
+        return {
+          title: collection.title,
+          owner: collection.owner_id,
+          tokenCount: collection.tokenCount,
+          description: collection.description,
+          mediaIcon: collection.mediaIcon,
+          mediaBanner: collection.mediaBanner,
+          collectionID: collection.collectionID
+        };
+      });
+
+      await setLanding({
+        ...Landing,
+        tokens: col,
+        nPages: 0,
+      });
+      setCollections({
+        ...collections,
+        items: collections.items.concat(col)
+      });
+    }
+
 
   }
   var colData;
@@ -204,7 +204,7 @@ function LightEcommerceA() {
 
         const query = new URLSearchParams(location.search);
         const searchWord = query.get('search');
-        const searchWordTG  = decodeURIComponent(searchWord)
+        const searchWordTG = decodeURIComponent(searchWord)
 
         if (searchWord === 'all') {
           const queryData = `
@@ -306,16 +306,16 @@ function LightEcommerceA() {
           const queryData2 = `  
           query($first: String!) 
            {
-             collectionSearch(text: $first, skip: 0, first: 3) {
-               id
-               title
-               description
-               owner_id
-               tokenCount
-               mediaBanner
-               mediaIcon
-               collectionID
-               timestamp
+             collectionSearch(text: $first, skip: 0, first: 8) {
+              id
+              collectionID
+              owner_id
+              title
+              timestamp
+              mediaIcon
+              mediaBanner,
+              description,
+              tokenCount
 
            }
          }
@@ -365,7 +365,7 @@ function LightEcommerceA() {
               items: collections.items.concat(col)
             });
 
-            setSearch({skipSearch : 3, hasMore: col.length == 3 ? true : false});
+            setSearch({ skipSearch: 8, hasMore: col.length == 8 ? true : false });
 
           } else {
             setTotalCol(0);
@@ -377,17 +377,17 @@ function LightEcommerceA() {
     })();
   }, [trigger]);
 
-  const _handleKeyUp = async(e) => {
+  const _handleKeyUp = async (e) => {
     e.preventDefault();
     setActiveSearch(true)
     let colData;
 
     let originalSearchWord = search.searchWord;
-    let replacedString = originalSearchWord.replace(/['"]+/g,'');
+    let replacedString = originalSearchWord.replace(/['"]+/g, '');
     let searchWordMap = replacedString.split(' ');
-    let filterWords =  searchWordMap.filter((word) => word !== "");
+    let filterWords = searchWordMap.filter((word) => word !== "");
     let searchWordJoin = filterWords.map((word, i, arr) => {
- 
+
       if (i + 1 === arr.length) {
         return word;
       } else {
@@ -395,23 +395,23 @@ function LightEcommerceA() {
       }
     })
     let searchWord = searchWordJoin.join(' ');
-  
 
 
-    
-      const queryData2 = `
+
+
+    const queryData2 = `
          query($first: String!) 
             {
-              collectionSearch(text: $first, skip: 0, first: 3) {
-                id
-                title
-                description
-                owner_id
+              collectionSearch(text: $first, skip: 0, first: 8) {
+                id,
+                collectionID,
+                owner_id,
+                title,
+                timestamp,
+                mediaIcon,
+                mediaBanner,
+                description,
                 tokenCount
-                mediaBanner
-                mediaIcon
-                collectionID
-                timestamp
 
             }
           }
@@ -424,59 +424,59 @@ function LightEcommerceA() {
     })
 
     await client
-    .query({
-      query: gql(queryData2),
-      variables: {
-        first: searchWord,
-      },
-    })
+      .query({
+        query: gql(queryData2),
+        variables: {
+          first: searchWord,
+        },
+      })
       .then((data) => {
-        console.log('data',data);
+        console.log('data', data);
         colData = data.data.collectionSearch;
       })
       .catch((err) => {
-        console.log('err',err);
+        console.log('err', err);
       })
 
-      let col = colData.map((collection) => {
-        return {
-          title: collection.title,
-          owner: collection.owner_id,
-          tokenCount: collection.tokenCount,
-          description: collection.description,
-          mediaIcon: collection.mediaIcon,
-          mediaBanner: collection.mediaBanner,
-          collectionID: collection.collectionID
-        };
-      });
+    let col = colData.map((collection) => {
+      return {
+        title: collection.title,
+        owner: collection.owner_id,
+        tokenCount: collection.tokenCount,
+        description: collection.description,
+        mediaIcon: collection.mediaIcon,
+        mediaBanner: collection.mediaBanner,
+        collectionID: collection.collectionID
+      };
+    });
 
-      setCollections({
-        ...collections,
-        items: col
-      });
+    setCollections({
+      ...collections,
+      items: col
+    });
 
-      setSearch({searchWord: originalSearchWord, isSearch: true, skipSearch : 3, hasMore: col.length == 3 ? true : false});
+    setSearch({ searchWord: originalSearchWord, isSearch: true, skipSearch: 8, hasMore: col.length == 8 ? true : false });
 
-     
+
   }
 
-  let fetchMoreSearch = async() => {
+  let fetchMoreSearch = async () => {
     await delay(.75)
     let colData;
-    
-      const queryData2 = `
+
+    const queryData2 = `
          query($first: String!) 
             {
-              collectionSearch(text: $first, skip: ${search.skipSearch}, first: 3) {
+              collectionSearch(text: $first, skip: ${search.skipSearch}, first: 8) {
                 id
-                title
-                description
-                owner_id
-                tokenCount
-                mediaBanner
-                mediaIcon
                 collectionID
+                owner_id
+                title
                 timestamp
+                mediaIcon
+                mediaBanner,
+                description,
+                tokenCount
             }
           }
         `
@@ -488,145 +488,132 @@ function LightEcommerceA() {
     })
 
     await client
-    .query({
-      query: gql(queryData2),
-      variables: {
-        first: search.searchWord,
-      },
-    })
+      .query({
+        query: gql(queryData2),
+        variables: {
+          first: search.searchWord,
+        },
+      })
       .then((data) => {
-        console.log('data',data);
+        console.log('data', data);
         colData = data.data.collectionSearch;
       })
       .catch((err) => {
-        console.log('err',err);
+        console.log('err', err);
       })
 
-      let col = colData.map((collection) => {
-        return {
-          title: collection.title,
-          owner: collection.owner_id,
-          tokenCount: collection.tokenCount,
-          description: collection.description,
-          mediaIcon: collection.mediaIcon,
-          mediaBanner: collection.mediaBanner,
-          collectionID: collection.collectionID
-        };
-      });
+    let col = colData.map((collection) => {
+      return {
+        title: collection.title,
+        owner: collection.owner_id,
+        tokenCount: collection.tokenCount,
+        description: collection.description,
+        mediaIcon: collection.mediaIcon,
+        mediaBanner: collection.mediaBanner,
+        collectionID: collection.collectionID
+      };
+    });
 
-      setCollections({
-        ...collections,
-        items: collections.items.concat(col)
-      });
+    setCollections({
+      ...collections,
+      items: collections.items.concat(col)
+    });
 
-      console.log('collection', col.length);
-      setSearch({...search, skipSearch : search.skipSearch + 3, hasMore: col.length == 3 ? true : false});
+    console.log('collection', col.length);
+    setSearch({ ...search, skipSearch: search.skipSearch + 8, hasMore: col.length == 8 ? true : false });
 
-      console.log('search', search);
-      
+    console.log('search', search);
+
   }
 
 
-  let _cleanSearch = async() => {
-  setSearch({isSearch: false,
-    skipSearch: 0,
-    searchWord: "",
-    hasMore: true});
-    setCollections({items: [],
-      hasMore: true})
-   settrigger(!trigger);
+  let _cleanSearch = async () => {
+    setSearch({
+      isSearch: false,
+      skipSearch: 0,
+      searchWord: "",
+      hasMore: true
+    });
+    setCollections({
+      items: [],
+      hasMore: true
+    })
+    settrigger(!trigger);
   }
 
-  let _handleChange = async(e)=>{
-    if(e.target.value=='' && activeSearch){ 
+  let _handleChange = async (e) => {
+    if (e.target.value == '' && activeSearch) {
       setActiveSearch(false)
       _cleanSearch()
     }
-    setSearch({...search, searchWord: e.target.value})
+    setSearch({ ...search, searchWord: e.target.value })
   }
-return (
-  <section className={"text-gray-600 body-font " + (ini && hasData ? "" : "dark:bg-darkgray")}>
-    <div className={"pt-3 mx-auto dark:bg-darkgray "}>
-      <div className="lg:w-full  h-[30px] flex my-8 justify-center">
-        <h1 className="text-3xl lg:text-6xl font-black dark:text-white bg-darkgray m-0 px-6 font-raleway uppercase self-center">
-          {t("Collections.title")}
-        </h1>
-      </div>
+  return (
+    <section>
+      <div>
+        <div className="flex flex-col lg:flex-row px-6 lg:px-12 bg-inherit lg:bg-grayColor pb-[30px] pt-[51px] lg:py-12">
+          {/* Titulos de la Pagina */}
+          <p className="dark:text-black text-left w-full text-3xl lg:text-[35px] xl:text-[45px] 2xl:text-[60px] font-clash-grotesk font-semibold leading-9">{t("Explore.searchTit")}</p>
+        </div>
 
-    
-      {hasData ?
-        <div>
-          <InfiniteScroll
-            dataLength={collections.items.length}
-            next={!search.isSearch ? fetchMoreData : fetchMoreSearch}
-            hasMore={!search.isSearch ? collections.hasMore : search.hasMore}
-            loader={<h1 className="text-center w-full py-10 text-xl font-bold text-yellow2">{t("tokCollection.loading")}</h1>}
-            endMessage={
-              <p className="text-center w-full py-10 text-xl text-yellow2">
-                <b>{t("Collections.end")}</b>
-              </p>
-            }
-            className={"flex flex-wrap px-[20px]"}
-          >
-            {collections.items.map((i, index) => {
-              return (
-                <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:p-4" key={index}>
-                  <a
-                    href={"viewcollection/" + i.collectionID}
-                  >
-                    <div className="flex flex-row  mb-5 md:mb-0 justify-center " >
-                      <div className="trending-token w-full rounded-20 hover:shadow-yellow1   hover:scale-105 ">
-                        <div className=" bg-white rounded-20 pb-4 ">
-                          <div className="">
-                            <img
-                              className="object-cover object-center rounded-t-xlarge h-[12rem] md:h-48  w-full bg-center"
-                              src={`https://nativonft.mypinata.cloud/ipfs/${i.mediaBanner}`}
-                              alt={i.description}
-                            />
+
+        {hasData ?
+          <div className="py-6">
+            <InfiniteScroll
+              dataLength={collections.items.length}
+              next={!search.isSearch ? fetchMoreData : fetchMoreSearch}
+              hasMore={!search.isSearch ? collections.hasMore : search.hasMore}
+              loader={<h1 className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">{t("tokCollection.loading")}</h1>}
+              endMessage={
+                <p className="text-center font-clash-grotesk font-semibold w-full py-10 text-xl text-black">
+                  {t("Explore.endCol")}
+                </p>
+              }
+              className={"flex flex-wrap px-6 lg:px-[46px] gap-4 lg:gap-[19px] justify-center"}
+            >
+              {collections.items.map((item, key) => {
+                return (
+                  <div className="w-full sm:w-[280px] md:w-[350px] lg:w-[455px] xl:w-[380px] 2xl:w-[440px]" key={key}>
+                    <a href={"/viewcollection/" + item.collectionID}>
+                      <div className="flex flex-row justify-items-center w-full" key={key}>
+
+                        <div className="rounded-xl shadow-lg bg-white hover:scale-105 w-full ">
+                          <div className="  overflow-hidden rounded-t-md  bg-white ">
+                            <img className="  h-[190px] object-cover object-center scale-150 w-full lg:h-[306px] " alt={item.description} src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaBanner}`} />
                           </div>
-
-                          <div className="w-[125px] h-[125px]  bg-circle bg-center rounded-full border-4 border-white relative bg-cover mx-auto -mt-[100px]" style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${i.mediaIcon})` }} >
-                          </div>
-                          <div className=" px-4">
-
-                            <div className="capitalize text-black text-base text-ellipsis overflow-hidden whitespace-nowrap  font-raleway font-bold text-center">{i.title}</div>
-
-                            <div className="flex justify-center pt-2">
-                              {/* <div className="text-black text-sm font-raleway font-normal   "><span className="font-bold">Tokens:</span> {i.tokenCount}</div> */}
-
-
-
+                          <div className="flex flex-row  mb-4" name="card_detail">
+                            <div className=" z-10 -mt-4 lg:-mt-8 ml-4        ">
+                              <img className="  object-cover  rounded-md bg-white  border-2 border-white w-[90px] h-[90px] lg:w-[120px] lg:h-[120px] " src={`https://nativonft.mypinata.cloud/ipfs/${item.mediaIcon}`} alt={item.description} />
+                            </div>
+                            <div class="flex flex-col  mx-2 mt-2  ">
+                              <p className="   w-[210px]  sm:w-[150px] md:w-[230px] lg:w-[305px] xl:w-[220px] 2xl:w-[280px] uppercase tracking-tighter text-black text-base font-open-sans font-extrabold collection-description h-[50px] justify-center items-center">{item.title}</p>
+                              <p className="   w-[210px]  sm:w-[150px] md:w-[230px] lg:w-[305px] xl:w-[220px] 2xl:w-[280px] uppercase tracking-tighter text-xs text-left font-bold justify-center font-open-sans leading-4 text-black truncate">{t("Landing.popular_col-by") + " " + item.owner}</p>
+                              <div className="   w-[210px]  sm:w-[150px] md:w-[230px] lg:w-[305px] xl:w-[220px] 2xl:w-[280px]   text-xs  text-black text-left justify-center font-normal font-open-sans truncate"><p className="w-full   text-xs text-black font-open-sans font-normal tracking-wide leading-4  text-left justify-center truncate uppercase"><b>{item.tokenCount > 999 ? "+" + item.tokenCount + "k " : item.tokenCount + " "}</b> {t("Landing.popular_col-tokens_on")}</p></div>
                             </div>
                           </div>
-                          <div className=" px-6 font-raleway text-xs text-right mx-auto justify-center text-ellipsis overflow-hidden">{t("tokCollection.createdBy")} <a href={`profile/${i.owner.split('.')[0]}`} className="font-raleway text-xs font-bold text-blue2 text-ellipsis overflow-hidden">{i.owner}</a></div>
                         </div>
                       </div>
-                    </div>
-                  </a>
-                </div>
-              )
-            })}
-          </InfiniteScroll>
-        </div>
-        :
-        <div className=" mx-auto flex   md:flex-row flex-col text-yellow2 justify-center h-96 items-center text-4xl font-bold">
-          <div className="flex flex-col justify-center">
-            <h1 className="text-center">{t("Collections.load-2")}</h1>
-            <button
-                  className={`w-fit mx-auto mt-2 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none  rounded-md font-open-sans font-extrabold text-lg md:flex`}
-                  onClick={() =>{window.location = "collections?search=all"}}>
-
-                  {t("Navbar.search-all")}
-                </button>
+                    </a>
+                  </div>
+                )
+              })}
+            </InfiniteScroll>
           </div>
-        </div>
-      }
+          :
+          <div className="w-full flex flex-row px-6 py-40 items-center justify-center">
+            <img src={searchImg} alt="Lupa" width={96} height={96} className="w-[96px] h-[96px]" />
+            <div className="flex flex-col pl-4">
+              <h1 className="font-open-sans text-4xl dark:text-black font-bold pb-3">{t("Explore.noResult")}</h1>
+              <p className="font-open-sans text-base dark:text-black">{t("Explore.noResCol")}</p>
+            </div>
+          </div>
+        }
 
 
 
-    </div>
-  </section>
-);
-    }
+      </div>
+    </section>
+  );
+}
 
 export default LightEcommerceA;
