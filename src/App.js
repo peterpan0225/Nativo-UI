@@ -76,7 +76,6 @@ class App extends Component {
           <Switch id="page-wrap">
             <Route exact path="/" component={Landing} />
             <Route path="/poa/" component={LandingPOA} />
-            <BlockchainProtectedRoute path="/create" component={Mint} />
              
              <Route exact path="/" component={Landing} /> 
           
