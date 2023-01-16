@@ -37,7 +37,7 @@ function Explore() {
     const [hasDataCol, setHasDataCol] = React.useState(false)
     const [colSortOrd, setColSortOrd] = React.useState('desc')
     const [colSort, setColSort] = React.useState('collectionID')
-    const [triggerCol, setTriggerCol] = React.useState(true)
+    const [triggerCol, setTriggerCol] = React.useState(true);
     const [lastUsername, setLastUsername] = React.useState("");
     const [lastTimestamp, setLastTimestamp] = React.useState();
     const [hasDataArt, setHasDataArt] = React.useState(false)
@@ -746,7 +746,7 @@ function Explore() {
                                                                         height={15}
                                                                     /> {fromYoctoToNear(item.price)} NEAR</div>
                                                                 </div>
-                                                                <a href={`profile/${item.creator_id.split('.')[0]}`}><p className="text-black py-3 font-open-sans text-[10px] xl:pb-[23px] font-semibold leading-4 text-ellipsis overflow-hidden whitespace-nowrap uppercase">{t("tokCollection.createdBy") + ":"} {item.creator_id}</p></a>
+                                                                <a href={`/${item.creator_id.split('.')[0]}`}><p className="text-black py-3 font-open-sans text-[10px] xl:pb-[23px] font-semibold leading-4 text-ellipsis overflow-hidden whitespace-nowrap uppercase">{t("tokCollection.createdBy") + ":"} {item.creator_id}</p></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -880,7 +880,7 @@ function Explore() {
                                     }
                                     return (
                                         <div className="w-full sm:w-[275px] md:w-[345px] lg:w-[290px] xl:w-[375px] 2xl:w-[435px]" key={key}>
-                                            <a href={`profile/${item.username.split('.')[0]}`}>
+                                            <a href={`/${item.username.split('.')[0]}`}>
                                                 <div className="flex flex-wrap flex-row justify-between items-center hover:scale-105">
                                                     <p className="w-auto font-clash-grotesk font-semibold text-[25px] text-outlinePressed">{count}</p>
                                                     <div className="bg-white rounded-xl py-2 shadow-lg w-[285px] sm:w-[235px] md:w-[295px] lg:w-[255px] xl:w-[335px] 2xl:w-[395px] h-[100px] ">

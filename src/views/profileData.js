@@ -162,7 +162,7 @@ function LightHeroE(props) {
             position: window.innerWidth < 1024 ? 'bottom' : 'center'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = "/profile/"+account.split('.')[0]
+              window.location.href = "/"+account.split('.')[0]
             }
           });
         })

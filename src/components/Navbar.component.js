@@ -348,897 +348,922 @@ function LightHeaderB(props) {
     window.location.href = '/explore?search=collections'
   }
 
+  /*function to redirect to create perfil if not created*/
+  const handleProfileCreation = async (owner) => {
+    let account;
+    let ownerAccount = await accountId;
+    if (process.env.REACT_APP_NEAR_ENV == 'mainnet') {
+      account = owner + '.near'
+    }
+    else {
+      account = owner + '.testnet'
+    }
+    const query = `
+    query ($account: String){
+      profiles (where : {id : $account}){
+        id
+        username
+        media
+        mediaBanner
+        biography
+        socialMedia
+        tokCreated
+        tokBought
+        timestamp
+      }
+    }
+  `
+    const client = new ApolloClient({
+      uri: APIURL,
+      cache: new InMemoryCache(),
+    })
 
-  return (
-    <>
-
-      <header className="text-gray-600 body-font shadow-sm sticky top-0 z-50 bg-[#ffffff]">
-        <div className=" flex  px-5  flex-row justify-between items-center movil-header dark:bg-[#0A0A0A] h-[80px]">
-          <div className="w-[100px] flex flex-row justify-between ">
-            <a
-              href="/"
-              className="flex flex-row"
-            >
-              <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[100px] lg:h-[60px]" alt="logo" width="100px" height="60px" />
-            </a>
-          </div>
-          <nav className={" lg:mr-auto lg:ml-4 lg:py-1 lg:border-l lg:border-gray-400	   items-center text-base justify-center hidden lg:flex " + (menu ? "esconder-nav" : "")}>
-            <form
-              onSubmit={formik.handleSubmit}
-              className="w-[275px] relative flex justify-between my-auto items-center"
-            >
-              <div className="flex justify-between  h-[40px] border border-solid  rounded-md   border-white2">
-  <input
-                type="search"
-                id="search"
-                name="search_lg"
-                placeholder={t("Navbar.search")}
-                value={buscar}
-                {...formik.getFieldProps("search")}
-                className={`w-full   flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
-              />
-
-              <button
-                type="submit"
-                className={` dark:text-white  w-[100px] h-10 `}
-              >
-                
-                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                
-               
-              </button>
-              </div>
-            
-              
-            </form>
+    await client.query({
+      query: gql(query),
+      variables: {
+        account: account
+      }
+    })
+      .then((data) => {
+        window.location.href = '/'+owner;
+      })
+    }
 
 
+        return (
+          <>
 
-            <MenuB as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
-              onMouseEnter={() => setIsShowingE(true)}
-              onMouseLeave={() => setIsShowingE(false)}
-            >
-              {({ open }) => (
-                <>
-                  <div className="flex flex-nowrap flex-row-reverse h-full">
-                    <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
-                      <div className="w-full flex relative h-full">
-                        <div className="  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
-                          {t("Navbar.explore")}
-                        </div>
-                      </div>
-                    </MenuB.Button>
-                  </div>
-                  <Transition
-                    show={isShowingE}
+            <header className="text-gray-600 body-font shadow-sm sticky top-0 z-50 bg-[#ffffff]">
+              <div className=" flex  px-5  flex-row justify-between items-center movil-header dark:bg-[#0A0A0A] h-[80px]">
+                <div className="w-[100px] flex flex-row justify-between ">
+                  <a
+                    href="/"
+                    className="flex flex-row"
+                  >
+                    <img src={nativoLogoWhite} className="d-inline-block align-top w-[85px] lg:w-[100px] lg:h-[60px]" alt="logo" width="100px" height="60px" />
+                  </a>
+                </div>
+                <nav className={" lg:mr-auto lg:ml-4 lg:py-1 lg:border-l lg:border-gray-400	   items-center text-base justify-center hidden lg:flex " + (menu ? "esconder-nav" : "")}>
+                  <form
+                    onSubmit={formik.handleSubmit}
+                    className="w-[275px] relative flex justify-between my-auto items-center"
+                  >
+                    <div className="flex justify-between  h-[40px] border border-solid  rounded-md   border-white2">
+                      <input
+                        type="search"
+                        id="search"
+                        name="search_lg"
+                        placeholder={t("Navbar.search")}
+                        value={buscar}
+                        {...formik.getFieldProps("search")}
+                        className={`w-full   flex flex-col rounded-md  font-open-sans h-full text-white  text-left py-2 px-2  justify-center   dark:bg-[#0A0A0A]  focus-visible:outline-none focus-visible:shadow-s `}
+                      />
+
+                      <button
+                        type="submit"
+                        className={` dark:text-white  w-[100px] h-10 `}
+                      >
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+
+                      </button>
+                    </div>
+
+
+                  </form>
+
+
+
+                  <MenuB as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
                     onMouseEnter={() => setIsShowingE(true)}
                     onMouseLeave={() => setIsShowingE(false)}
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
                   >
-                    <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[125px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
-                      <div className="py-1">
-                        <MenuB.Item onClick={handleAllCollections}>
-                          {({ active }) => (
-                            <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <img
-                                  className="mr-2"
-                                  src={filter}
-                                  alt='banner'
-                                  width="20px"
-                                  height="20px" />
-                                <p className=" self-center"> {t("Navbar.collections")}</p>
+                    {({ open }) => (
+                      <>
+                        <div className="flex flex-nowrap flex-row-reverse h-full">
+                          <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
+                            <div className="w-full flex relative h-full">
+                              <div className="  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
+                                {t("Navbar.explore")}
                               </div>
-                            </a>
-                          )}
-                        </MenuB.Item>
-                        <MenuB.Item onClick={async () => { window.location.href = "/explore?search=tokens" }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <img
-                                  className="mr-2"
-                                  src={tokenIcon}
-                                  alt='banner'
-                                  width="20px"
-                                  height="20px" />
-                                <p className=" self-center"> {t("Navbar.tokens")}</p>
-                              </div>
-                            </a>
-                          )}
-                        </MenuB.Item>
-                        <MenuB.Item onClick={async () => { window.location.href = "/explore?search=artists" }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <img
-                                  className="mr-2"
-                                  src={artistIcon}
-                                  alt='banner'
-                                  width="20px"
-                                  height="20px" />
-                                <p className=" self-center"> {t("Navbar.artists")}</p>
-                              </div>
-                            </a>
-                          )}
-                        </MenuB.Item>
-
-
-                      </div>
-                    </MenuB.Items>
-                  </Transition>
-                </>
-              )}
-            </MenuB>
-
-            <MenuB as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
-              onMouseEnter={() => setIsShowing(true)}
-              onMouseLeave={() => setIsShowing(false)}
-            >
-              {({ open }) => (
-                <>
-                  <div className="flex flex-nowrap flex-row-reverse h-full">
-                    <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
-                      <div className="w-full flex relative h-full">
-                        <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
-                          {t("Navbar.services")}
+                            </div>
+                          </MenuB.Button>
                         </div>
-                      </div>
-                    </MenuB.Button>
-                  </div>
-                  <Transition
-                    show={isShowing}
-                    onMouseEnter={() => setIsShowing(true)}
-                    onMouseLeave={() => setIsShowing(false)}
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <MenuB.Items static className="w-[240px]  md:w-[240px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
-                      <div className="py-1">
-                      
-                      <MenuB.Item onClick={async  => { window.location.href = "/poa" }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <div className="w-[20px] h-[20px] fill-white mr-2">
-                                  <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z"/><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z"/><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z"/><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z"/></g></svg>
-                                </div>
-                                <p className=" self-center"> {t("Navbar.poa")}</p>
-                              </div>
-                            </a>
-                          )}
-                      </MenuB.Item>
-
-                      <MenuB.Item onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near",'_blank') }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <div className="w-[20px] h-[20px] fill-white mr-2">
-                                  <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></svg>
-                                </div>
-                                <p className=" self-center"> {t("Navbar.ntvFarm")}</p>
-                              </div>
-                            </a>
-                          )}
-                      </MenuB.Item>
-
-                      <MenuB.Item onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/",'_blank') }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <div className="w-[20px] h-[20px] fill-white mr-2">
-                                  <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"/></svg>
-                                </div>
-                                <p className=" self-center"> {t("Navbar.nativoDAO")}</p>
-                              </div>
-                            </a>
-                          )}
-                        </MenuB.Item>
-
-                        <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <img
-                                  className="mr-2"
-                                  src={finances}
-                                  alt='banner'
-                                  width="20px"
-                                  height="20px" />
-                                <p className=" self-center"> {t("Navbar.auctions")}</p>
-                              </div>
-                            </a>
-                          )}
-                        </MenuB.Item>
-
-                        <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          {({ active }) => (
-                            <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
-                              <div className="flex justify-start cursor-pointer">
-                                <img
-                                  className="mr-2"
-                                  src={loans}
-                                  alt='banner'
-                                  width="20px"
-                                  height="20px" />
-                                <p className=" self-center"> {t("Navbar.loans")}</p>
-                              </div>
-                            </a>
-                          )}
-                        </MenuB.Item>
-                      </div>
-                    </MenuB.Items>
-                  </Transition>
-                </>
-              )}
-            </MenuB>
-
-            <a href="/community" className="mr-2 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
-              {t("Navbar.community")}
-            </a>
-
-            <button className="flex inline-flex rounded-xlarge w-full h-[40px]  mt-0 ml-5  lg:w-[159px]" onClick={() => handleCreatebutton()}>
-              <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-
-                <span className="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">{t("Navbar.createB")} <img className="manImg w-[12px] h-[12px] self-center ml-[6px]" src={arrowRight}></img> </span>
-              </div>
-            </button>
-          </nav>
-
-
-          <form className={"flex flex-wrap mr-7 hidden"}
-            onSubmit={e => {
-              e.preventDefault();
-              window.location.href = "/perfil/" + buscar;
-            }}
-          >
-            <input type="text" value={buscar} maxLength={64} className="p-2 lg:w-12/12 px-3 buscar" placeholder={(process.env.REACT_APP_NEAR_ENV == "mainnet" ? "usuario.near" : "usuario.testnet")}
-              onChange={e => {
-
-                const not = "abcdefghijklmnopqrstuvwxyzñ1234567890_-.";
-                const tex = e.target.value.toString().toLowerCase();
-                if (not.includes(tex[tex.length - 1]) || tex == "") {
-                  setBuscar(tex);
-                }
-              }}
-            />
-            <button type="submit" className="p-2 lg:w-1/12 px-3 ml-2 bg-s">
-              <img src={lupa} alt="lupa" />
-            </button>
-          </form>
- 
-          {
-            stateLogin ?
-              <>
-                <button className="w-[30px] h-[30px] mr-[5px] hidden lg:inline-block" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
-                    <path d="M28 14.669C28 12.5473 27.1571 10.5125 25.6569 9.01217C24.1566 7.51188 22.1217 6.66903 20 6.66903C17.8783 6.66903 15.8434 7.51188 14.3431 9.01217C12.8429 10.5125 12 12.5473 12 14.669C12 24.0024 8 26.669 8 26.669H32C32 26.669 28 24.0024 28 14.669Z" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M22.3067 32.0024C22.0723 32.4065 21.7358 32.7419 21.331 32.9751C20.9262 33.2083 20.4672 33.331 20 33.331C19.5329 33.331 19.0739 33.2083 18.6691 32.9751C18.2642 32.7419 17.9278 32.4065 17.6934 32.0024" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-                <MenuB as="div" className="relative  text-left w-full md:w-auto md:ml-4 hidden lg:inline-block">
-                  {({ open }) => (
-                    <>
-                      <div className="flex flex-nowrap flex-row-reverse">
-                        <MenuB.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
-                          <div className="w-full  flex relative ">
-                            {state.userMedia ?
-                              <div className="w-[45px] h-[45px] -m-[12px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
-                              </div> :
-                              <div className="w-[45px] h-[45px] -m-[12px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(${empty})` }}>
-                              </div>
-                            }
-
-                          </div>
-                        </MenuB.Button>
-                      </div>
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <MenuB.Items
-                          static
-                          className="w-[245px]  md:w-[245px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
+                        <Transition
+                          show={isShowingE}
+                          onMouseEnter={() => setIsShowingE(true)}
+                          onMouseLeave={() => setIsShowingE(false)}
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
                         >
-                          <div className="py-1">
-                            <MenuB.Item
-                            >
-                              {({ active }) => (
-                                <a href={"/profile/" + state.owner.split('.')[0]} className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                  <div className="flex justify-start">
-                                    <span className=" m-2">
+                          <MenuB.Items static className="w-[219px]  md:w-[219px] origin-top-right absolute -right-[125px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
+                            <div className="py-1">
+                              <MenuB.Item onClick={handleAllCollections}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
                                       <img
                                         className="mr-2"
-                                        src={accountCircle}
+                                        src={filter}
                                         alt='banner'
                                         width="20px"
                                         height="20px" />
-                                    </span>
-                                    <p className=" items-start flex flex-col md:flex-row md:items-center"> {t("Navbar.profile")}
-                                      <span className="text-[9px] -mt-[7px] md:hidden">{state.owner}</span>
-                                    </p>
-                                  </div>
-                                </a>
-                              )}
-                            </MenuB.Item>
-
-
-
-
-
-
-
-
-                            <MenuB.Item
-                            >
-                              {({ active }) => (
-                                <a href="/mynfts" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                  <div className="flex justify-start">
-                                    <span className=" m-2">
+                                      <p className=" self-center"> {t("Navbar.collections")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
+                              <MenuB.Item onClick={async () => { window.location.href = "/explore?search=tokens" }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
                                       <img
                                         className="mr-2"
                                         src={tokenIcon}
                                         alt='banner'
                                         width="20px"
                                         height="20px" />
-                                    </span>
-                                    <p className=" self-center"> {t("Navbar.myNFTs")}</p>
-                                  </div>
-
-                                </a>
-                              )}
-                            </MenuB.Item>
-
-                            <MenuB.Item
-                            >
-                              {({ active }) => (
-                                <a href="/collection/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
-                                  <div className="flex justify-start">
-                                    <span className=" m-2">
+                                      <p className=" self-center"> {t("Navbar.tokens")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
+                              <MenuB.Item onClick={async () => { window.location.href = "/explore?search=artists" }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
                                       <img
                                         className="mr-2"
-                                        src={createCollection}
+                                        src={artistIcon}
                                         alt='banner'
                                         width="20px"
                                         height="20px" />
-                                    </span>
-                                    <p className=" self-center"> {t("Navbar.createCollection")}</p>
-                                  </div>
-
-                                </a>
-                              )}
-                            </MenuB.Item>
+                                      <p className=" self-center"> {t("Navbar.artists")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
 
 
-                            <MenuB.Item
-                            >
-                              {({ active }) => (
-                                <a href="/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                  <div className="flex justify-start">
-                                    <span className=" m-2">
+                            </div>
+                          </MenuB.Items>
+                        </Transition>
+                      </>
+                    )}
+                  </MenuB>
+
+                  <MenuB as="div" className="relative inline-block text-left w-full md:w-auto md:ml-4 h-full"
+                    onMouseEnter={() => setIsShowing(true)}
+                    onMouseLeave={() => setIsShowing(false)}
+                  >
+                    {({ open }) => (
+                      <>
+                        <div className="flex flex-nowrap flex-row-reverse h-full">
+                          <MenuB.Button className="w-[75px] md:w-full h-full flex justify-center items-center rounded-md px-2 py-1 border-0  hover:animate-pulse">
+                            <div className="w-full flex relative h-full">
+                              <div className="mr-5  text-base  hover:dark:text-yellow4  dark:text-white font-open-sans font-extrabold uppercase  h-full  flex justify-center items-center">
+                                {t("Navbar.services")}
+                              </div>
+                            </div>
+                          </MenuB.Button>
+                        </div>
+                        <Transition
+                          show={isShowing}
+                          onMouseEnter={() => setIsShowing(true)}
+                          onMouseLeave={() => setIsShowing(false)}
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <MenuB.Items static className="w-[240px]  md:w-[240px] origin-top-right absolute -right-[100px] mt-0 divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]">
+                            <div className="py-1">
+
+                              <MenuB.Item onClick={async => { window.location.href = "/poa" }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
+                                      <div className="w-[20px] h-[20px] fill-white mr-2">
+                                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z" /><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z" /><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z" /><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z" /></g></svg>
+                                      </div>
+                                      <p className=" self-center"> {t("Navbar.poa")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
+
+                              <MenuB.Item onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near", '_blank') }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
+                                      <div className="w-[20px] h-[20px] fill-white mr-2">
+                                        <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" /><line x1="16" x2="2" y1="8" y2="22" /><line x1="17.5" x2="9" y1="15" y2="15" /></svg>
+                                      </div>
+                                      <p className=" self-center"> {t("Navbar.ntvFarm")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
+
+                              <MenuB.Item onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/", '_blank') }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
+                                      <div className="w-[20px] h-[20px] fill-white mr-2">
+                                        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z" /></svg>
+                                      </div>
+                                      <p className=" self-center"> {t("Navbar.nativoDAO")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
+
+                              <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? " dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", " block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
                                       <img
                                         className="mr-2"
-                                        src={createToken}
+                                        src={finances}
                                         alt='banner'
                                         width="20px"
                                         height="20px" />
-                                    </span>
-                                    <p className=" self-center"> {t("Navbar.create")}</p>
-                                  </div>
+                                      <p className=" self-center"> {t("Navbar.auctions")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
 
-                                </a>
-                              )}
-                            </MenuB.Item>
-
-
-
-                            <MenuB.Item
-                              onClick={async () => {
-                                logOut();
-                              }}
-                            >
-                              {({ active }) => (
-                                <a className={classNames(active ? " font-extrabold  bg-[#2A747E]" : "dark:text-yellow4 ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
-                                  <div className="flex justify-start">
-                                    <span className=" m-2">
+                              <MenuB.Item onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                                {({ active }) => (
+                                  <a className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2 py-2 text-base text-center font-open-sans uppercase")}>
+                                    <div className="flex justify-start cursor-pointer">
                                       <img
                                         className="mr-2"
-                                        src={logout}
+                                        src={loans}
                                         alt='banner'
                                         width="20px"
                                         height="20px" />
-                                    </span>
-                                    <p className=" self-center"> {t("Navbar.logout")}</p>
-                                  </div>
+                                      <p className=" self-center"> {t("Navbar.loans")}</p>
+                                    </div>
+                                  </a>
+                                )}
+                              </MenuB.Item>
+                            </div>
+                          </MenuB.Items>
+                        </Transition>
+                      </>
+                    )}
+                  </MenuB>
 
-                                </a>
-                              )}
-                            </MenuB.Item>
+                  <a href="/community" className="mr-2 hover:dark:text-yellow4 text-base    dark:text-white font-open-sans font-extrabold uppercase cursor-pointer">
+                    {t("Navbar.community")}
+                  </a>
+
+                  <button className="flex inline-flex rounded-xlarge w-full h-[40px]  mt-0 ml-5  lg:w-[159px]" onClick={() => handleCreatebutton()}>
+                    <div className="flex flex-col font-extrabold h-full text-white  text-center  justify-center shadow-s w-full border-solid border-2 rounded-md border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+
+                      <span className="title-font  text-white font-open-sans font-normal lg:font-extrabold text-base p-5 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed  ">{t("Navbar.createB")} <img className="manImg w-[12px] h-[12px] self-center ml-[6px]" src={arrowRight}></img> </span>
+                    </div>
+                  </button>
+                </nav>
+
+
+                <form className={"flex flex-wrap mr-7 hidden"}
+                  onSubmit={e => {
+                    e.preventDefault();
+                    window.location.href = "/perfil/" + buscar;
+                  }}
+                >
+                  <input type="text" value={buscar} maxLength={64} className="p-2 lg:w-12/12 px-3 buscar" placeholder={(process.env.REACT_APP_NEAR_ENV == "mainnet" ? "usuario.near" : "usuario.testnet")}
+                    onChange={e => {
+
+                      const not = "abcdefghijklmnopqrstuvwxyzñ1234567890_-.";
+                      const tex = e.target.value.toString().toLowerCase();
+                      if (not.includes(tex[tex.length - 1]) || tex == "") {
+                        setBuscar(tex);
+                      }
+                    }}
+                  />
+                  <button type="submit" className="p-2 lg:w-1/12 px-3 ml-2 bg-s">
+                    <img src={lupa} alt="lupa" />
+                  </button>
+                </form>
+
+                {
+                  stateLogin ?
+                    <>
+                      <button className="w-[30px] h-[30px] mr-[5px] hidden lg:inline-block" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
+                          <path d="M28 14.669C28 12.5473 27.1571 10.5125 25.6569 9.01217C24.1566 7.51188 22.1217 6.66903 20 6.66903C17.8783 6.66903 15.8434 7.51188 14.3431 9.01217C12.8429 10.5125 12 12.5473 12 14.669C12 24.0024 8 26.669 8 26.669H32C32 26.669 28 24.0024 28 14.669Z" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                          <path d="M22.3067 32.0024C22.0723 32.4065 21.7358 32.7419 21.331 32.9751C20.9262 33.2083 20.4672 33.331 20 33.331C19.5329 33.331 19.0739 33.2083 18.6691 32.9751C18.2642 32.7419 17.9278 32.4065 17.6934 32.0024" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                      <MenuB as="div" className="relative  text-left w-full md:w-auto md:ml-4 hidden lg:inline-block">
+                        {({ open }) => (
+                          <>
+                            <div className="flex flex-nowrap flex-row-reverse">
+                              <MenuB.Button className="w-[75px] md:w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-1 bg-white text-sm  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-500 font-raleway font-normal">
+                                <div className="w-full  flex relative ">
+                                  {state.userMedia ?
+                                    <div className="w-[45px] h-[45px] -m-[12px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
+                                    </div> :
+                                    <div className="w-[45px] h-[45px] -m-[12px]  rounded-md  relative bg-cover " style={{ backgroundImage: `url(${empty})` }}>
+                                    </div>
+                                  }
+
+                                </div>
+                              </MenuB.Button>
+                            </div>
+                            <Transition
+                              show={open}
+                              as={Fragment}
+                              enter="transition ease-out duration-100"
+                              enterFrom="transform opacity-0 scale-95"
+                              enterTo="transform opacity-100 scale-100"
+                              leave="transition ease-in duration-75"
+                              leaveFrom="transform opacity-100 scale-100"
+                              leaveTo="transform opacity-0 scale-95"
+                            >
+                              <MenuB.Items
+                                static
+                                className="w-[245px]  md:w-[245px] origin-top-right absolute right-[0] mt-[13px] divide-y  shadow-lg dark:bg-[#000] outline-none border-t-4 border-b-4 border-[#032B30]"
+                              >
+                                <div className="py-1">
+                                  <MenuB.Item
+                                  >
+                                    {({ active }) => (
+                                      <a href={void(0)}
+                                        onClick={()=>{handleProfileCreation(state.owner.split('.')[0])}}
+                                        className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase hover:cursor-pointer")}>
+                                        <div className="flex justify-start">
+                                          <span className=" m-2">
+                                            <img
+                                              className="mr-2"
+                                              src={accountCircle}
+                                              alt='banner'
+                                              width="20px"
+                                              height="20px" />
+                                          </span>
+                                          <p className=" items-start flex flex-col md:flex-row md:items-center"> {t("Navbar.profile")}
+                                            <span className="text-[9px] -mt-[7px] md:hidden">{state.owner}</span>
+                                          </p>
+                                        </div>
+                                      </a>
+                                    )}
+                                  </MenuB.Item>
+
+
+
+
+
+
+
+
+
+
+                                  <MenuB.Item
+                                  >
+                                    {({ active }) => (
+                                      <a href="/collection/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "px-2 block text-base text-center font-open-sans uppercase")}>
+                                        <div className="flex justify-start">
+                                          <span className=" m-2">
+                                            <img
+                                              className="mr-2"
+                                              src={createCollection}
+                                              alt='banner'
+                                              width="20px"
+                                              height="20px" />
+                                          </span>
+                                          <p className=" self-center"> {t("Navbar.createCollection")}</p>
+                                        </div>
+
+                                      </a>
+                                    )}
+                                  </MenuB.Item>
+
+
+                                  <MenuB.Item
+                                  >
+                                    {({ active }) => (
+                                      <a href="/create" className={classNames(active ? "dark:text-white font-extrabold  bg-[#2A747E]" : "dark:text-white ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
+                                        <div className="flex justify-start">
+                                          <span className=" m-2">
+                                            <img
+                                              className="mr-2"
+                                              src={createToken}
+                                              alt='banner'
+                                              width="20px"
+                                              height="20px" />
+                                          </span>
+                                          <p className=" self-center"> {t("Navbar.create")}</p>
+                                        </div>
+
+                                      </a>
+                                    )}
+                                  </MenuB.Item>
+
+
+
+                                  <MenuB.Item
+                                    onClick={async () => {
+                                      logOut();
+                                    }}
+                                  >
+                                    {({ active }) => (
+                                      <a className={classNames(active ? " font-extrabold  bg-[#2A747E]" : "dark:text-yellow4 ml-2 font-bold", "block px-2  text-base text-center font-open-sans uppercase")}>
+                                        <div className="flex justify-start">
+                                          <span className=" m-2">
+                                            <img
+                                              className="mr-2"
+                                              src={logout}
+                                              alt='banner'
+                                              width="20px"
+                                              height="20px" />
+                                          </span>
+                                          <p className=" self-center"> {t("Navbar.logout")}</p>
+                                        </div>
+
+                                      </a>
+                                    )}
+                                  </MenuB.Item>
+                                </div>
+                              </MenuB.Items>
+                            </Transition>
+                          </>
+                        )}
+                      </MenuB>
+                      <div className="lg:hidden">
+                        <div className="flex mr-[35px]">
+                          <button className="w-[30px] h-[30px]  mr-[10px]" onClick={() => { formik.resetForm(); handleSearchSubMenu() }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </button>
+                          <div className={classNames(showSearchSubMenu ? "transform -translate-x-full duration-600" : "transform translate-x-full duration-600", "fixed w-full top-0 left-full h-[80px] flex items-center dark:bg-[#0A0A0A] z-[1200]")}>
+                            <button onClick={handleSearchSubMenu}>
+                              <img
+                                className="w-[25px] h-[25px] ml-2"
+                                src={menuArrowLeft}
+                                alt={menuArrowLeft}
+                                width={25}
+                                height={25} />
+                            </button>
+                            <form
+                              onSubmit={formik.handleSubmit}
+                              className="w-full   flex justify-between my-auto h-[40px] items-center mx-2"
+                            >
+                              <input
+                                type="search"
+                                id="search"
+                                name="search_sm"
+                                placeholder={t("Navbar.search")}
+                                value={buscar}
+                                {...formik.getFieldProps("search")}
+                                className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center   rounded-md  dark:bg-[#0A0A0A] focus-visible:outline-none  `}
+                              />
+
+                              <button
+                                type="submit"
+                                className={` dark:text-white  w-[100px]  `}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                  <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                  <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                              </button>
+                            </form>
                           </div>
-                        </MenuB.Items>
-                      </Transition>
+                          <button className="w-[30px] h-[30px] mr-[5px]" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
+                              <path d="M28 14.669C28 12.5473 27.1571 10.5125 25.6569 9.01217C24.1566 7.51188 22.1217 6.66903 20 6.66903C17.8783 6.66903 15.8434 7.51188 14.3431 9.01217C12.8429 10.5125 12 12.5473 12 14.669C12 24.0024 8 26.669 8 26.669H32C32 26.669 28 24.0024 28 14.669Z" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M22.3067 32.0024C22.0723 32.4065 21.7358 32.7419 21.331 32.9751C20.9262 33.2083 20.4672 33.331 20 33.331C19.5329 33.331 19.0739 33.2083 18.6691 32.9751C18.2642 32.7419 17.9278 32.4065 17.6934 32.0024" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </button>
+                        </div>
+                        <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
+                          <div>
+                            <button
+                              className={` mt-5 text-white b border-0 py-2  focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase flex `}
+                              style={{ justifyContent: "center" }}
+                              onClick={handleProfileSubMenu}>
+                              <div className="flex items-center">
+                                {state.userMedia ?
+                                  <div className="w-[60px] h-[60px]  bg-circle rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
+                                  </div> :
+                                  <div className="w-[60px] h-[60px]  bg-circle rounded-md  relative bg-cover hhh " style={{ backgroundImage: `url(${empty})` }} >
+                                  </div>
+                                }
+                                <p className="text-base text-white leading-6 font-semibold text-ellipsis overflow-hidden whitespace-nowrap w-3/4 ml-2">{state.owner}</p>
+                              </div>
+                            </button>
+                            <div className={classNames(showProfileSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
+                              <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase " onClick={handleProfileSubMenu}>
+                                <img
+                                  className=""
+                                  src={menuArrowLeft}
+                                  alt='banner'
+                                  width="20px"
+                                  height="20px" />
+                                <p className="ml-4">{state.owner}</p>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={ async () => { handleProfileCreation(state.owner.split('.')[0]) }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.profile")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={accountCircle}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.createCollection")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={createCollection}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.create")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={createToken}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="menu-item" >
+                            <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase " >
+                              <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase w-full" onClick={handleExploreSubMenuShow} >
+
+                                <p>{t("Navbar.explore")}</p>
+                                <img
+                                  className=""
+                                  src={menuArrowRight}
+                                  alt='banner'
+                                  width="20px"
+                                  height="20px" />
+
+                              </button>
+                              <div className={classNames(showExploreSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
+                                <button className="font-open-sans font-extrabold text-base leading-4 flex text-white  justify-between uppercase " onClick={handleExploreSubMenuShow}>
+                                  <img
+                                    className=""
+                                    src={menuArrowLeft}
+                                    alt='banner'
+                                    width="20px"
+                                    height="20px" />
+                                  <p className="ml-4">{t("Navbar.explore")}</p>
+                                </button>
+                                <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/explore?search=collections">
+                                  <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
+                                  <img
+                                    className="mr-4"
+                                    src={filter}
+                                    alt='banner'
+                                    width="25px"
+                                    height="20px" />
+                                </a>
+                                <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=tokens">
+                                  <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
+                                  <img
+                                    className="mr-4"
+                                    src={tokenIcon}
+                                    alt='banner'
+                                    width="25px"
+                                    height="20px" />
+                                </a>
+                                <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=artists">
+                                  <p className="font-open-sans font-semibold text-base">{t("Navbar.artists")}</p>
+                                  <img
+                                    className="mr-4"
+                                    src={artistIcon}
+                                    alt='banner'
+                                    width="25px"
+                                    height="20px" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="menu-item" >
+                            <button className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase w-full" onClick={handleFinancesSubMenu} >
+                              <p>{t("Navbar.services")}</p>
+                              <img
+                                className=""
+                                src={menuArrowRight}
+                                alt='banner'
+                                width="20px"
+                                height="20px" />
+                            </button>
+                            <div className={classNames(showFinanceSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
+                              <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase " onClick={handleFinancesSubMenu}>
+                                <img
+                                  className=""
+                                  src={menuArrowLeft}
+                                  alt='banner'
+                                  width="20px"
+                                  height="20px" />
+                                <p className="ml-4">{t("Navbar.services")}</p>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "/poa" }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.poa")}</p>
+                                <div className="w-[25px] h-[20px] fill-white mr-4">
+                                  <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z" /><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z" /><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z" /><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z" /></g></svg>
+                                </div>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near", '_blank') }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.ntvFarm")}</p>
+                                <div className="w-[25px] h-[20px] fill-white mr-4">
+                                  <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" /><line x1="16" x2="2" y1="8" y2="22" /><line x1="17.5" x2="9" y1="15" y2="15" /></svg>
+                                </div>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/", '_blank') }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.nativoDAO")}</p>
+                                <div className="w-[25px] h-[20px] fill-white mr-4">
+                                  <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z" /></svg>
+                                </div>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.auctions")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={finances}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.loans")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={loans}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="menu-item" >
+                            <a className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase" href="/community">
+                              <p>{t("Navbar.community")}</p>
+                            </a>
+                          </div>
+                          <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
+                            <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                              <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")}
+                              </span>
+                              <img className="manImg  mt-2 mr-2 w-5 h-5 " src={createNft}></img>
+                            </div>
+                          </button>
+                          <button className="     w-full h-[50px]   mt-3" onClick={() => { window.location = "/collection/create" }}>
+                            <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
+                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
+                              <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
+                                {t("Navbar.createCollection")}
+                              </span>
+                              <img className="manImg mt-2 mr-2 w-5 h-5  " src={createCol}></img>
+                            </div>
+                          </button>
+
+                          <button className="    w-full h-[50px]  mt-3" onClick={() => { logOut() }}>
+                            <div className="flex  font-extrabold h-full text-yellow2  text-center justify-between shadow-s border-solid border-2 rounded-md border-yellow2">
+                              <span className="title-font  text-yellow2 font-open-sans text-[15px] tracking-tighter lg:font-bold px-5 pt-2 uppercase  flex   ">
+                                {t("Navbar.logout")} </span>
+                              <img className="manImg mt-2 mr-2 w-5 h-5" width="20px" height="20px" src={salir}></img>
+                            </div>
+                          </button>
+                        </Menu>
+                      </div>
                     </>
-                  )}
-                </MenuB>
-                <div className="lg:hidden">
-                  <div className="flex mr-[35px]">
-                    <button className="w-[30px] h-[30px]  mr-[10px]" onClick={() => { formik.resetForm(); handleSearchSubMenu() }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                    <div className={classNames(showSearchSubMenu ? "transform -translate-x-full duration-600" : "transform translate-x-full duration-600", "fixed w-full top-0 left-full h-[80px] flex items-center dark:bg-[#0A0A0A] z-[1200]")}>
-                      <button onClick={handleSearchSubMenu}>
-                        <img
-                        className="w-[25px] h-[25px] ml-2"
-                        src={menuArrowLeft}
-                        alt={menuArrowLeft}
-                        width={25}
-                        height={25} />
-                      </button>
-                      <form
-                        onSubmit={formik.handleSubmit}
-                        className="w-full   flex justify-between my-auto h-[40px] items-center mx-2"
-                      >
-                        <input
-                          type="search"
-                          id="search"
-                          name="search_sm"
-                          placeholder={t("Navbar.search")}
-                          value={buscar}
-                          {...formik.getFieldProps("search")}
-                          className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center   rounded-md  dark:bg-[#0A0A0A] focus-visible:outline-none  `}
-                        />
-
-                        <button
-                          type="submit"
-                          className={` dark:text-white  w-[100px]  `}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                      </form>
-                    </div>
-                    <button className="w-[30px] h-[30px] mr-[5px]" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
-                        <path d="M28 14.669C28 12.5473 27.1571 10.5125 25.6569 9.01217C24.1566 7.51188 22.1217 6.66903 20 6.66903C17.8783 6.66903 15.8434 7.51188 14.3431 9.01217C12.8429 10.5125 12 12.5473 12 14.669C12 24.0024 8 26.669 8 26.669H32C32 26.669 28 24.0024 28 14.669Z" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M22.3067 32.0024C22.0723 32.4065 21.7358 32.7419 21.331 32.9751C20.9262 33.2083 20.4672 33.331 20 33.331C19.5329 33.331 19.0739 33.2083 18.6691 32.9751C18.2642 32.7419 17.9278 32.4065 17.6934 32.0024" stroke="#FDFCFD" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                  </div>
-                  <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
-                    <div>
+                    :
+                    <>
                       <button
-                      className={` mt-5 text-white b border-0 py-2  focus:outline-none w-[220px] md:w-auto rounded-md font-open-sans font-extrabold uppercase flex `}
-                      style={{ justifyContent: "center" }}
-                      onClick={handleProfileSubMenu}>
-                      <div className="flex items-center">
-                        {state.userMedia ?
-                          <div className="w-[60px] h-[60px]  bg-circle rounded-md  relative bg-cover " style={{ backgroundImage: `url(https://nativonft.mypinata.cloud/ipfs/${state.userMedia})` }} >
-                          </div> :
-                          <div className="w-[60px] h-[60px]  bg-circle rounded-md  relative bg-cover hhh " style={{ backgroundImage: `url(${empty})` }} >
-                          </div>
-                        }
-                        <p className="text-base text-white leading-6 font-semibold text-ellipsis overflow-hidden whitespace-nowrap w-3/4 ml-2">{state.owner}</p>
-                      </div>
-                    </button>
-                    <div className={classNames(showProfileSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
-                        <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase " onClick={handleProfileSubMenu}>
-                          <img
-                            className=""
-                            src={menuArrowLeft}
-                            alt='banner'
-                            width="20px"
-                            height="20px" />
-                          <p className="ml-4">{state.owner}</p>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async () => { window.location = `/profile/${state.owner.split('.')[0]}` }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.profile")}</p>
-                          <img
-                            className="mr-4"
-                            src={accountCircle}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.createCollection")}</p>
-                          <img
-                            className="mr-4"
-                            src={createCollection}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.staking")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.create")+"AAAA"}</p>
-                          <img
-                            className="mr-4"
-                            src={createToken}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="menu-item" >
-                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase " >
-                        <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase w-full" onClick={handleExploreSubMenuShow} >
-
-                          <p>{t("Navbar.explore")}</p>
-                          <img
-                            className=""
-                            src={menuArrowRight}
-                            alt='banner'
-                            width="20px"
-                            height="20px" />
-
-                        </button>
-                        <div className={classNames(showExploreSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
-                          <button className="font-open-sans font-extrabold text-base leading-4 flex text-white  justify-between uppercase " onClick={handleExploreSubMenuShow}>
-                            <img
-                              className=""
-                              src={menuArrowLeft}
-                              alt='banner'
-                              width="20px"
-                              height="20px" />
-                            <p className="ml-4">{t("Navbar.explore")}</p>
+                        className={`ml-auto  text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[160px] rounded-md font-open-sans font-extrabold uppercase hidden lg:flex items-center`}
+                        style={{ justifyContent: "center" }}
+                        // disabled={state?.tokens.onSale}
+                        onClick={handleSignIn}>
+                        <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>
+                        {t("Navbar.login")}
+                      </button>
+                      <div className="lg:hidden">
+                        <div className="flex mr-[35px]">
+                          <button className="w-[30px] h-[30px]  mr-[10px]" onClick={() => { formik.resetForm(); handleSearchSubMenu() }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                           </button>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/explore?search=collections">
-                            <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
-                            <img
-                              className="mr-4"
-                              src={filter}
-                              alt='banner'
-                              width="25px"
-                              height="20px" />
-                          </a>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=tokens">
-                            <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
-                            <img
-                              className="mr-4"
-                              src={tokenIcon}
-                              alt='banner'
-                              width="25px"
-                              height="20px" />
-                          </a>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=artists">
-                            <p className="font-open-sans font-semibold text-base">{t("Navbar.artists")}</p>
-                            <img
-                              className="mr-4"
-                              src={artistIcon}
-                              alt='banner'
-                              width="25px"
-                              height="20px" />
-                          </a>
+                          <div className={classNames(showSearchSubMenu ? "transform -translate-x-full duration-600" : "transform translate-x-full duration-600", "fixed w-full top-0 left-full h-[80px] flex items-center dark:bg-[#0A0A0A] z-[1200]")}>
+                            <button onClick={handleSearchSubMenu}>
+                              <img
+                                className="w-[25px] h-[25px] ml-2"
+                                src={menuArrowLeft}
+                                alt={menuArrowLeft}
+                                width={25}
+                                height={25} />
+                            </button>
+                            <form
+                              onSubmit={formik.handleSubmit}
+                              className="w-full   flex justify-between my-auto h-[40px] mx-2"
+                            >
+                              <input
+                                type="search"
+                                id="search"
+                                name="search_md"
+                                placeholder={t("Navbar.search")}
+                                value={buscar}
+                                {...formik.getFieldProps("search")}
+                                className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center   rounded-md  dark:bg-[#0A0A0A] focus-visible:outline-none  `}
+                              />
+                              <button
+                                type="submit"
+                                className={` dark:text-white   w-[100px] `}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                  <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                  <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                              </button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="menu-item" >
-                      <button className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase w-full" onClick={handleFinancesSubMenu} >
-                        <p>{t("Navbar.services")}</p>
-                        <img
-                          className=""
-                          src={menuArrowRight}
-                          alt='banner'
-                          width="20px"
-                          height="20px" />
-                      </button>
-                      <div className={classNames(showFinanceSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
-                        <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase " onClick={handleFinancesSubMenu}>
-                          <img
-                            className=""
-                            src={menuArrowLeft}
-                            alt='banner'
-                            width="20px"
-                            height="20px" />
-                          <p className="ml-4">{t("Navbar.services")}</p>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "/poa" }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.poa")}</p>
-                          <div className="w-[25px] h-[20px] fill-white mr-4">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z"/><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z"/><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z"/><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z"/></g></svg>
-                          </div>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near",'_blank') }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.ntvFarm")}</p>
-                          <div className="w-[25px] h-[20px] fill-white mr-4">
-                            <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></svg>
-                          </div>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/",'_blank') }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.nativoDAO")}</p>
-                          <div className="w-[25px] h-[20px] fill-white mr-4">
-                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"/></svg>
-                          </div>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.auctions")}</p>
-                          <img
-                            className="mr-4"
-                            src={finances}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.loans")}</p>
-                          <img
-                            className="mr-4"
-                            src={loans}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="menu-item" >
-                      <a className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase" href="/community">
-                        <p>{t("Navbar.community")}</p>
-                      </a>
-                    </div>
-                    <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={() => { window.location = "/create" }}>
-                      <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
-                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} 
-                         </span>
-                         <img className="manImg  mt-2 mr-2 w-5 h-5 "  src={createNft}></img>
-                      </div>
-                    </button>
-                    <button className="     w-full h-[50px]   mt-3" onClick={() => { window.location = "/collection/create" }}>
-                      <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
-                       border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
-                          {t("Navbar.createCollection")} 
-                           </span>
-                           <img className="manImg mt-2 mr-2 w-5 h-5  "  src={createCol}></img> 
-                      </div>
-                    </button>
-                   
-                    <button className="    w-full h-[50px]  mt-3" onClick={() => { logOut() }}>
-                      <div className="flex  font-extrabold h-full text-yellow2  text-center justify-between shadow-s border-solid border-2 rounded-md border-yellow2">
-                        <span className="title-font  text-yellow2 font-open-sans text-[15px] tracking-tighter lg:font-bold px-5 pt-2 uppercase  flex   ">
-                          {t("Navbar.logout")} </span>
-                          <img className="manImg mt-2 mr-2 w-5 h-5" width="20px" height="20px" src={salir}></img>
-                      </div> 
-                    </button>
-                  </Menu>
-                </div>
-              </>
-              :
-              <>
-                <button
-                  className={`ml-auto  text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[160px] rounded-md font-open-sans font-extrabold uppercase hidden lg:flex items-center`}
-                  style={{ justifyContent: "center" }}
-                  // disabled={state?.tokens.onSale}
-                  onClick={handleSignIn}>
-                  <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>
-                  {t("Navbar.login")}
-                </button>
-                <div className="lg:hidden">
-                  <div className="flex mr-[35px]">
-                    <button className="w-[30px] h-[30px]  mr-[10px]" onClick={() => { formik.resetForm(); handleSearchSubMenu() }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                    <div className={classNames(showSearchSubMenu ? "transform -translate-x-full duration-600" : "transform translate-x-full duration-600", "fixed w-full top-0 left-full h-[80px] flex items-center dark:bg-[#0A0A0A] z-[1200]")}>
-                      <button onClick={handleSearchSubMenu}>
-                        <img
-                        className="w-[25px] h-[25px] ml-2"
-                        src={menuArrowLeft}
-                        alt={menuArrowLeft}
-                        width={25}
-                        height={25} />
-                      </button>
-                      <form
-                        onSubmit={formik.handleSubmit}
-                        className="w-full   flex justify-between my-auto h-[40px] mx-2"
-                      > 
-                        <input
-                          type="search"
-                          id="search"
-                          name="search_md"
-                          placeholder={t("Navbar.search")}
-                          value={buscar}
-                          {...formik.getFieldProps("search")}
-                          className={`w-full flex flex-col  font-open-sans h-full text-white  text-left pl-2 pr-8 justify-center   rounded-md  dark:bg-[#0A0A0A] focus-visible:outline-none  `}
-                        />
-                        <button
-                          type="submit"
-                          className={` dark:text-white   w-[100px] `}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M20.9999 21L16.6499 16.65" stroke="#FAF9FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                  <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
-                    <button
-                      className={` mt-5 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px]  rounded-md font-open-sans font-extrabold uppercase flex items-center`}
-                      style={{ justifyContent: "center" }}
-                      // disabled={state?.tokens.onSale}
-                      onClick={handleSignIn}>
-                      <div className="flex items-center">
-                        <div className="w-1/4 h-[25px] flex items-center">
-                          <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>
-                          
-                        </div>
-                        <p className="w-3/4">{t("Navbar.login")}</p>
-                      </div>
-                    </button>
-                    <div className="menu-item" >
-                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase" >
-                        <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase w-full" onClick={handleExploreSubMenuShow} >
-                          <p>{t("Navbar.explore")}</p>
-                          <img
-                            className=""
-                            src={menuArrowRight}
-                            alt='banner'
-                            width="20px"
-                            height="20px" />
-                        </button>
-                        <div className={classNames(showExploreSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
-                          <button className="font-open-sans font-extrabold text-base leading-4 flex text-white  justify-between uppercase" onClick={handleExploreSubMenuShow}>
-                            <img
-                              className=""
-                              src={menuArrowLeft}
-                              alt='banner'
-                              width="20px"
-                              height="20px" />
-                            <p className="ml-4">{t("Navbar.explore")}</p>
+                        <Menu isOpen={state.isOpen} onStateChange={() => handleMenuStateChange()} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}  >
+                          <button
+                            className={` mt-5 text-white bg-yellow2 border-0 py-2 px-6 focus:outline-none w-[220px]  rounded-md font-open-sans font-extrabold uppercase flex items-center`}
+                            style={{ justifyContent: "center" }}
+                            // disabled={state?.tokens.onSale}
+                            onClick={handleSignIn}>
+                            <div className="flex items-center">
+                              <div className="w-1/4 h-[25px] flex items-center">
+                                <svg class="mx-2" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path class="fill-current" d="M19.1736 1.21319L14.2154 8.57143C13.8725 9.07253 14.5318 9.67912 15.0066 9.25714L19.8857 5.01099C20.0175 4.90549 20.2022 4.98462 20.2022 5.16923V18.4352C20.2022 18.6198 19.9648 18.6989 19.8593 18.567L5.09008 0.896703C4.61535 0.316484 3.92964 0 3.1648 0H2.63733C1.2659 0 0.131836 1.13407 0.131836 2.53187V21.2044C0.131836 22.6022 1.2659 23.7363 2.6637 23.7363C3.53403 23.7363 4.35162 23.2879 4.82634 22.5231L9.78458 15.1648C10.1274 14.6637 9.4681 14.0571 8.99337 14.4791L4.11425 18.6989C3.98239 18.8044 3.79777 18.7253 3.79777 18.5407V5.3011C3.79777 5.11648 4.03513 5.03736 4.14063 5.16923L18.9099 22.8396C19.3846 23.4198 20.0967 23.7363 20.8351 23.7363H21.3626C22.7604 23.7363 23.8945 22.6022 23.8945 21.2044V2.53187C23.8945 1.13407 22.7604 0 21.3626 0C20.4659 0 19.6483 0.448352 19.1736 1.21319V1.21319Z"></path></g><defs><clipPath id="clip0"><rect width="24" height="23.7363" fill="white"></rect></clipPath></defs></svg>
+
+                              </div>
+                              <p className="w-3/4">{t("Navbar.login")}</p>
+                            </div>
                           </button>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/explore?search=collections">
-                            <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
-                            <img
-                              className="mr-4"
-                              src={filter}
-                              alt='banner'
-                              width="25px"
-                              height="20px" />
-                          </a>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=tokens">
-                            <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
-                            <img
-                              className="mr-4"
-                              src={tokenIcon}
-                              alt='banner'
-                              width="25px"
-                              height="20px" />
-                          </a>
-                          <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=artists">
-                            <p className="font-open-sans font-semibold text-base">{t("Navbar.artists")}</p>
-                            <img
-                              className="mr-4"
-                              src={artistIcon}
-                              alt='banner'
-                              width="25px"
-                              height="20px" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="menu-item" >
-                      <button className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase w-full" onClick={handleFinancesSubMenu} >
-                        <p>{t("Navbar.services")}</p>
-                        <img
-                          className=""
-                          src={menuArrowRight}
-                          alt='banner'
-                          width="20px"
-                          height="20px" />
-                      </button>
-                      <div className={classNames(showFinanceSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
-                        <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase " onClick={handleFinancesSubMenu}>
-                          <img
-                            className=""
-                            src={menuArrowLeft}
-                            alt='banner'
-                            width="20px"
-                            height="20px" />
-                          <p className="ml-4">{t("Navbar.services")}</p>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "/poa" }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.poa")}</p>
-                          <div className="w-[25px] h-[20px] fill-white mr-4">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z"/><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z"/><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z"/><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z"/></g></svg>
+                          <div className="menu-item" >
+                            <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-12 justify-between uppercase" >
+                              <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase w-full" onClick={handleExploreSubMenuShow} >
+                                <p>{t("Navbar.explore")}</p>
+                                <img
+                                  className=""
+                                  src={menuArrowRight}
+                                  alt='banner'
+                                  width="20px"
+                                  height="20px" />
+                              </button>
+                              <div className={classNames(showExploreSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
+                                <button className="font-open-sans font-extrabold text-base leading-4 flex text-white  justify-between uppercase" onClick={handleExploreSubMenuShow}>
+                                  <img
+                                    className=""
+                                    src={menuArrowLeft}
+                                    alt='banner'
+                                    width="20px"
+                                    height="20px" />
+                                  <p className="ml-4">{t("Navbar.explore")}</p>
+                                </button>
+                                <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" href="/explore?search=collections">
+                                  <p className="font-open-sans font-semibold text-base">{t("Navbar.collections")}</p>
+                                  <img
+                                    className="mr-4"
+                                    src={filter}
+                                    alt='banner'
+                                    width="25px"
+                                    height="20px" />
+                                </a>
+                                <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=tokens">
+                                  <p className="font-open-sans font-semibold text-base">{t("Navbar.tokens")}</p>
+                                  <img
+                                    className="mr-4"
+                                    src={tokenIcon}
+                                    alt='banner'
+                                    width="25px"
+                                    height="20px" />
+                                </a>
+                                <a className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" href="/explore?search=artists">
+                                  <p className="font-open-sans font-semibold text-base">{t("Navbar.artists")}</p>
+                                  <img
+                                    className="mr-4"
+                                    src={artistIcon}
+                                    alt='banner'
+                                    width="25px"
+                                    height="20px" />
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near",'_blank') }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.ntvFarm")}</p>
-                          <div className="w-[25px] h-[20px] fill-white mr-4">
-                            <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></svg>
+                          <div className="menu-item" >
+                            <button className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase w-full" onClick={handleFinancesSubMenu} >
+                              <p>{t("Navbar.services")}</p>
+                              <img
+                                className=""
+                                src={menuArrowRight}
+                                alt='banner'
+                                width="20px"
+                                height="20px" />
+                            </button>
+                            <div className={classNames(showFinanceSubMenu ? "transform -translate-x-[620px] duration-600" : "transform -translate-x-80 duration-600", "w-[300px] h-full dark:bg-[#0A0A0A]  fixed z-[1200] -right-[620px] top-[80px] px-[42px]")}>
+                              <button className="font-open-sans font-extrabold text-base leading-4 flex text-white justify-between uppercase " onClick={handleFinancesSubMenu}>
+                                <img
+                                  className=""
+                                  src={menuArrowLeft}
+                                  alt='banner'
+                                  width="20px"
+                                  height="20px" />
+                                <p className="ml-4">{t("Navbar.services")}</p>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-6 justify-between uppercase ml-8 w-full" onClick={async => { window.location.href = "/poa" }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.poa")}</p>
+                                <div className="w-[25px] h-[20px] fill-white mr-4">
+                                  <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Awards_certificate"><path d="M157.9692,418.1a27.9918,27.9918,0,0,1-20.5625-8.9961l-28.4392-30.7737V473.016l49-28,49,28V378.3344l-28.4358,30.77A27.9915,27.9915,0,0,1,157.9692,418.1Z" /><path d="M192.4343,233.4062l-34.4668-37.2969-34.4668,37.2969L73.9675,244.6068l15.0664,48.4976L73.9675,341.6015l49.5332,11.2007,34.4668,37.2969,34.4668-37.2969,49.5332-11.2007-15.0664-48.4971,15.0664-48.4976Zm-34.4668,91.1982a31.5,31.5,0,1,1,31.5-31.5A31.5,31.5,0,0,1,157.9675,324.6044Z" /><path d="M417,101.984H95v109.2l13.86-3.15,28.5605-30.94a28.0341,28.0341,0,0,1,41.09,0l28.56,30.94,41.09,9.24a28.0444,28.0444,0,0,1,20.5805,35.63l-12.53,40.18,1.54,4.9H417Zm-77,56H172a14,14,0,0,1,0-28H340a14,14,0,0,1,0,28Z" /><path d="M32,38.984v322H53.8408a24.429,24.429,0,0,1-4.1306-5.39,27.7245,27.7245,0,0,1-2.45-22.33l12.4593-40.18L47.26,252.904a27.7551,27.7551,0,0,1,2.45-22.33A28.323,28.323,0,0,1,67,217.484V87.984a13.996,13.996,0,0,1,14-14H431a14.0405,14.0405,0,0,1,14,14v224a13.9957,13.9957,0,0,1-14,14H266.5l2.24,7.28a28.0251,28.0251,0,0,1-2.5208,22.33,24.4439,24.4439,0,0,1-4.1289,5.39H480v-322Z" /></g></svg>
+                                </div>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.mynearwallet.com/staking/nativo.pool.near", '_blank') }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.ntvFarm")}</p>
+                                <div className="w-[25px] h-[20px] fill-white mr-4">
+                                  <svg class="feather feather-feather" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" /><line x1="16" x2="2" y1="8" y2="22" /><line x1="17.5" x2="9" y1="15" y2="15" /></svg>
+                                </div>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/", '_blank') }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.nativoDAO")}</p>
+                                <div className="w-[25px] h-[20px] fill-white mr-4">
+                                  <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z" /></svg>
+                                </div>
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.auctions")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={finances}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                              <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
+                                <p className="font-open-sans font-semibold text-base">{t("Navbar.loans")}</p>
+                                <img
+                                  className="mr-4"
+                                  src={loans}
+                                  alt='banner'
+                                  width="25px"
+                                  height="20px" />
+                              </button>
+                            </div>
                           </div>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async => { window.open("https://app.astrodao.com/dao/nativo-dao.sputnik-dao.near/",'_blank') }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.nativoDAO")}</p>
-                          <div className="w-[25px] h-[20px] fill-white mr-4">
-                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m21 2-5 5-4-5-4 5-5-5v13h18zM5 21h14a2 2 0 0 0 2-2v-2H3v2a2 2 0 0 0 2 2z"/></svg>
+                          <div className="menu-item" >
+                            <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase" onClick={() => { window.location = "/community" }}>
+                              <p>{t("Navbar.community")}</p>
+                            </div>
                           </div>
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.auctions")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.auctions")}</p>
-                          <img
-                            className="mr-4"
-                            src={finances}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                        <button className="font-open-sans font-semibold text-base leading-4 flex text-white mt-3 justify-between uppercase ml-8 w-full" onClick={async () => { futureFeatureMsg(t("Navbar.loans")); }}>
-                          <p className="font-open-sans font-semibold text-base">{t("Navbar.loans")}</p>
-                          <img
-                            className="mr-4"
-                            src={loans}
-                            alt='banner'
-                            width="25px"
-                            height="20px" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="menu-item" >
-                      <div className="font-open-sans font-extrabold text-base leading-4 flex text-white mt-3 justify-between uppercase" onClick={() => { window.location = "/community" }}>
-                        <p>{t("Navbar.community")}</p>
-                      </div>
-                    </div>
-                    <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
-                      <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
+                          <button className="flex    w-full h-[50px]   lg:w-[159px] mt-10" onClick={handleSignIn}>
+                            <div className="flex   font-extrabold h-full text-white  text-center  justify-between shadow-s w-full border-solid border-2 rounded-md
                        border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")} 
-                         </span>
-                         <img className="manImg  mt-2 mr-2 w-5 h-5 "  src={createNft}></img>
-                      </div>
-                    </button>
-                    <button className="     w-full h-[50px]   mt-3" onClick={handleSignIn}>
-                      <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
+                              <span className="title-font  text-white font-open-sans text-[15px] lg:font-extrabold  px-5 pt-2 uppercase leading-6 flex justify-center hover:text-textOutlineHover active:text-textOutlinePressed">{t("Navbar.create")}
+                              </span>
+                              <img className="manImg  mt-2 mr-2 w-5 h-5 " src={createNft}></img>
+                            </div>
+                          </button>
+                          <button className="     w-full h-[50px]   mt-3" onClick={handleSignIn}>
+                            <div className=" flex font-extrabold h-full text-white  text-center  justify-between shadow-s  border-solid border-2 rounded-md
                        border-white2 hover:bg-outlineHover active:bg-outlinePressed ">
-                        <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
-                          {t("Navbar.createCollection")} 
-                           </span>
-                           <img className="manImg mt-2 mr-2 w-5 h-5  "  src={createCol}></img> 
+                              <span className="title-font  text-white font-open-sans text-[15px] tracking-tighter lg:font-bold  px-5 pt-2 uppercase  flex   hover:text-textOutlineHover active:text-textOutlinePressed">
+                                {t("Navbar.createCollection")}
+                              </span>
+                              <img className="manImg mt-2 mr-2 w-5 h-5  " src={createCol}></img>
+                            </div>
+                          </button>
+                        </Menu>
                       </div>
-                    </button>
-                  </Menu>
-                </div>
 
-              </>
-          }
+                    </>
+                }
 
 
 
-        </div>
+              </div>
 
-      </header>
-    </>
-  );
-}
+            </header>
+          </>
+        );
+  }
 
 LightHeaderB.defaultProps = {
   theme: "indigo",

@@ -17,7 +17,7 @@ Nativo NFT is a marketplace builded over NEAR Protocol. It is building the next 
 10. View NFT Staking []
 
 
-## 💻 Tecnologias usadas
+## 💻 Technologies used
 
 Esta es la parte del proyecto enfacada en la UI/UX para esto se necesitaron las siguientes tecnologias:
 
@@ -27,7 +27,7 @@ Esta es la parte del proyecto enfacada en la UI/UX para esto se necesitaron las 
 4. Tailwind
 5. Wallet selector (NEAR Protocol)
 
-## 👨🏻‍💻 Instalación local del proyecto
+## 👨🏻‍💻 Local installation of the project
 
 Para correr este proyecto de forma local se necesitan los siguientes requerimientos:
 
@@ -37,7 +37,7 @@ Para correr este proyecto de forma local se necesitan los siguientes requerimien
 4. Instalar de forma global el framework de Truffle `npm install -g truffle`
 5. Compilar tailwind de manera local `npm run build-dev-tailwind`
 
-## 📚 Arbol de archivos
+## 📚 File tree
 ```bash
 
 ```

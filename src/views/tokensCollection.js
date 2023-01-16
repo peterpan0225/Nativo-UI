@@ -314,7 +314,7 @@ function LightEcommerceA() {
                   </div>
                   <div className="flex flex-col justify-center col-span-2 md:col-span-1">
                     <p className="lg:text-lg text-sm pb-1 text-darkgray"><b>{t("tokCollection.creator")}</b></p>
-                    <a href={`../profile/${Landing.ownerCol.split('.')[0]}`} className="lg:text-base text-xs pb-1 font-bold text-blue2 break-words">{Landing.ownerCol}</a>
+                    <a href={`../${Landing.ownerCol.split('.')[0]}`} className="lg:text-base text-xs pb-1 font-bold text-blue2 break-words">{Landing.ownerCol}</a>
                   </div>
                 </div>
               </div>
